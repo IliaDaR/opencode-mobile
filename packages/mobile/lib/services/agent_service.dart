@@ -4114,8 +4114,8 @@ MISC (6):
       }
 
       buf.writeln("help: ## Show this help message");
-      buf.writeln('\t@grep -E \'^[a-zA-Z_-]+:.*?## .*$$\' $$(MAKEFILE_LIST) | sort | \\\\');
-      buf.writeln('\t\txargs awk -F \':.*?## \' \'{printf "  \\033[36m%-20s\\033[0m %s\\n", $$1, $$2}\'');
+      buf.writeln(r"""	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $$(MAKEFILE_LIST) | sort | \""");
+      buf.writeln(r"""		xargs awk -F ':.*?## ' '{printf "  \033[36m%-20s\033[0m %s\n", $$1, $$2}'""");
       buf.writeln();
 
       if (hasPackageJson) {
