@@ -1,3 +1,4 @@
+import "dart:async";
 import "dart:convert";
 import "dart:io";
 import "package:path/path.dart" as p;
@@ -18,7 +19,7 @@ class CodeSandbox {
     try {
       final result = await Process.run(cmd[0], [...cmd.sublist(1), file.path],
           workingDirectory: tmpDir.path,
-          timeout: const Duration(seconds: 15));
+      ).timeout(const Duration(seconds: 15));
       final out = result.stdout.toString().trim();
       final err = result.stderr.toString().trim();
       final sb = StringBuffer();

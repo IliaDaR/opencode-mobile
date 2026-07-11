@@ -119,7 +119,7 @@ class PermissionService {
         regexStr.write(".");
       } else {
         // Escape regex special chars
-        if ("\\^$[]{}()+|".contains(c)) regexStr.write('\\');
+        if (r"\^$[]{}()+|".contains(c)) regexStr.write('\\');
         regexStr.write(c);
       }
     }

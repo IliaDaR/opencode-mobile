@@ -7,6 +7,8 @@ import "dart:convert";
 class BrainstormEngine {
   static final _rand = math.Random();
 
+  static String get prompt => "You are in creative ideation mode. Apply lateral thinking, SCAMPER, oblique strategies, and cross-domain analogies. Break conventional patterns. Prioritize novel combinations over incremental improvements. Every idea must be unexpected."; 
+
   static String manipulate(String problem, int index) {
     final engines = _engines;
     if (index < 0 || index >= engines.length) {
@@ -192,7 +194,7 @@ class BrainstormEngine {
   static final _catastrophes = [
     "Make every user cry in frustration",
     "Destroy all data every 5 minutes",
-    "Charge $10,000 per click",
+    "Charge \$10,000 per click",
     "Require a PhD in cryptography to open",
     "Randomly delete features every day",
     "Only works on a ZX Spectrum from 1982",
@@ -471,7 +473,7 @@ class BrainstormEngine {
         "It's powered by human boredom. The more bored, the better it works.",
         "Every use makes it worse. It degrades gracefully.",
         "It's destroyed after one use. Single-use, high-impact.",
-        "It costs $0.01 per use. You have to pay to use it.",
+        "It costs \$0.01 per use. You have to pay to use it.",
       ];
       final provocation = provocations[_rand.nextInt(provocations.length)];
       return "**PROVOCATION** — Absurd statement: $provocation\n\nProblem: $p\n\nAssume this is true. Find the useful kernel.\n\nDon't argue with it. EXPLOIT it.\n\nWhat's the VERSION of the solution that makes this statement wise, not absurd?";
@@ -565,11 +567,11 @@ class BrainstormEngine {
       final dimensions = [
         "Input (1 byte) vs Output (100 GB)",
         "Speed (1 ms) vs Memory (1 byte)",
-        "Cost ($1 trillion) vs Users (3 people)",
+        "Cost (\$1 trillion) vs Users (3 people)",
         "Complexity (quantum mechanics) vs Interface (one button)",
         "Scale (global) vs Team (1 person)",
         "Storage (infinite) vs Bandwidth (1 bit/hour)",
-        "Reliability (99.99999%) vs Budget ($100)",
+        "Reliability (99.99999%) vs Budget (\$100)",
       ];
       final contrast = dimensions[_rand.nextInt(dimensions.length)];
       return "**CONTRAST** — Extreme asymmetry: $contrast\n\nProblem: $p\n\nDesign under this absurd asymmetry.\n\nThe constraint is so extreme it breaks conventional thinking.\n\nWhat architecture, model, or paradigm makes this possible?\n\nFind the idea that THRIVES on this imbalance.";
@@ -785,13 +787,13 @@ class BrainstormEngine {
     // 72 — PRICE_SIGNALING: price as a feature
     (p) {
       final prices = [
-        "Free (ad-supported or open source)", "$0.99", "$9.99/month",
-        "$999 one-time", "$49,999 enterprise license",
-        "Pay what you want", "Free + tips", "Freemium (basic free, pro $29)",
-        "Outcome-based (pay per result)", "Lifetime access $199",
+        "Free (ad-supported or open source)", "\$0.99", "\$9.99/month",
+        "\$999 one-time", "\$49,999 enterprise license",
+        "Pay what you want", "Free + tips", "Freemium (basic free, pro \$29)",
+        "Outcome-based (pay per result)", "Lifetime access \$199",
       ];
       final price = prices[_rand.nextInt(prices.length)];
-      return "**PRICE_SIGNALING** — Priced at $price\n\nProblem: $p\n\nPrice is NOT just revenue. It's a SIGNAL.\n\nWhat does $price signal about your product?\n  - Free = mass adoption, low barrier, ads or donations\n  - $999 = premium, exclusive, high quality\n  - Pay what you want = trust, community, accessible\n\nDesign the product to MATCH the price signal.\n\nWhat features does $price demand? What's included? What's excluded?";
+      return "**PRICE_SIGNALING** — Priced at $price\n\nProblem: $p\n\nPrice is NOT just revenue. It's a SIGNAL.\n\nWhat does $price signal about your product?\n  - Free = mass adoption, low barrier, ads or donations\n  - \$999 = premium, exclusive, high quality\n  - Pay what you want = trust, community, accessible\n\nDesign the product to MATCH the price signal.\n\nWhat features does $price demand? What's included? What's excluded?";
     },
 
     // 73 — DISTRIBUTION_FIRST: how it spreads > what it does

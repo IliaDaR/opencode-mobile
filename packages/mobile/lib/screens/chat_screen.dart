@@ -149,20 +149,20 @@ class _ChatScreenState extends State<ChatScreen> {
     if (text.isEmpty || _loading) return;
     _inputCtrl.clear();
 
-    if (text.startsWith("/")) { _handleCommand(text); return; }
+    if (text.startsWith("/")) { await _handleCommand(text); return; }
 
     _addUser(text);
     await _callAgent();
   }
 
-  void _handleCommand(String input) {
+  Future<void> _handleCommand(String input) async {
     final parts = input.split(" ");
     final cmd = parts[0].toLowerCase();
     switch (cmd) {
       case "/config":
         Navigator.push(context, MaterialPageRoute(builder: (_) => const SettingsScreen()));
       case "/files":
-        Navigator.push(context, MaterialPageRoute(builder: (_) => FileBrowserScreen(project: _project)));
+        Navigator.push(context, MaterialPageRoute(builder: (_) => FileBrowserScreen(projectName: _project)));
       case "/help":
         _addAssistant(
           "**Commands:**\n"
@@ -206,8 +206,12 @@ class _ChatScreenState extends State<ChatScreen> {
         _agent.reset();
         _addSystem("Chat cleared.");
       case "/undo":
-        SnapshotService.rollback();
-        _addSystem("Last change undone.");
+        try {
+          final result = await SnapshotService.undoAll(_project);
+          _addSystem(result);
+        } catch (e) {
+          _addSystem("Undo failed: $e");
+        }
       default:
         _addSystem("Unknown command. Try /help");
     }
@@ -555,7 +559,6 @@ class _ChatScreenState extends State<ChatScreen> {
         borderRadius: BorderRadius.circular(8),
         border: Border.all(color: cs.onSurface.withOpacity(0.08)),
       ),
-      codeblockTextStyle: TextStyle(fontSize: 13, color: cs.onSurface, fontFamily: "monospace", height: 1.4),
       blockquoteDecoration: BoxDecoration(
         border: Border(left: BorderSide(color: cs.primary, width: 3)),
         color: cs.primary.withOpacity(0.05),

@@ -2768,7 +2768,7 @@ MISC (6):
       final linksOnlyImgCount = linksOnlyImg.allMatches(content).length;
 
       // Check form inputs without labels
-      final inputs = RegExp(r'<input(?![^>]*\btype\s*=\s*["'](?:hidden|submit|button|image|reset)["'])[^>]*>', caseSensitive: false);
+      final inputs = RegExp(r"""<input(?![^>]*\btype\s*=\s*["'](?:hidden|submit|button|image|reset)["'])[^>]*>""", caseSensitive: false);
       final labels = RegExp(r'<label[^>]*>', caseSensitive: false);
       final inputCount = inputs.allMatches(content).length;
       final labelCount = labels.allMatches(content).length;
@@ -2811,7 +2811,7 @@ MISC (6):
       if (inlineFont > 0) issues.add("$inlineFont inline font-size declarations (consider using relative units like rem/em)");
 
       // Check tabindex > 0 (anti-pattern)
-      final badTabindex = RegExp(r'tabindex\s*=\s*["\']([2-9]|\d{2,})["\']', caseSensitive: false);
+      final badTabindex = RegExp(r"""tabindex\s*=\s*["']([2-9]|\d{2,})["']""", caseSensitive: false);
       final badTabindexCount = badTabindex.allMatches(content).length;
       if (badTabindexCount > 0) issues.add("$badTabindexCount elements with tabindex > 0 (avoid positive tabindex)");
 
@@ -2872,7 +2872,7 @@ MISC (6):
         if (entity is File) {
           final relPath = entity.path.substring(sourceDir.path.length + 1).replaceAll("\\", "/");
           final bytes = await entity.readAsBytes();
-          archive.add(ArchiveFile(relPath, bytes.length, bytes));
+          archive.addFile(ArchiveFile(relPath, bytes.length, bytes));
         }
       }
       final outDir = Directory("$projectRoot/$project/.opencode");
@@ -2906,8 +2906,8 @@ MISC (6):
       if (filePath.endsWith(".zip")) {
         archive = ZipDecoder().decodeBytes(bytes);
       } else {
-        archive = GZipDecoder().decodeBytes(bytes);
-        archive = TarDecoder().decodeBytes(archive);
+        final gzBytes = GZipDecoder().decodeBytes(bytes);
+        archive = TarDecoder().decodeBytes(gzBytes);
       }
       final extractDir = Directory("$projectRoot/$project/.opencode/extracted");
       if (!extractDir.existsSync()) extractDir.createSync(recursive: true);
@@ -3001,9 +3001,9 @@ MISC (6):
       final b = int.parse(base.substring(4, 6), radix: 16);
       final sb = StringBuffer();
       sb.writeln("#$base (base)");
-      sb.writeln("#${_lerp(r, 255, 0.9).toRadixString(16).padLeft(2, "0")}${_lerp(g, 255, 0.9).toRadixString(16).padLeft(2, "0")}${_lerp(b, 255, 0.9).toRadixString(16).padLeft(2, "0")} (lighter)");
-      sb.writeln("#${(_lerp(r, 0, 0.7)).toRadixString(16).padLeft(2, "0")}${(_lerp(g, 0, 0.7)).toRadixString(16).padLeft(2, "0")}${(_lerp(b, 0, 0.7)).toRadixString(16).padLeft(2, "0")} (darker)");
-      sb.writeln("#${(_lerp(b, 0, 0.5)).toRadixString(16).padLeft(2, "0")}${(_lerp(r, 0, 0.5)).toRadixString(16).padLeft(2, "0")}${(_lerp(g, 0, 0.5)).toRadixString(16).padLeft(2, "0")} (complementary hue)");
+      sb.writeln("#${_lerp(r, 255, 0.9).toInt().toRadixString(16).padLeft(2, "0")}${_lerp(g, 255, 0.9).toInt().toRadixString(16).padLeft(2, "0")}${_lerp(b, 255, 0.9).toInt().toRadixString(16).padLeft(2, "0")} (lighter)");
+      sb.writeln("#${(_lerp(r, 0, 0.7)).toInt().toRadixString(16).padLeft(2, "0")}${(_lerp(g, 0, 0.7)).toInt().toRadixString(16).padLeft(2, "0")}${(_lerp(b, 0, 0.7)).toInt().toRadixString(16).padLeft(2, "0")} (darker)");
+      sb.writeln("#${(_lerp(b, 0, 0.5)).toInt().toRadixString(16).padLeft(2, "0")}${(_lerp(r, 0, 0.5)).toInt().toRadixString(16).padLeft(2, "0")}${(_lerp(g, 0, 0.5)).toInt().toRadixString(16).padLeft(2, "0")} (complementary hue)");
       return sb.toString();
     } catch (_) { return "Invalid color format: $base. Use hex like #58A6FF."; }
   }
@@ -3044,7 +3044,7 @@ MISC (6):
       "HKT": 8,
       "CST_CN": 8,
     };
-    return map[tz.toUpperCase()];
+    return map[tz.toUpperCase()]?.toInt();
   }
 
   static String _uuidGen(String version, int count) {
@@ -3236,10 +3236,10 @@ MISC (6):
       if (cert == null) return "No SSL certificate returned for '$domain'.";
       final subject = cert.subject;
       final issuer = cert.issuer;
-      final validFrom = cert.startValid?.toIso8601String() ?? "unknown";
-      final validTo = cert.endValid?.toIso8601String() ?? "unknown";
-      final isExpired = cert.endValid != null && cert.endValid!.isBefore(DateTime.now());
-      final daysLeft = cert.endValid != null ? cert.endValid!.difference(DateTime.now()).inDays : -1;
+      final validFrom = cert.startValidity?.toIso8601String() ?? "unknown";
+      final validTo = cert.endValidity?.toIso8601String() ?? "unknown";
+      final isExpired = cert.endValidity != null && cert.endValidity!.isBefore(DateTime.now());
+      final daysLeft = cert.endValidity != null ? cert.endValidity!.difference(DateTime.now()).inDays : -1;
       return "SSL Certificate for $domain:\n"
           "  Subject: $subject\n"
           "  Issuer: $issuer\n"
@@ -3500,7 +3500,7 @@ MISC (6):
         buf.writeln("    add_header Referrer-Policy \"strict-origin-when-cross-origin\" always;");
         buf.writeln();
         buf.writeln("    location / {");
-        buf.writeln("        try_files \\$uri \\$uri/ /index.html;");
+        buf.writeln("        try_files \$uri \$uri/ /index.html;");
         buf.writeln("    }");
         buf.writeln();
         buf.writeln("    # Cache static assets");
@@ -3524,13 +3524,13 @@ MISC (6):
         buf.writeln("    location / {");
         buf.writeln("        proxy_pass http://127.0.0.1:$port;");
         buf.writeln("        proxy_http_version 1.1;");
-        buf.writeln("        proxy_set_header Upgrade \\$http_upgrade;");
+        buf.writeln("        proxy_set_header Upgrade \$http_upgrade;");
         buf.writeln("        proxy_set_header Connection 'upgrade';");
-        buf.writeln("        proxy_set_header Host \\$host;");
-        buf.writeln("        proxy_set_header X-Real-IP \\$remote_addr;");
-        buf.writeln("        proxy_set_header X-Forwarded-For \\$proxy_add_x_forwarded_for;");
-        buf.writeln("        proxy_set_header X-Forwarded-Proto \\$scheme;");
-        buf.writeln("        proxy_cache_bypass \\$http_upgrade;");
+        buf.writeln("        proxy_set_header Host \$host;");
+        buf.writeln("        proxy_set_header X-Real-IP \$remote_addr;");
+        buf.writeln("        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;");
+        buf.writeln("        proxy_set_header X-Forwarded-Proto \$scheme;");
+        buf.writeln("        proxy_cache_bypass \$http_upgrade;");
         buf.writeln("        proxy_read_timeout 90s;");
         buf.writeln("        proxy_connect_timeout 90s;");
         buf.writeln("    }");
@@ -3546,7 +3546,7 @@ MISC (6):
         buf.writeln("    index index.html;");
         buf.writeln();
         buf.writeln("    location / {");
-        buf.writeln("        try_files \\$uri \\$uri/ =404;");
+        buf.writeln("        try_files \$uri \$uri/ =404;");
         buf.writeln("    }");
         buf.writeln();
         buf.writeln("    # Cache static files aggressively");
@@ -3626,8 +3626,8 @@ MISC (6):
     buf.writeln("Group=$name");
     buf.writeln("WorkingDirectory=/opt/$name");
     buf.writeln("ExecStart=$command");
-    buf.writeln("ExecReload=/bin/kill -HUP \\$MAINPID");
-    buf.writeln("ExecStop=/bin/kill -TERM \\$MAINPID");
+    buf.writeln("ExecReload=/bin/kill -HUP \$MAINPID");
+    buf.writeln("ExecStop=/bin/kill -TERM \$MAINPID");
     buf.writeln("Restart=on-failure");
     buf.writeln("RestartSec=5");
     buf.writeln("StartLimitBurst=5");
@@ -4455,7 +4455,7 @@ MISC (6):
           buf.writeln("  ${line.trim()}");
         }
       }
-      final sdkBlock = RegExp(r'sdk:\s*["\']([^"\']+)["\']').firstMatch(pubspec);
+      final sdkBlock = RegExp(r"""sdk:\s*["']([^"']+)["']""").firstMatch(pubspec);
       if (sdkBlock != null) buf.writeln("\nSDK constraint: ${sdkBlock.group(1)}");
     } catch (_) {}
 
@@ -4479,7 +4479,7 @@ MISC (6):
       buf.writeln("### Python (pyproject.toml)\n");
       final depSection = RegExp(r'dependencies\s*=\s*\[((?:[^[\]]|\[[^\]]*\])*)\]', dotAll: true).firstMatch(toml);
       if (depSection != null) {
-        final deps = depSection.group(1)!.split(RegExp(r',\s*')).where((d) => d.trim().isNotEmpty).map((d) => d.trim().replaceAll(RegExp(r'^["\']|["\']$'), '')).toList();
+        final deps = depSection.group(1)!.split(RegExp(r',\s*')).where((d) => d.trim().isNotEmpty).map((d) => d.trim().replaceAll(RegExp(r"""^["']|["']$"""), '')).toList();
         buf.writeln("**${deps.length}** dependencies:");
         for (final d in deps.take(20)) buf.writeln("  $d");
       }
@@ -4587,7 +4587,7 @@ MISC (6):
   String _minifyGeneric(String code) {
     var result = code;
     // Remove single-line comments
-    result = result.replaceAll(RegExp(r'(?<!["\'])#(?!![\s\S])'), '');
+    result = result.replaceAll(RegExp(r"""(?<!["'])#(?!![\s\S])"""), '');
     result = result.replaceAll(RegExp(r'//.*$', multiLine: true), '');
     // Remove multi-line comments
     result = result.replaceAll(RegExp(r'/\*[\s\S]*?\*/'), '');
@@ -5276,10 +5276,10 @@ MISC (6):
       if (info == null) {
         issues.add("Missing 'info' object (required)");
       } else {
-        if (info["title"] == null || (info["title"] as String?).isEmpty) {
+        if (info["title"] == null || (info["title"] as String?)?.isEmpty ?? true) {
           issues.add("Missing or empty 'info.title' (required)");
         }
-        if (info["version"] == null || (info["version"] as String?).isEmpty) {
+        if (info["version"] == null || (info["version"] as String?)?.isEmpty ?? true) {
           issues.add("Missing or empty 'info.version' (required)");
         }
         buf.writeln("- **Title:** ${info["title"] ?? "MISSING"}");

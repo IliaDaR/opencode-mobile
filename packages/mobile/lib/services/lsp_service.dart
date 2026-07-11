@@ -174,7 +174,7 @@ class LspService {
     final header = "Content-Length: ${utf8.encode(msg).length}\r\n\r\n";
     _lspProcess!.stdin.write("$header$msg");
 
-    return await completer.future.timeout(const Duration(seconds: 5), onTimeout: () => null);
+    return await completer.future.timeout(const Duration(seconds: 5), onTimeout: () => <String, dynamic>{});
   }
 
   static Future<void> _sendLspNotification(String method, Map<String, dynamic> params) async {
