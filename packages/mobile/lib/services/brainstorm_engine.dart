@@ -834,17 +834,17 @@ class BrainstormEngine {
 
     // 78 — LIQUID_INTERFACE: no fixed UI
     (p) {
-      return "**LIQUID_INTERFACE** — The interface adapts to the context, not the device\n\nProblem: $p\n\nThe interface is NOT fixed. It morphs based on:\n  - Who's using it (beginner vs expert)\n  - Where they are (desk vs walking vs driving)\n  - What they're doing (focused vs multitasking)\n  - What device they have (watch vs phone vs wall)\n  - Their state (calm vs stressed vs tired)\n\nThe SAME core functionality, radically different interfaces.\n\nDesign the CORE first. The interface is just a skin."
+      return "**LIQUID_INTERFACE** — The interface adapts to the context, not the device\n\nProblem: $p\n\nThe interface is NOT fixed. It morphs based on:\n  - Who is using it (beginner vs expert)\n  - Where they are (desk vs walking vs driving)\n  - What they are doing (focused vs multitasking)\n  - What device they have (watch vs phone vs wall)\n  - Their state (calm vs stressed vs tired)\n\nThe SAME core functionality, radically different interfaces.\n\nDesign the CORE first. The interface is just a skin."
     },
 
     // 79 — OPEN_CORE: commoditize the complement
     (p) {
-      return "**OPEN_CORE** — Give away what's complementary, sell what's scarce\n\nProblem: $p\n\nStrategy: open-source the part that ENABLES your business model.\n\n- What's the complement? (the thing people need to USE your product)\n   → Make it open/free/commodity\n- What's the core? (the thing that makes you unique)\n   → Sell it\n\nExamples:\n  - Red Hat: free Linux, paid support\n  - GitHub: free public repos, paid private + enterprise\n  - Docker: free engine, paid orchestration\n\nWhat can you commoditize to make your core indispensable?"
+      return "**OPEN_CORE** — Give away what is complementary, sell what is scarce\n\nProblem: $p\n\nStrategy: open-source the part that ENABLES your business model.\n\n- What is the complement? (the thing people need to USE your product)\n   → Make it open/free/commodity\n- What is the core? (the thing that makes you unique)\n   → Sell it\n\nExamples:\n  - Red Hat: free Linux, paid support\n  - GitHub: free public repos, paid private + enterprise\n  - Docker: free engine, paid orchestration\n\nWhat can you commoditize to make your core indispensable?"
     },
 
     // 80 — MEME_DESIGN: ideas that spread
     (p) {
-      return "**MEME_DESIGN** — Design for replication, not consumption\n\nProblem: $p\n\nThe best solutions spread like memes. They're:\n  - SIMPLE: one sentence, no jargon\n  - SURPRISING: violates an expectation\n  - CONCRETE: specific, not abstract\n  - CREDIBLE: self-evident truth\n  - EMOTIONAL: makes you feel something\n  - STORY: nested in a narrative\n\nDesign the MEME of your solution. If it's not memeable, it's not spreadable.\n\nWhat's the one-liner that makes someone say 'Wait, say that again?'"
+      return "**MEME_DESIGN** — Design for replication, not consumption\n\nProblem: $p\n\nThe best solutions spread like memes. They are:\n  - SIMPLE: one sentence, no jargon\n  - SURPRISING: violates an expectation\n  - CONCRETE: specific, not abstract\n  - CREDIBLE: self-evident truth\n  - EMOTIONAL: makes you feel something\n  - STORY: nested in a narrative\n\nDesign the MEME of your solution. If it is not memeable, it is not spreadable.\n\nWhat is the one-liner that makes someone say [Wait, say that again]?"
     },
 
     // 81 — CUSTOMER_JOB_MAP: the 8-step job
@@ -879,12 +879,12 @@ class BrainstormEngine {
         "Kenyan (harambee-pulling together, community resilience)",
       ];
       final culture = cultures[_rand.nextInt(cultures.length)];
-      return "**CULTURAL_FIT** — Designed for $culture\n\nProblem: $p\n\nDesign EXCLUSIVELY for this culture's values and constraints.\n\nWhat's acceptable? What's taboo?\n\nWhat features are ESSENTIAL? What's irrelevant?\n\nDesign for THIS culture. Make it perfect for them.\n\nIf it's perfect for THEM, it might have insights for everyone."
+      return "**CULTURAL_FIT** — Designed for $culture\n\nProblem: $p\n\nDesign EXCLUSIVELY for this culture's values and constraints.\n\nWhat is acceptable? What is taboo?\n\nWhat features are ESSENTIAL? What is irrelevant?\n\nDesign for THIS culture. Make it perfect for them.\n\nIf it is perfect for THEM, it might have insights for everyone."
     },
 
     // 84 — ERROR_DRIVEN: make mistakes the feature
     (p) {
-      return "**ERROR_DRIVEN** — Every error is a feature request\n\nProblem: $p\n\nDesign where errors are NOT bugs — they're the CORE feedback mechanism.\n\nPrinciples:\n  - Errors are informative, not punishable\n  - Every error reveals a missing affordance\n  - The system learns MORE from errors than successes\n  - The error IS the error message\n\nWhat if the user can't make a MISTAKE?\n\nWhat if every 'wrong' action produces a VALUABLE output?\n\nDesign the system that only works when you fail."
+      return "**ERROR_DRIVEN** — Every error is a feature request\n\nProblem: $p\n\nDesign where errors are NOT bugs, they are the CORE feedback mechanism.\n\nPrinciples:\n  - Errors are informative, not punishable\n  - Every error reveals a missing affordance\n  - The system learns MORE from errors than successes\n  - The error IS the error message\n\nWhat if the user cannot make a MISTAKE?\n\nWhat if every [wrong] action produces a VALUABLE output?\n\nDesign the system that only works when you fail."
     },
 
     // 85 — SENSORY_DEPRIVATION: remove one sense
@@ -896,20 +896,20 @@ class BrainstormEngine {
         "no speech (cannot ask for help, cannot use voice commands)",
         "no sight AND no hearing (deaf-blind, touch only)",
         "no sense of time (no deadlines, no urgency, no clocks)",
-        "no context (don't know where you are, what happened before)",
+        "no context (no idea where you are, what happened before)",
       ];
       final sense = senses[_rand.nextInt(senses.length)];
-      return "**SENSORY_DEPRIVATION** — Interface with $sense\n\nProblem: $p\n\nDesign the ENTIRE experience for someone with $sense.\n\nEvery assumption about the interface is WRONG.\n\nHow do you communicate? How do they act? How do they know it's working?\n\nForcing this constraint reveals the TRUE essence of the interaction."
+      return "**SENSORY_DEPRIVATION** — Interface with $sense\n\nProblem: $p\n\nDesign the ENTIRE experience for someone with $sense.\n\nEvery assumption about the interface is WRONG.\n\nHow do you communicate? How do they act? How do they know it is working?\n\nForcing this constraint reveals the TRUE essence of the interaction."
     },
 
     // 86 — RECIPROCITY_LOOP: give to get
     (p) {
-      return "**RECIPROCITY_LOOP** — Give first, ask later\n\nProblem: $p\n\nHuman psychology: when someone gives us something, we feel OBLIGATED to give back.\n\nDesign a reciprocity loop:\n  1. Give IMMEDIATE value (no signup, no commitment)\n  2. Deliver SURPRISING value (more than expected)\n  3. Ask for something SMALL (feedback, share, email)\n  4. Give MORE value (reinforce the loop)\n  5. Ask for the ASK (purchase, upgrade, referral)\n\nThe best sales don't feel like sales. They feel like gratitude."
+      return "**RECIPROCITY_LOOP** — Give first, ask later\n\nProblem: $p\n\nHuman psychology: when someone gives us something, we feel OBLIGATED to give back.\n\nDesign a reciprocity loop:\n  1. Give IMMEDIATE value (no signup, no commitment)\n  2. Deliver SURPRISING value (more than expected)\n  3. Ask for something SMALL (feedback, share, email)\n  4. Give MORE value (reinforce the loop)\n  5. Ask for the ASK (purchase, upgrade, referral)\n\nThe best sales do not feel like sales. They feel like gratitude."
     },
 
     // 87 — FEEDBACK_FIRST: measure what matters
     (p) {
-      return "**FEEDBACK_FIRST** — What gets measured gets improved\n\nProblem: $p\n\nDesign the feedback system BEFORE the product:\n\n1. What's the SINGLE metric that defines success?\n   (Not vanity metrics — the ONE number that matters)\n\n2. How do you measure it in REAL TIME?\n   (If you can't measure it quickly, you can't steer)\n\n3. What's the CLOSED LOOP?\n   (Action → Measurement → Learning → New Action)\n\n4. How does the system communicate its state?\n   (A glance, not a dashboard)\n\nThe product IS a feedback system. Features are just actuators."
+      return "**FEEDBACK_FIRST** — What gets measured gets improved\n\nProblem: $p\n\nDesign the feedback system BEFORE the product:\n\n1. What is the SINGLE metric that defines success?\n   (Not vanity metrics, the ONE number that matters)\n\n2. How do you measure it in REAL TIME?\n   (If you cannot measure it quickly, you cannot steer)\n\n3. What is the CLOSED LOOP?\n   (Action → Measurement → Learning → New Action)\n\n4. How does the system communicate its state?\n   (A glance, not a dashboard)\n\nThe product IS a feedback system. Features are just actuators."
     },
 
     // 88 — EMERGENCE: local rules, global behavior

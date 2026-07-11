@@ -3504,7 +3504,7 @@ MISC (6):
         buf.writeln("    }");
         buf.writeln();
         buf.writeln("    # Cache static assets");
-        buf.writeln("    location ~* \\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$ {");
+        buf.writeln("    location ~* \\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)\$ {");
         buf.writeln("        expires 1y;");
         buf.writeln("        add_header Cache-Control \"public, immutable\";");
         buf.writeln("        access_log off;");
@@ -3550,7 +3550,7 @@ MISC (6):
         buf.writeln("    }");
         buf.writeln();
         buf.writeln("    # Cache static files aggressively");
-        buf.writeln("    location ~* \\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot|pdf)$ {");
+        buf.writeln("    location ~* \\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot|pdf)\$ {");
         buf.writeln("        expires 30d;");
         buf.writeln("        add_header Cache-Control \"public, no-transform\";");
         buf.writeln("        access_log off;");
@@ -4114,8 +4114,8 @@ MISC (6):
       }
 
       buf.writeln("help: ## Show this help message");
-      buf.writeln("\t@grep -E '^[a-zA-Z_-]+:.*?## .*$$' \$(MAKEFILE_LIST) | sort | \\\\");
-      buf.writeln("\t\txargs awk -F ':.*?## ' '{printf \"  \\033[36m%-20s\\033[0m %s\\n\", \$$1, \$$2}'");
+      buf.writeln('\t@grep -E \'^[a-zA-Z_-]+:.*?## .*$$\' $$(MAKEFILE_LIST) | sort | \\\\');
+      buf.writeln('\t\txargs awk -F \':.*?## \' \'{printf "  \\033[36m%-20s\\033[0m %s\\n", $$1, $$2}\'');
       buf.writeln();
 
       if (hasPackageJson) {
@@ -5276,10 +5276,10 @@ MISC (6):
       if (info == null) {
         issues.add("Missing 'info' object (required)");
       } else {
-        if (info["title"] == null || (info["title"] as String?)?.isEmpty ?? true) {
+        if (info["title"] == null || ((info["title"] as String?)?.isEmpty ?? true)) {
           issues.add("Missing or empty 'info.title' (required)");
         }
-        if (info["version"] == null || (info["version"] as String?)?.isEmpty ?? true) {
+        if (info["version"] == null || ((info["version"] as String?)?.isEmpty ?? true)) {
           issues.add("Missing or empty 'info.version' (required)");
         }
         buf.writeln("- **Title:** ${info["title"] ?? "MISSING"}");
