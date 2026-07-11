@@ -32,6 +32,12 @@ jobs:
           cache: true
           architecture: x64
 
+      - name: Verify Flutter setup
+        run: flutter doctor -v
+
+      - name: Accept Android licenses
+        run: yes | flutter doctor --android-licenses
+
       - name: Install dependencies
         run: flutter pub get
 
