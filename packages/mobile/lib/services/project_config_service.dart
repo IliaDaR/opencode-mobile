@@ -80,7 +80,7 @@ class JsoncParser {
       final stripped = stripComments(raw);
       final fixed = fixTrailingCommas(stripped);
       return jsonDecode(fixed) as Map<String, dynamic>?;
-    } catch (_) {
+    } catch (e) {
       return null;
     }
   }
@@ -99,7 +99,7 @@ class ProjectConfigService {
       if (json != null) {
         _config = ProjectConfig.fromJson(json);
       }
-    } catch (_) {
+    } catch (e) {
       // No config file — that's fine
     }
   }
@@ -112,7 +112,9 @@ class ProjectConfigService {
         try {
           final content = await StorageService.readFile(project, path);
           result.add(content);
-        } catch (_) {}
+        } catch (e) {
+          // Instruction file not found, skip
+        }
       }
     }
 
@@ -120,7 +122,9 @@ class ProjectConfigService {
       try {
         final content = await StorageService.readFile(project, name);
         result.add(content);
-      } catch (_) {}
+      } catch (e) {
+        // File not found, continue
+      }
     }
 
     try {
@@ -132,10 +136,14 @@ class ProjectConfigService {
             final name = p.basename(entry.path);
             final content = await StorageService.readFile(project, "$rulesDir/$name");
             result.add(content);
-          } catch (_) {}
+          } catch (e) {
+            // Rule file not readable
+          }
         }
       }
-    } catch (_) {}
+    } catch (e) {
+      // Rules directory not found
+    }
 
     return result;
   }

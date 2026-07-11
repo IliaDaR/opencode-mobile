@@ -749,7 +749,9 @@ class SkillLoader {
       try {
         final skills = await _loadFromDir(project, path);
         results.addAll(skills);
-      } catch (_) {}
+      } catch (e) {
+        // Path not accessible, continue
+      }
     }
     return results;
   }
@@ -764,12 +766,14 @@ class SkillLoader {
           try {
             final skillContent = await StorageService.readFile(project, "$dir/$name/SKILL.md");
             results.add("\n## Skill: $name\n$skillContent");
-          } catch (_) {
+          } catch (e) {
             // No SKILL.md in this subdirectory
           }
         }
       }
-    } catch (_) {}
+    } catch (e) {
+      // Directory not accessible
+    }
     return results;
   }
 }

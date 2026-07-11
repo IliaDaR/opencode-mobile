@@ -120,7 +120,9 @@ class AgentService {
           configFiles[name] = content.length > 2000
               ? content.substring(0, 2000)
               : content;
-        } catch (_) {}
+        } catch (e) {
+          // Config file not found or unreadable, skip silently
+        }
       }
 
       final buffer = StringBuffer();
@@ -150,7 +152,8 @@ class AgentService {
       if (perm != null) {
         PermissionService.loadFromConfig(perm);
       }
-    } catch (_) {
+    } catch (e) {
+      // Project scan failed, continue without context
       projectContext = null;
     }
   }
@@ -196,7 +199,9 @@ class AgentService {
         messages.insert(
             1, Message(role: "system", content: errors));
       }
-    } catch (_) {}
+    } catch (e) {
+      // Error learning unavailable, continue without it
+    }
 
     // Inject relevant skills based on project files
     if (projectContext != null) {
@@ -219,7 +224,9 @@ class AgentService {
       if (externalSkills.isNotEmpty) {
         messages.insert(1, Message(role: "system", content: "\n## External Skills\n${externalSkills.join("\n")}"));
       }
-    } catch (_) {}
+    } catch (e) {
+      // External skills unavailable
+    }
 
     // Inject project instructions from .opencode/opencode.jsonc, AGENTS.md, CLAUDE.md, CONTEXT.md, .opencode/rules/
     try {
@@ -232,7 +239,9 @@ class AgentService {
         }
         messages.insert(1, Message(role: "system", content: buf.toString()));
       }
-    } catch (_) {}
+    } catch (e) {
+      // Project instructions unavailable
+    }
   }
 
   /// Load saved session from disk
@@ -290,7 +299,7 @@ class AgentService {
             messages.addAll([...systemMsgs, Message(role: "system", content: summary), ...keep]);
           }
         });
-      } catch (_) {
+      } catch (e) {
         final compressed = ContextManager.compress(messages, keepLast: 6);
         messages.replaceRange(0, messages.length, compressed);
       }
@@ -2089,7 +2098,7 @@ MISC (6):
               buf.writeln("$icon [${t["priority"]}] ${t["content"]}");
             }
             return buf.toString();
-          } catch (_) {
+          } catch (e) {
             return "No todo list found. Use todowrite to create one.";
           }
         // GitHub tools
@@ -2698,7 +2707,11 @@ MISC (6):
         if (name.startsWith(".") || name == "node_modules" || name == "dist") continue;
         await _walk(project, full, cb);
       } else {
-        try { cb(full, await StorageService.readFile(project, full)); } catch (_) {}
+        try {
+          cb(full, await StorageService.readFile(project, full));
+        } catch (e) {
+          // Skip unreadable file
+        }
       }
     }
   }
@@ -3005,7 +3018,7 @@ MISC (6):
       sb.writeln("#${(_lerp(r, 0, 0.7)).toInt().toRadixString(16).padLeft(2, "0")}${(_lerp(g, 0, 0.7)).toInt().toRadixString(16).padLeft(2, "0")}${(_lerp(b, 0, 0.7)).toInt().toRadixString(16).padLeft(2, "0")} (darker)");
       sb.writeln("#${(_lerp(b, 0, 0.5)).toInt().toRadixString(16).padLeft(2, "0")}${(_lerp(r, 0, 0.5)).toInt().toRadixString(16).padLeft(2, "0")}${(_lerp(g, 0, 0.5)).toInt().toRadixString(16).padLeft(2, "0")} (complementary hue)");
       return sb.toString();
-    } catch (_) { return "Invalid color format: $base. Use hex like #58A6FF."; }
+    } catch (e) { return "Invalid color format: $base. Use hex like #58A6FF."; }
   }
 
   static double _lerp(int a, int b, double t) => a + (b - a) * t;
@@ -3023,7 +3036,7 @@ MISC (6):
       final fromLabel = from.toUpperCase();
       final toLabel = to.toUpperCase();
       return "Original: ${date} ($fromLabel)\nConverted: ${converted.toIso8601String()} ($toLabel)\nDifference: ${toOffset - fromOffset >= 0 ? '+' : ''}${toOffset - fromOffset}h";
-    } catch (_) { return "Date conversion failed."; }
+    } catch (e) { return "Date conversion failed."; }
   }
 
   static int? _tzOffsetHours(String tz) {
@@ -3068,7 +3081,7 @@ MISC (6):
         }
       }
       return sb.toString().trim();
-    } catch (_) { return "UUID generation failed."; }
+    } catch (e) { return "UUID generation failed."; }
   }
 
   Future<String> _i18nFind(String project, String filePath) async {
@@ -4438,9 +4451,13 @@ MISC (6):
           await StorageService.readFile(project, lock);
           buf.writeln("\nLock file: $lock ✓");
           break;
-        } catch (_) {}
+        } catch (e) {
+          // Lock file not found, try next
+        }
       }
-    } catch (_) {}
+    } catch (e) {
+      // npm/yarn lock file not found, continue
+    }
 
     // Check for pubspec.yaml (Dart/Flutter)
     try {
@@ -4457,7 +4474,9 @@ MISC (6):
       }
       final sdkBlock = RegExp(r"""sdk:\s*["']([^"']+)["']""").firstMatch(pubspec);
       if (sdkBlock != null) buf.writeln("\nSDK constraint: ${sdkBlock.group(1)}");
-    } catch (_) {}
+    } catch (e) {
+      // pubspec.yaml not found or invalid
+    }
 
     // Check for requirements.txt (Python)
     try {
@@ -4470,7 +4489,9 @@ MISC (6):
         final hasPin = d.contains("==") || d.contains(">=") || d.contains("<=");
         buf.writeln("  ${d.trim()}${hasPin ? "" : " (⚠ unpinned version)"}");
       }
-    } catch (_) {}
+    } catch (e) {
+      // requirements.txt not found
+    }
 
     // Check for pyproject.toml
     try {
@@ -4483,7 +4504,9 @@ MISC (6):
         buf.writeln("**${deps.length}** dependencies:");
         for (final d in deps.take(20)) buf.writeln("  $d");
       }
-    } catch (_) {}
+    } catch (e) {
+      // pyproject.toml not found
+    }
 
     // Check for Cargo.toml
     try {
@@ -4496,7 +4519,9 @@ MISC (6):
         buf.writeln("**${lines.length}** dependencies:");
         for (final l in lines.take(20)) buf.writeln("  ${l.trim()}");
       }
-    } catch (_) {}
+    } catch (e) {
+      // Cargo.toml not found
+    }
 
     if (!found) return "No dependency file found (package.json, pubspec.yaml, requirements.txt, Cargo.toml).";
     buf.writeln("\n**Tip:** Use your package manager's `outdated` or `audit` command for security/updates.");
@@ -4523,7 +4548,7 @@ MISC (6):
       if (ext == "json") {
         try {
           minified = jsonEncode(jsonDecode(content));
-        } catch (_) {
+        } catch (e) {
           minified = content;
         }
       } else if (ext == "css") {
@@ -4686,7 +4711,9 @@ MISC (6):
       return val.substring(1, val.length - 1);
     }
     if (val.startsWith("[")) {
-      try { return jsonDecode(val); } catch (_) {}
+      try { return jsonDecode(val); } catch (e) {
+        // Not valid JSON, return as string
+      }
     }
     return val;
   }
@@ -4970,7 +4997,9 @@ MISC (6):
         } else {
           buf.writeln("Report size: ${content.length} bytes");
         }
-      } catch (_) {}
+      } catch (e) {
+        // Failed to parse coverage file
+      }
     }
 
     // Look for test directories
@@ -4986,7 +5015,9 @@ MISC (6):
           buf.writeln("- ${d.uri.pathSegments.last}/");
         }
       }
-    } catch (_) {}
+    } catch (e) {
+      // Test directories listing failed
+    }
 
     if (!found) {
       buf.writeln("**No coverage reports found.**\n");
@@ -5448,8 +5479,10 @@ MISC (6):
             buf.writeln("$prefix$connector$name");
           }
         }
-      } catch (_) {}
-    }
+} catch (e) {
+          // Skip unreadable entry
+        }
+      }
 
     await buildTree("", "", 0);
     return buf.toString();
@@ -5522,7 +5555,7 @@ MISC (6):
       Map<String, dynamic> json;
       try {
         json = jsonDecode(response.body);
-      } catch (_) {
+      } catch (e) {
         yield "Invalid response from API. Try again.";
         return;
       }
@@ -5579,7 +5612,7 @@ MISC (6):
           try {
             toolArgs = Map<String, dynamic>.from(
                 jsonDecode(fn["arguments"]));
-          } catch (_) {
+          } catch (e) {
             toolArgs = {};
           }
 

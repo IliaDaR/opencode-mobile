@@ -31,7 +31,7 @@ class SnapshotService {
       final dir = Directory(p).parent;
       if (!await dir.exists()) await dir.create(recursive: true);
       await File(p).writeAsString(jsonEncode(entry));
-    } catch (_) {
+    } catch (e) {
       // File doesn't exist yet — that's fine, write_file will create it
     }
   }
@@ -63,7 +63,9 @@ class SnapshotService {
       if (f is File && f.path.endsWith(".json")) {
         try {
           snaps.add(jsonDecode(await f.readAsString()));
-        } catch (_) {}
+        } catch (e) {
+          // Skip corrupted snapshot file
+        }
       }
     }
     snaps.sort((a, b) => (b["timestamp"] as String).compareTo(a["timestamp"] as String));

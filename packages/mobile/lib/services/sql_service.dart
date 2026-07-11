@@ -1,14 +1,17 @@
 import "dart:io";
+import "package:sqflite/sqflite.dart";
+import "package:path/path.dart" as p;
 import "storage_service.dart";
 
-/// SQL database tools — run queries against project databases
+/// SQL database tools — run queries against project databases using sqflite (pure Dart)
 class SqlService {
+  static final Map<String, Database> _openDbs = {};
+
   /// Try to detect database files in the project
   static Future<String> detectDatabases(String project) async {
     final dbs = <String>[];
     try {
-      final entries =
-          await StorageService.listDir(project);
+      final entries = await StorageService.listDir(project);
       for (final e in entries) {
         final name = e.uri.pathSegments.last;
         if (name.endsWith(".db") ||
@@ -25,60 +28,99 @@ class SqlService {
     }
   }
 
-  /// Run SQLite query using system sqlite3 command
+  static Future<Database> _getDb(String project, String dbFile) async {
+    final key = "$project/$dbFile";
+    if (_openDbs.containsKey(key)) return _openDbs[key]!;
+
+    final dbPath = p.join(StorageService.projectsRoot.path, project, dbFile);
+    if (!await File(dbPath).exists()) {
+      throw Exception("Database not found: $dbFile");
+    }
+
+    final db = await openDatabase(dbPath, readOnly: true);
+    _openDbs[key] = db;
+    return db;
+  }
+
+  /// Run SQLite query using sqflite
   static Future<String> runQuery(
       String project, String dbFile, String query) async {
     try {
-      final dbPath =
-          "${StorageService.projectsRoot.path}/$project/$dbFile";
-      if (!await File(dbPath).exists()) {
-        return "Database not found: $dbFile";
+      final db = await _getDb(project, dbFile);
+
+      // Handle special SQLite commands
+      final lowerQuery = query.trim().toLowerCase();
+      if (lowerQuery == ".tables") {
+        final tables = await db.rawQuery(
+            "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'");
+        return tables.map((t) => t["name"] as String).join("  ");
+      }
+      if (lowerQuery.startsWith(".schema")) {
+        final tableName = lowerQuery.replaceFirst(".schema", "").trim();
+        if (tableName.isEmpty) {
+          final schemas = await db.rawQuery(
+              "SELECT sql FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'");
+          return schemas.map((s) => s["sql"] as String).join(";\n\n");
+        }
+        final schema = await db.rawQuery(
+            "SELECT sql FROM sqlite_master WHERE type='table' AND name = ?",
+            [tableName]);
+        return schema.isNotEmpty ? schema.first["sql"] as String : "Table not found";
       }
 
-      final result = await Process.run(
-        Platform.isWindows ? "cmd" : "sh",
-        [
-          Platform.isWindows ? "/c" : "-c",
-          "sqlite3 -header -column '$dbPath' \"$query\"",
-        ],
-        runInShell: true,
-      );
+      // Regular SELECT / PRAGMA queries
+      final results = await db.rawQuery(query);
 
-      final out = (result.stdout as String).trim();
-      final err = (result.stderr as String).trim();
+      if (results.isEmpty) return "(empty result)";
 
-      if (err.isNotEmpty && !err.contains("Warning")) {
-        return "SQL error: $err";
+      // Format as table
+      final columns = results.first.keys.toList();
+      final colWidths = <String, int>{};
+      for (final c in columns) {
+        colWidths[c] = c.length;
+      }
+      for (final row in results) {
+        for (final c in columns) {
+          final v = row[c]?.toString() ?? "NULL";
+          if (v.length > colWidths[c]!) colWidths[c] = v.length;
+        }
       }
 
-      return out.isEmpty ? "(empty result)" : out;
+      final buf = StringBuffer();
+      // Header
+      buf.writeln(columns.map((c) => c.padRight(colWidths[c]!)).join(" | "));
+      buf.writeln(columns.map((c) => "-" * colWidths[c]!).join("-+-"));
+      // Rows
+      for (final row in results) {
+        buf.writeln(columns
+            .map((c) => (row[c]?.toString() ?? "NULL").padRight(colWidths[c]!))
+            .join(" | "));
+      }
+      return buf.toString();
     } catch (e) {
-      return "Query failed. Is sqlite3 installed? Error: $e";
+      return "Query failed: $e";
     }
   }
 
   /// Show database schema
   static Future<String> showSchema(
       String project, String dbFile) async {
-    final tables =
-        await runQuery(project, dbFile, ".tables");
-    if (tables.startsWith("SQL error") ||
-        tables.startsWith("Query failed")) {
-      return tables;
+    return runQuery(project, dbFile, ".schema");
+  }
+
+  /// Close database (call when done with project)
+  static Future<void> closeDb(String project, String dbFile) async {
+    final key = "$project/$dbFile";
+    final db = _openDbs.remove(key);
+    if (db != null) await db.close();
+  }
+
+  /// Close all open databases
+  static Future<void> closeAll() async {
+    for (final db in _openDbs.values) {
+      await db.close();
     }
-
-    final buffer = StringBuffer();
-    buffer.writeln("Tables: ${tables.trim()}");
-
-    final tableNames = tables.trim().split(RegExp(r'\s+'));
-    for (final table in tableNames.take(10)) {
-      if (table.isEmpty) continue;
-      final schema = await runQuery(
-          project, dbFile, ".schema $table");
-      buffer.writeln("\n$schema");
-    }
-
-    return buffer.toString();
+    _openDbs.clear();
   }
 
   /// Generate SQL from natural language

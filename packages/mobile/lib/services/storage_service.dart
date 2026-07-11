@@ -119,7 +119,9 @@ class StorageService {
                 }
               }
             }
-          } catch (_) {}
+          } catch (e) {
+              // Skip unreadable file
+            }
         }
       }
     }

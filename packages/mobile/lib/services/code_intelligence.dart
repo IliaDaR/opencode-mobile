@@ -79,7 +79,7 @@ class CodeIntelligence {
       }
 
       return imports;
-    } catch (_) {
+    } catch (e) {
       return [];
     }
   }
@@ -181,7 +181,9 @@ class CodeIntelligence {
               ));
               if (results.length >= maxResults) return;
             }
-          } catch (_) {}
+          } catch (e) {
+            // Skip file with encoding issues
+          }
         }
       }
     }
@@ -229,7 +231,7 @@ class CodeIntelligence {
           graph.containsKey("index.js")) {
         buffer.writeln("Entry points found");
       }
-    } catch (_) {
+    } catch (e) {
       buffer.writeln("(limited analysis available)");
     }
 

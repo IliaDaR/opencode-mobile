@@ -51,7 +51,7 @@ If run_command fails, check if the tool is installed.
             await StorageService.readFile(project, path);
         log = (jsonDecode(existing) as List)
             .cast<Map<String, dynamic>>();
-      } catch (_) {
+      } catch (e) {
         log = [];
       }
 
@@ -63,7 +63,9 @@ If run_command fails, check if the tool is installed.
       if (log.length > 50) log.removeAt(0);
       await StorageService.writeFile(
           project, path, jsonEncode(log));
-    } catch (_) {}
+    } catch (e) {
+      // Failed to write log, continue silently
+    }
   }
 
   /// Check if agent is stuck in a loop
@@ -82,7 +84,7 @@ If run_command fails, check if the tool is installed.
       final allFailed =
           last3.every((e) => e["success"] == false);
       return allFailed;
-    } catch (_) {
+    } catch (e) {
       return false;
     }
   }

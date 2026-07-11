@@ -15,7 +15,7 @@ class UserProfile {
     if (!await file.exists()) return _defaultProfile();
     try {
       return jsonDecode(await file.readAsString());
-    } catch (_) {
+    } catch (e) {
       return _defaultProfile();
     }
   }
@@ -107,13 +107,17 @@ class UserProfile {
       if (devDeps.containsKey("typescript")) {
         await learnLanguage("TypeScript");
       }
-    } catch (_) {}
+    } catch (e) {
+      // package.json not found or invalid
+    }
 
     try {
       final pyproject = await StorageService.readFile(
           projectName, "pyproject.toml");
       await learnLanguage("Python");
-    } catch (_) {}
+    } catch (e) {
+      // pyproject.toml not found
+    }
 
     await _save(profile);
   }

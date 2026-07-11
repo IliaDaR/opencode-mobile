@@ -51,7 +51,7 @@ class ResearchService {
         }
       }
       return results;
-    } catch (_) {
+    } catch (e) {
       return await _fallbackSearch(query);
     }
   }
@@ -108,7 +108,7 @@ class ResearchService {
       }
 
       return results.isEmpty ? await _fallbackSearch(query) : results;
-    } catch (_) {
+    } catch (e) {
       return await _fallbackSearch(query);
     }
   }

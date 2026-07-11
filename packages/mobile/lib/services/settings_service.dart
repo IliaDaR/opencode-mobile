@@ -1,79 +1,74 @@
 import "package:flutter/material.dart";
 import "package:shared_preferences/shared_preferences.dart";
+import "package:flutter_secure_storage/flutter_secure_storage.dart";
 
 class SettingsService {
-  static late SharedPreferences _prefs;
+  static SharedPreferences? _prefs;
+  static const _secureStorage = FlutterSecureStorage();
 
   static Future<void> init() async {
     _prefs = await SharedPreferences.getInstance();
   }
 
-  // ... existing getters/setters ...
+  static SharedPreferences get _instance {
+    if (_prefs == null) {
+      throw StateError("SettingsService not initialized. Call SettingsService.init() first.");
+    }
+    return _prefs!;
+  }
+
+  // ── Non-sensitive settings (SharedPreferences) ──
 
   static ThemeMode get themeMode {
-    final v = _prefs.getString("theme_mode") ?? "dark";
+    final v = _instance.getString("theme_mode") ?? "dark";
     return v == "light" ? ThemeMode.light : ThemeMode.dark;
   }
 
   static set themeMode(ThemeMode mode) {
-    _prefs.setString("theme_mode", mode == ThemeMode.light ? "light" : "dark");
+    _instance.setString("theme_mode", mode == ThemeMode.light ? "light" : "dark");
   }
 
-  static String get deepseekApiKey {
-    return _prefs.getString("deepseek_key") ?? "";
+  static String get currentProject => _instance.getString("current_project") ?? "";
+  static set currentProject(String value) => _instance.setString("current_project", value);
+
+  static String get language => _instance.getString("language") ?? "";
+  static set language(String value) => _instance.setString("language", value);
+
+  static String get model => _instance.getString("model") ?? "deepseek-chat";
+  static set model(String v) => _instance.setString("model", v);
+
+  // SSH (non-sensitive)
+  static String get sshHost => _instance.getString("ssh_host") ?? "";
+  static set sshHost(String v) => _instance.setString("ssh_host", v);
+
+  static String get sshUser => _instance.getString("ssh_user") ?? "";
+  static set sshUser(String v) => _instance.setString("ssh_user", v);
+
+  static String get sshKeyPath => _instance.getString("ssh_key_path") ?? "";
+  static set sshKeyPath(String v) => _instance.setString("ssh_key_path", v);
+
+  // ── Sensitive settings (FlutterSecureStorage) ──
+
+  static Future<String> get deepseekApiKey async =>
+      await _secureStorage.read(key: "deepseek_key") ?? "";
+  static Future<void> set deepseekApiKey(String value) async =>
+      await _secureStorage.write(key: "deepseek_key", value: value);
+
+  static Future<String> get githubToken async =>
+      await _secureStorage.read(key: "github_token") ?? "";
+  static Future<void> set githubToken(String value) async =>
+      await _secureStorage.write(key: "github_token", value: value);
+
+  static Future<String> get githubUser async =>
+      await _secureStorage.read(key: "github_user") ?? "";
+  static Future<void> set githubUser(String value) async =>
+      await _secureStorage.write(key: "github_user", value: value);
+
+  static Future<bool> get isConfigured async =>
+      (await deepseekApiKey).isNotEmpty;
+
+  /// Clear all secure data (logout)
+  static Future<void> clearSecureData() async {
+    await _secureStorage.deleteAll();
   }
-
-  static set deepseekApiKey(String value) {
-    _prefs.setString("deepseek_key", value);
-  }
-
-  static String get githubToken {
-    return _prefs.getString("github_token") ?? "";
-  }
-
-  static set githubToken(String value) {
-    _prefs.setString("github_token", value);
-  }
-
-  static String get githubUser {
-    return _prefs.getString("github_user") ?? "";
-  }
-
-  static set githubUser(String value) {
-    _prefs.setString("github_user", value);
-  }
-
-  static String get currentProject {
-    return _prefs.getString("current_project") ?? "";
-  }
-
-  static set currentProject(String value) {
-    _prefs.setString("current_project", value);
-  }
-
-  static String get language {
-    return _prefs.getString("language") ?? "";
-  }
-
-  static set language(String value) {
-    _prefs.setString("language", value);
-  }
-
-  static bool get isConfigured {
-    return deepseekApiKey.isNotEmpty;
-  }
-
-  // ── SSH ──
-  static String get sshHost => _prefs.getString("ssh_host") ?? "";
-  static set sshHost(String v) => _prefs.setString("ssh_host", v);
-
-  static String get sshUser => _prefs.getString("ssh_user") ?? "";
-  static set sshUser(String v) => _prefs.setString("ssh_user", v);
-
-  static String get sshKeyPath => _prefs.getString("ssh_key_path") ?? "";
-  static set sshKeyPath(String v) => _prefs.setString("ssh_key_path", v);
-
-  // ── Model ──
-  static String get model => _prefs.getString("model") ?? "deepseek-chat";
-  static set model(String v) => _prefs.setString("model", v);
 }

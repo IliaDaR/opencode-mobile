@@ -53,7 +53,7 @@ class ProjectOnboarding {
         }
         buf.writeln();
       }
-    } catch (_) {
+    } catch (e) {
       // Not a Node.js project
     }
 
@@ -65,7 +65,9 @@ class ProjectOnboarding {
       buf.writeln("### Python project");
       buf.writeln("pyproject.toml found");
       buf.writeln();
-    } catch (_) {}
+    } catch (e) {
+      // pyproject.toml not found
+    }
 
     // README
     try {
@@ -75,7 +77,7 @@ class ProjectOnboarding {
       buf.writeln("### README Preview");
       buf.writeln(firstLines);
       buf.writeln();
-    } catch (_) {
+    } catch (e) {
       buf.writeln("No README.md — consider adding one.\n");
     }
 
@@ -89,7 +91,9 @@ class ProjectOnboarding {
         final icon = e is Directory ? "[DIR]" : "     ";
         buf.writeln("  $icon $name");
       }
-    } catch (_) {}
+    } catch (e) {
+      // Could not list directory
+    }
 
     return buf.toString();
   }

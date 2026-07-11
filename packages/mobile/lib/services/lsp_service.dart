@@ -37,7 +37,9 @@ class LspService {
           return true;
         }
       }
-    } catch (_) {}
+    } catch (e) {
+      // LSP connection failed, will fall back to regex analysis
+    }
     return false;
   }
 
@@ -48,7 +50,9 @@ class LspService {
     if (_lspProcess != null) {
       try {
         _lspProcess!.kill();
-      } catch (_) {}
+      } catch (e) {
+        // Process already terminated
+      }
       _lspProcess = null;
     }
     _pendingRequests.clear();
@@ -125,7 +129,8 @@ class LspService {
       });
 
       return null; // LSP diagnostics are pushed via notifications, not request/response
-    } catch (_) {
+    } catch (e) {
+      // LSP request failed, fall back to regex analysis
       return null;
     }
   }
@@ -155,7 +160,9 @@ class LspService {
       if (json["method"] == "textDocument/publishDiagnostics" && json["params"] is Map) {
         // Store diagnostics for later retrieval
       }
-    } catch (_) {}
+    } catch (e) {
+      // Invalid LSP message, ignore
+    }
   }
 
   static Future<Map<String, dynamic>?> _sendLspRequest(String method, Map<String, dynamic> params) async {
@@ -254,10 +261,12 @@ class LspService {
                     "  ... and ${issues.length - 3} more\n");
               }
             }
-          } catch (_) {}
+} catch (e) {
+          // Skip unreadable file
         }
       }
     }
+  }
 
     await scan("");
     buf.writeln(
@@ -280,27 +289,33 @@ class LspService {
         if (imp.startsWith(".")) {
           final resolved = _resolveRelativeImport(
               filePath, imp);
+          bool found = false;
           try {
-            await StorageService.readFile(
-                project, resolved);
-          } catch (_) {
+            await StorageService.readFile(project, resolved);
+            found = true;
+          } catch (e) {
+            // Try with extensions
+          }
+          if (!found) {
             try {
-              await StorageService.readFile(
-                  project, "$resolved.ts");
-            } catch (_) {
-              try {
-                await StorageService.readFile(
-                    project, "$resolved.tsx");
-              } catch (_) {
-                try {
-                  await StorageService.readFile(project,
-                      "$resolved/index.ts");
-                } catch (_) {
-                  missing.add(
-                      "  Missing: $imp (resolved: $resolved)");
-                }
-              }
-            }
+              await StorageService.readFile(project, "$resolved.ts");
+              found = true;
+            } catch (e) {}
+          }
+          if (!found) {
+            try {
+              await StorageService.readFile(project, "$resolved.tsx");
+              found = true;
+            } catch (e) {}
+          }
+          if (!found) {
+            try {
+              await StorageService.readFile(project, "$resolved/index.ts");
+              found = true;
+            } catch (e) {}
+          }
+          if (!found) {
+            missing.add("  Missing: $imp (resolved: $resolved)");
           }
         }
       }

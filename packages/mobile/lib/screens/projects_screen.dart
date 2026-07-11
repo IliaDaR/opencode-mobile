@@ -32,13 +32,15 @@ class _ProjectsScreenState extends State<ProjectsScreen> {
   }
 
   Future<void> _checkConfig() async {
-    if (!SettingsService.isConfigured) {
+    final hasKey = await SettingsService.deepseekApiKey;
+    if (hasKey.isEmpty) {
       if (mounted) {
         await Navigator.of(context).push(
           MaterialPageRoute(
               builder: (_) => const OnboardingScreen()),
         );
-        if (!SettingsService.isConfigured) {
+        final hasKeyAfter = await SettingsService.deepseekApiKey;
+        if (hasKeyAfter.isEmpty) {
           _checkConfig();
           return;
         }

@@ -4,24 +4,31 @@ import "storage_service.dart";
 import "../models/message.dart";
 
 class SessionMemory {
-  static const String _memoryDir = "opencode-memory";
+  static const String _memoryDir = ".opencode-memory";
 
   static Future<void> init() async {
-    final dir = Directory("${StorageService.projectsRoot.path}/../$_memoryDir");
-    if (!await dir.exists()) {
-      await dir.create(recursive: true);
-    }
+    // Memory dir is now INSIDE each project for scoped storage
+    // No global init needed
   }
 
   static String _memoryPath(String project) {
-    return "${StorageService.projectsRoot.path}/../$_memoryDir/$project.json";
+    return p.join(StorageService.projectDir(project).path, _memoryDir, "chat.json");
+  }
+
+  static String _metaPath(String project) {
+    return p.join(StorageService.projectDir(project).path, _memoryDir, "meta.json");
   }
 
   /// Save chat messages to persistent storage
   static Future<void> saveChat(String project, List<Message> messages) async {
     final path = _memoryPath(project);
+    final file = File(path);
+    final dir = file.parent;
+    if (!await dir.exists()) {
+      await dir.create(recursive: true);
+    }
     final data = messages.map((m) => m.toJson()).toList();
-    await File(path).writeAsString(jsonEncode(data));
+    await file.writeAsString(jsonEncode(data));
   }
 
   /// Load chat messages from storage
@@ -50,7 +57,7 @@ class SessionMemory {
               : null,
         );
       }).toList();
-    } catch (_) {
+    } catch (e) {
       return null;
     }
   }
@@ -58,20 +65,25 @@ class SessionMemory {
   /// Store project metadata: tech stack, conventions, key files
   static Future<void> saveProjectMeta(
       String project, Map<String, dynamic> meta) async {
-    final path = _memoryPath("${project}_meta");
-    await File(path).writeAsString(jsonEncode(meta));
+    final path = _metaPath(project);
+    final file = File(path);
+    final dir = file.parent;
+    if (!await dir.exists()) {
+      await dir.create(recursive: true);
+    }
+    await file.writeAsString(jsonEncode(meta));
   }
 
   /// Load project metadata
   static Future<Map<String, dynamic>?> loadProjectMeta(
       String project) async {
-    final path = _memoryPath("${project}_meta");
+    final path = _metaPath(project);
     final file = File(path);
     if (!await file.exists()) return null;
 
     try {
       return jsonDecode(await file.readAsString());
-    } catch (_) {
+    } catch (e) {
       return null;
     }
   }
@@ -116,10 +128,24 @@ class SessionMemory {
   static Future<void> clearMemory(String project) async {
     try {
       await File(_memoryPath(project)).delete();
-    } catch (_) {}
+    } catch (e) {
+      // File may not exist
+    }
     try {
-      await File(_memoryPath("${project}_meta")).delete();
-    } catch (_) {}
+      await File(_metaPath(project)).delete();
+    } catch (e) {
+      // File may not exist
+    }
+    // Also try to delete the directory if empty
+    try {
+      final dir = Directory(p.join(StorageService.projectDir(project).path, _memoryDir));
+      if (await dir.exists()) {
+        final entries = await dir.list().toList();
+        if (entries.isEmpty) await dir.delete();
+      }
+    } catch (e) {
+      // Directory not empty or permission issue
+    }
   }
 }
 

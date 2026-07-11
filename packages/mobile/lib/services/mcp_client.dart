@@ -138,7 +138,9 @@ class StdioMcpClient {
           final completer = _pending.remove(id);
           completer?.complete(json["result"] as Map<String, dynamic>? ?? {});
         }
-      } catch (_) {}
+} catch (e) {
+        // Invalid message, ignore
+      }
     }
   }
 
@@ -187,7 +189,11 @@ class StdioMcpClient {
     _pending.clear();
     _buffer = "";
     if (_process != null) {
-      try { _process!.kill(); } catch (_) {}
+      try {
+        _process!.kill();
+      } catch (e) {
+        // Process already terminated
+      }
       _process = null;
     }
   }

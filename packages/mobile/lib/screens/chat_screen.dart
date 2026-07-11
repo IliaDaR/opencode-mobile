@@ -109,7 +109,7 @@ class _ChatScreenState extends State<ChatScreen> {
         setState(() => _messages.last.isStreaming = false);
       }
     } else {
-      final hasKey = SettingsService.deepseekApiKey.isNotEmpty;
+      final hasKey = (await SettingsService.deepseekApiKey).isNotEmpty;
       _addAssistant(hasKey
           ? "I'm OpenCode. What are we working on?\n\nCommands: `/config` `/files` `/help`"
           : "API key not configured. Use the drawer → Settings to add your DeepSeek key.");
@@ -291,7 +291,7 @@ class _ChatScreenState extends State<ChatScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           decoration: BoxDecoration(
             color: cs.surface,
-            border: Border(bottom: BorderSide(color: cs.onSurface.withOpacity(0.08))),
+            border: Border(bottom: BorderSide(color: cs.onSurface.withValues(alpha: 0.08))),
           ),
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
@@ -348,7 +348,7 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
       decoration: BoxDecoration(
         color: cs.surface,
-        border: Border(top: BorderSide(color: cs.onSurface.withOpacity(0.08))),
+        border: Border(top: BorderSide(color: cs.onSurface.withValues(alpha: 0.08))),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -508,7 +508,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       decoration: BoxDecoration(
                         color: cs.surface,
                         borderRadius: BorderRadius.circular(18).copyWith(bottomLeft: Radius.zero),
-                        border: Border.all(color: cs.onSurface.withOpacity(0.08)),
+                        border: Border.all(color: cs.onSurface.withValues(alpha: 0.08)),
                       ),
                       child: MarkdownBody(
                         data: msg.content,
@@ -551,13 +551,13 @@ class _ChatScreenState extends State<ChatScreen> {
       h2: TextStyle(color: cs.onSurface, fontSize: 18, fontWeight: FontWeight.bold, height: 1.4),
       h3: TextStyle(color: cs.onSurface, fontSize: 16, fontWeight: FontWeight.w600, height: 1.4),
       code: TextStyle(
-        backgroundColor: cs.primary.withOpacity(0.08),
+        backgroundColor: cs.primary.withValues(alpha: 0.08),
         fontSize: 13, color: cs.primary, fontFamily: "monospace",
       ),
       codeblockDecoration: BoxDecoration(
         color: isDark ? const Color(0xFF161B22) : const Color(0xFFF0F2F5),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: cs.onSurface.withOpacity(0.08)),
+        border: Border.all(color: cs.onSurface.withValues(alpha: 0.08)),
       ),
       blockquoteDecoration: BoxDecoration(
         border: Border(left: BorderSide(color: cs.primary, width: 3)),

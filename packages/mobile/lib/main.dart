@@ -1,6 +1,5 @@
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
-import "package:google_fonts/google_fonts.dart";
 import "screens/chat_screen.dart";
 import "screens/settings_screen.dart";
 import "services/settings_service.dart";
@@ -10,12 +9,14 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await SettingsService.init();
+  final hasKey = await SettingsService.deepseekApiKey;
   AppLocalization.current = SettingsService.language.isEmpty ? "en" : SettingsService.language;
-  runApp(const OpenCodeApp());
+  runApp(OpenCodeApp(hasApiKey: hasKey.isNotEmpty));
 }
 
 class OpenCodeApp extends StatefulWidget {
-  const OpenCodeApp({super.key});
+  final bool hasApiKey;
+  const OpenCodeApp({super.key, required this.hasApiKey});
   static _OpenCodeAppState? of(BuildContext context) =>
       context.findAncestorStateOfType<_OpenCodeAppState>();
 
@@ -93,14 +94,17 @@ class _OpenCodeAppState extends State<OpenCodeApp> {
         ),
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       ),
-      textTheme: GoogleFonts.interTextTheme(ThemeData(brightness: brightness).textTheme),
+      textTheme: ThemeData(brightness: brightness).textTheme.apply(
+        fontFamily: "Inter",
+        fontFamilyFallback: ["system-ui", "sans-serif"],
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     final showLang = SettingsService.language.isEmpty;
-    final showConfig = !showLang && !SettingsService.isConfigured;
+    final showConfig = !showLang && !widget.hasApiKey;
 
     Widget home;
     if (showLang) {
@@ -194,8 +198,8 @@ class _SetupScreenState extends State<_SetupScreen> {
               ),
             ),
             const SizedBox(height: 24),
-            FilledButton(onPressed: () {
-              SettingsService.deepseekApiKey = _keyCtrl.text.trim();
+            FilledButton(onPressed: () async {
+              await SettingsService.deepseekApiKey = _keyCtrl.text.trim();
               Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const _MainShell()));
             }, child: const Text("Start")),
           ]),
@@ -259,7 +263,7 @@ class _MainShellState extends State<_MainShell> {
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: cs.surface,
-                  border: Border(bottom: BorderSide(color: cs.onSurface.withOpacity(0.1))),
+                  border: Border(bottom: BorderSide(color: cs.onSurface.withValues(alpha: 0.1))),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -292,7 +296,7 @@ class _MainShellState extends State<_MainShell> {
                           return ListTile(
                             dense: true,
                             selected: isActive,
-                            selectedTileColor: cs.primary.withOpacity(0.1),
+                            selectedTileColor: cs.primary.withValues(alpha: 0.1),
                             leading: Icon(Icons.chat_bubble_outline, size: 20, color: isActive ? cs.primary : null),
                             title: Text(chat.title, style: TextStyle(fontSize: 14, fontWeight: isActive ? FontWeight.w600 : null)),
                             onTap: () {
@@ -310,7 +314,7 @@ class _MainShellState extends State<_MainShell> {
               // Bottom actions
               Container(
                 decoration: BoxDecoration(
-                  border: Border(top: BorderSide(color: cs.onSurface.withOpacity(0.1))),
+                  border: Border(top: BorderSide(color: cs.onSurface.withValues(alpha: 0.1))),
                 ),
                 child: Column(
                   children: [

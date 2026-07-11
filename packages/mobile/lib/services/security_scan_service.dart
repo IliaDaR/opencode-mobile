@@ -117,7 +117,9 @@ class SecurityScanService {
         try {
           final content = await StorageService.readFile(project, full);
           onFile(full, content);
-        } catch (_) {}
+        } catch (e) {
+          // Skip unreadable file
+        }
       }
     }
   }

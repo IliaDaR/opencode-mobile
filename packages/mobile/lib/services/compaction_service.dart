@@ -44,7 +44,9 @@ class CompactionService {
         final summary = json["choices"][0]["message"]["content"] ?? "";
         return "## Session Summary\n$summary";
       }
-    } catch (_) {}
+    } catch (e) {
+      // AI compaction failed, fallback to local
+    }
 
     return "";
   }

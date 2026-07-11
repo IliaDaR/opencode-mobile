@@ -61,7 +61,7 @@ class ErrorLearningService {
           await StorageService.readFile(project, _path);
       return (jsonDecode(content) as List)
           .cast<Map<String, dynamic>>();
-    } catch (_) {
+    } catch (e) {
       return [];
     }
   }
@@ -71,6 +71,8 @@ class ErrorLearningService {
     try {
       await StorageService.writeFile(
           project, _path, jsonEncode(patterns));
-    } catch (_) {}
+    } catch (e) {
+      // Failed to save patterns
+    }
   }
 }

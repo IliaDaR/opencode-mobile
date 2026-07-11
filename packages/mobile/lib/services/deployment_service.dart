@@ -15,7 +15,7 @@ class DeploymentService {
           project, "Dockerfile");
       checks.add("✅ Dockerfile present");
       pass++;
-    } catch (_) {
+    } catch (e) {
       checks.add("❌ No Dockerfile");
       fail++;
     }
@@ -32,7 +32,7 @@ class DeploymentService {
       } else {
         checks.add("⚠️ .gitignore may be incomplete");
       }
-    } catch (_) {
+    } catch (e) {
       checks.add("❌ No .gitignore");
       fail++;
     }
@@ -43,7 +43,7 @@ class DeploymentService {
           project, ".env.example");
       checks.add("✅ .env.example present");
       pass++;
-    } catch (_) {
+    } catch (e) {
       final hasEnv = await _fileExists(project, ".env");
       checks.add(hasEnv
           ? "⚠️ .env exists but no .env.example — add template"
@@ -73,7 +73,7 @@ class DeploymentService {
       } else {
         checks.add("⚠️ README is too short");
       }
-    } catch (_) {
+    } catch (e) {
       checks.add("❌ No README — add documentation");
       fail++;
     }
@@ -214,7 +214,7 @@ volumes:
     try {
       await StorageService.readFile(project, path);
       return true;
-    } catch (_) {
+    } catch (e) {
       return false;
     }
   }
@@ -225,7 +225,7 @@ volumes:
       final entries =
           await StorageService.listDir(project, path);
       return entries.isNotEmpty;
-    } catch (_) {
+    } catch (e) {
       return false;
     }
   }

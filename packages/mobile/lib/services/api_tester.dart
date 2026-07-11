@@ -92,7 +92,7 @@ class ApiTester {
     try {
       final parsed = jsonDecode(raw);
       return const JsonEncoder.withIndent("  ").convert(parsed);
-    } catch (_) {
+    } catch (e) {
       return raw;
     }
   }

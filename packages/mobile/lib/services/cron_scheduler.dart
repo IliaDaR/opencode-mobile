@@ -98,7 +98,7 @@ class CronScheduler {
       if (when == null) return false;
       try {
         return DateTime.parse(when).isBefore(now);
-      } catch (_) {
+      } catch (e) {
         return false;
       }
     }).toList();
@@ -111,7 +111,7 @@ class CronScheduler {
           await StorageService.readFile(project, _path);
       return (jsonDecode(content) as List)
           .cast<Map<String, dynamic>>();
-    } catch (_) {
+    } catch (e) {
       return [];
     }
   }

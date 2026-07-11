@@ -25,9 +25,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   void initState() {
     super.initState();
-    _deepseekCtrl.text = SettingsService.deepseekApiKey;
-    _githubTokenCtrl.text = SettingsService.githubToken;
-    _githubUserCtrl.text = SettingsService.githubUser;
+    _loadSettings();
+  }
+
+  Future<void> _loadSettings() async {
+    _deepseekCtrl.text = await SettingsService.deepseekApiKey;
+    _githubTokenCtrl.text = await SettingsService.githubToken;
+    _githubUserCtrl.text = await SettingsService.githubUser;
     _sshHostCtrl.text = SettingsService.sshHost;
     _sshUserCtrl.text = SettingsService.sshUser;
     _sshPathCtrl.text = SettingsService.sshKeyPath;
@@ -47,9 +51,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   Future<void> _save() async {
-    SettingsService.deepseekApiKey = _deepseekCtrl.text.trim();
-    SettingsService.githubToken = _githubTokenCtrl.text.trim();
-    SettingsService.githubUser = _githubUserCtrl.text.trim();
+    await SettingsService.deepseekApiKey = _deepseekCtrl.text.trim();
+    await SettingsService.githubToken = _githubTokenCtrl.text.trim();
+    await SettingsService.githubUser = _githubUserCtrl.text.trim();
     SettingsService.sshHost = _sshHostCtrl.text.trim();
     SettingsService.sshUser = _sshUserCtrl.text.trim();
     SettingsService.sshKeyPath = _sshPathCtrl.text.trim();
