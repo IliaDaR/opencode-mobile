@@ -6,7 +6,7 @@ import "settings_service.dart";
 class GitHubService {
   static const _apiBase = "https://api.github.com";
 
-  static Map<String, String> get _headers => {
+  static Future<Map<String, String>> _headers() async => {
         "Authorization": "Bearer ${await SettingsService.githubToken}",
         "Accept": "application/vnd.github+json",
         "Content-Type": "application/json",
@@ -18,7 +18,7 @@ class GitHubService {
     if (params != null) {
       uri = uri.replace(queryParameters: params);
     }
-    final res = await http.get(uri, headers: _headers);
+    final res = await http.get(uri, headers: await _headers());
     if (res.statusCode == 200) return jsonDecode(res.body);
     throw Exception("GitHub API ${res.statusCode}: ${res.body}");
   }
@@ -26,7 +26,7 @@ class GitHubService {
   static Future<dynamic> _post(
       String endpoint, Map<String, dynamic> body) async {
     final res = await http.post(Uri.parse("$_apiBase$endpoint"),
-        headers: _headers, body: jsonEncode(body));
+        headers: await _headers(), body: jsonEncode(body));
     if (res.statusCode == 201 || res.statusCode == 200) {
       return jsonDecode(res.body);
     }
@@ -36,7 +36,7 @@ class GitHubService {
   static Future<dynamic> _patch(
       String endpoint, Map<String, dynamic> body) async {
     final res = await http.patch(Uri.parse("$_apiBase$endpoint"),
-        headers: _headers, body: jsonEncode(body));
+        headers: await _headers(), body: jsonEncode(body));
     return jsonDecode(res.body);
   }
 
