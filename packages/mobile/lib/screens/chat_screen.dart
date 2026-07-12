@@ -11,6 +11,7 @@ import "../services/settings_service.dart";
 import "../services/snapshot_service.dart";
 import "../services/session_sharing_service.dart";
 import "../services/bg_service.dart";
+import "../models/message.dart";
 import "file_browser_screen.dart";
 import "settings_screen.dart";
 
