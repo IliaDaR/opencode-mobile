@@ -31,6 +31,12 @@ jobs:
           distribution: "temurin"
           java-version: "17"
 
+      - name: Install Gradle 8.12
+        run: |
+          curl -sL "https://services.gradle.org/distributions/gradle-8.12-bin.zip" -o /tmp/gradle.zip
+          unzip -q /tmp/gradle.zip -d /opt
+          echo "/opt/gradle-8.12/bin" >> $GITHUB_PATH
+
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.29.2"
@@ -48,14 +54,10 @@ jobs:
 
       - name: Generate Gradle wrapper
         run: |
-          rm -rf android/gradlew android/gradlew.bat
-          flutter build apk --release --split-per-abi --dry-run 2>/dev/null || true
-          ls -la android/gradlew 2>/dev/null && chmod +x android/gradlew || echo "Flutter did not generate gradlew, creating manually"
-          if [ ! -f android/gradlew ]; then
-            cd android
-            gradle wrapper --gradle-version 8.12
-            chmod +x gradlew
-          fi
+          rm -rf android/gradlew android/gradlew.bat android/gradle/wrapper/gradle-wrapper.jar
+          cd android
+          gradle wrapper --gradle-version 8.12
+          chmod +x gradlew
 
       - name: Build APK
         run: flutter build apk --release --split-per-abi
