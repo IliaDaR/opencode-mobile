@@ -24,3 +24,11 @@
 
 # Keep enum values for JSON serialization
 -keepclassmembers enum * { *; }
+
+# Play Core (needed for Flutter app bundle / split APK)  
+# These classes are provided by the Play Store at runtime
+-dontwarn com.google.android.play.core.**
+-dontwarn com.google.android.play.core.splitcompat.**
+-dontwarn com.google.android.play.core.splitinstall.**
+-dontwarn com.google.android.play.core.tasks.**
+
