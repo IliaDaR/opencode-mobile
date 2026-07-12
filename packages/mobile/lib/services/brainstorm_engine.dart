@@ -264,7 +264,10 @@ class BrainstormEngine {
     // 2
     (prompt) {
       final domain = _domains[_rand.nextInt(_domains.length)];
-      return "**ANALOGY_BORROW**  How $domain solves this\n\nReframe: Instead of " + prompt + ", imagine this were a problem in $domain.\n\nWhat mechanisms from $domain map to this space? What $domain principles violate your current assumptions?";
+      return 
+        "**ANALOGY_BORROW**  How $domain solves this\n\nReframe: Instead of " +
+        prompt +
+        ", imagine this were a problem in $domain.\n\nWhat mechanisms from $domain map to this space? What $domain principles violate your current assumptions?";;
     },
 
     // 3
@@ -283,94 +286,149 @@ class BrainstormEngine {
     (prompt) {
       final adj = _adjectives[_rand.nextInt(_adjectives.length)];
       final noun = _nouns[_rand.nextInt(_nouns.length)];
-      return "**COMBINATION**  Merge with $adj $noun\n\nProblem: " + prompt + "\n\nHow does a $adj $noun work? What $adj $noun principles apply to " + prompt + "?\n\nForce a connection. What emerges at the intersection?";
+      return 
+        "**COMBINATION**  Merge with $adj $noun\n\nProblem: " +
+        prompt +
+        "\n\nHow does a $adj $noun work? What $adj $noun principles apply to " +
+        prompt +
+        "?\n\nForce a connection. What emerges at the intersection?";;
     },
 
     // 6
     (prompt) {
       final worst = _catastrophes[_rand.nextInt(_catastrophes.length)];
-      return "**WORST_IDEA**  Anti-pattern: $worst\n\nProblem: " + prompt + "\n\nDesign the ABSOLUTE WORST solution. Make it maximally painful.\n\nNow invert every property: what's the opposite of each terrible decision? That's your brilliant insight.";
+      return 
+        "**WORST_IDEA**  Anti-pattern: $worst\n\nProblem: " +
+        prompt +
+        "\n\nDesign the ABSOLUTE WORST solution. Make it maximally painful.\n\nNow invert every property: what's the opposite of each terrible decision? That's your brilliant insight.";;
     },
 
     // 7
     (prompt) {
-      return "**FIRST_PRINCIPLES**  Strip to fundamentals\n\nProblem: " + prompt + "\n\n1. What are the TRUEST statements? (Things you KNOW, not assume)\n2. Decompose into irreducible components:\n   - Actors: who/what participates?\n   - Actions: what MUST happen?\n   - Constraints: what CANNOT change?\n3. Rebuild from zero: if you had no legacy, no existing solutions, no habits  what structure emerges?";
+      return 
+        "**FIRST_PRINCIPLES**  Strip to fundamentals\n\nProblem: " +
+        prompt +
+        "\n\n1. What are the TRUEST statements? (Things you KNOW, not assume)\n2. Decompose into irreducible components:\n   - Actors: who/what participates?\n   - Actions: what MUST happen?\n   - Constraints: what CANNOT change?\n3. Rebuild from zero: if you had no legacy, no existing solutions, no habits  what structure emerges?";;
     },
 
     // 8
     (prompt) {
       final era = _eras[_rand.nextInt(_eras.length)];
-      return "**TIME_TRAVEL**  Transport to $era\n\nProblem: " + prompt + "\n\nHow would people in that era solve this with their tools, knowledge, and constraints? What would they invent that we're too blind to see?";
+      return 
+        "**TIME_TRAVEL**  Transport to $era\n\nProblem: " +
+        prompt +
+        "\n\nHow would people in that era solve this with their tools, knowledge, and constraints? What would they invent that we're too blind to see?";;
     },
 
     // 9
     (prompt) {
       final user = _users[_rand.nextInt(_users.length)];
-      return "**USER_EXTREME**  Design for $user\n\nProblem: " + prompt + "\n\nDesign SPECIFICALLY for this user. Their needs are extreme and unforgiving.\n\nNow: what feature that helps THEM would also help everyone?";
+      return 
+        "**USER_EXTREME**  Design for $user\n\nProblem: " +
+        prompt +
+        "\n\nDesign SPECIFICALLY for this user. Their needs are extreme and unforgiving.\n\nNow: what feature that helps THEM would also help everyone?";;
     },
 
     // 10
     (prompt) {
-      return "**MORPHOLOGICAL_MATRIX**  Systematic permutations\n\nProblem: " + prompt + "\n\nIdentify 3 orthogonal dimensions of the problem:\n  A: ___ (e.g., distribution: centralized / decentralized / peer-to-peer)\n  B: ___ (e.g., timing: real-time / batch / scheduled)\n  C: ___ (e.g., interface: voice / text / gesture)\n\nNow list 3 values for each dimension (A1,A2,A3 + B1,B2,B3 + C1,C2,C3).\nPick 3 random permutations that DON'T exist today.";
+      return 
+        "**MORPHOLOGICAL_MATRIX**  Systematic permutations\n\nProblem: " +
+        prompt +
+        "\n\nIdentify 3 orthogonal dimensions of the problem:\n  A: ___ (e.g., distribution: centralized / decentralized / peer-to-peer)\n  B: ___ (e.g., timing: real-time / batch / scheduled)\n  C: ___ (e.g., interface: voice / text / gesture)\n\nNow list 3 values for each dimension (A1,A2,A3 +
+        B1,B2,B3 +
+        C1,C2,C3).\nPick 3 random permutations that DON'T exist today.";;
     },
 
     // 11
     (prompt) {
       final cIdx = _rand.nextInt(6);
       final competitors = ["Google", "a startup with 3 people", "an open-source community", "a monopoly", "a dictator", "a swarm of amateurs"];
-      return "**COMPETITION_SABOTAGE**  ${competitors[cIdx]} wants you dead\n\nProblem: " + prompt + "\n\n${competitors[cIdx]} has infinite resources and one goal: make your solution irrelevant.\n\nWhat would they do? What angle would they attack from?\n\nNow: do that FIRST, before they can. Make yourself irrelevant on YOUR terms.";
+      return 
+        "**COMPETITION_SABOTAGE**  ${competitors[cIdx]} wants you dead\n\nProblem: " +
+        prompt +
+        "\n\n${competitors[cIdx]} has infinite resources and one goal: make your solution irrelevant.\n\nWhat would they do? What angle would they attack from?\n\nNow: do that FIRST, before they can. Make yourself irrelevant on YOUR terms.";;
     },
 
     // 12
     (prompt) {
       final industry = _industries[_rand.nextInt(_industries.length)];
-      return "**HIJACK_LEADER**  Steal from $industry\n\nProblem: " + prompt + "\n\n$industry has already solved a FUNDAMENTAL problem that maps to yours.\n\nExtract the core principle from $industry (not the implementation  the WHY).\n\nApply it directly. What changes?";
+      return 
+        "**HIJACK_LEADER**  Steal from $industry\n\nProblem: " +
+        prompt +
+        "\n\n$industry has already solved a FUNDAMENTAL problem that maps to yours.\n\nExtract the core principle from $industry (not the implementation  the WHY).\n\nApply it directly. What changes?";;
     },
 
     // 13
     (prompt) {
-      return "**NEGATIVE_SPACE**  Power of absence\n\nProblem: " + prompt + "\n\nList EVERYTHING a typical solution includes. Every feature, every screen, every button.\n\nNow: subtract 80% of it. Keep only the ONE thing that cannot be removed.\n\nWhat if the solution is defined by what it DELIBERATELY OMITS?";
+      return 
+        "**NEGATIVE_SPACE**  Power of absence\n\nProblem: " +
+        prompt +
+        "\n\nList EVERYTHING a typical solution includes. Every feature, every screen, every button.\n\nNow: subtract 80% of it. Keep only the ONE thing that cannot be removed.\n\nWhat if the solution is defined by what it DELIBERATELY OMITS?";;
     },
 
     // 14
     (prompt) {
       final paradox = _paradoxes[_rand.nextInt(_paradoxes.length)];
-      return "**PARADOX_RESOLUTION**  Achieve: $paradox\n\nProblem: " + prompt + "\n\nConvention says you can't have both. Break the trade-off.\n\nWhat technology, model, or perspective makes this contradiction IRRELEVANT?\n\nNot compromise  transcend.";
+      return 
+        "**PARADOX_RESOLUTION**  Achieve: $paradox\n\nProblem: " +
+        prompt +
+        "\n\nConvention says you can't have both. Break the trade-off.\n\nWhat technology, model, or perspective makes this contradiction IRRELEVANT?\n\nNot compromise  transcend.";;
     },
 
     // 15
     (prompt) {
       final pattern = _biomimicry[_rand.nextInt(_biomimicry.length)];
-      return "**BIOMIMICRY**  $pattern\n\nProblem: " + prompt + "\n\nNature has been R&D-ing for 3.8 billion years. This pattern works.\n\nMap the biological principle to your problem domain.\n\nWhat does nature's version look like?";
+      return 
+        "**BIOMIMICRY**  $pattern\n\nProblem: " +
+        prompt +
+        "\n\nNature has been R&D-ing for 3.8 billion years. This pattern works.\n\nMap the biological principle to your problem domain.\n\nWhat does nature's version look like?";;
     },
 
     // 16
     (prompt) {
-      return "**SECOND_ORDER**  Beyond first-order thinking\n\nProblem: " + prompt + "\n\nFirst-order: the direct solution everyone sees.\n\nSecond-order: What happens AFTER the solution is adopted?\n  - New problems it creates\n  - Who loses? Who wins unexpectedly?\n  - What behaviors does it incentivize?\n\nThird-order: How does the world change 5 years after this exists?\n\nFind the idea that creates POSITIVE second-order effects.";
+      return 
+        "**SECOND_ORDER**  Beyond first-order thinking\n\nProblem: " +
+        prompt +
+        "\n\nFirst-order: the direct solution everyone sees.\n\nSecond-order: What happens AFTER the solution is adopted?\n  - New problems it creates\n  - Who loses? Who wins unexpectedly?\n  - What behaviors does it incentivize?\n\nThird-order: How does the world change 5 years after this exists?\n\nFind the idea that creates POSITIVE second-order effects.";;
     },
 
     // 17
     (prompt) {
       final shock = _shocks[_rand.nextInt(_shocks.length)];
-      return "**ANTIFRAGILE**  Design that thrives on $shock\n\nProblem: " + prompt + "\n\nDon't just survive this shock  design so this shock makes you STRONGER.\n\nHow does $shock become a signal you can exploit?\n\nWhat would need to be true for $shock to be the BEST thing that could happen?";
+      return 
+        "**ANTIFRAGILE**  Design that thrives on $shock\n\nProblem: " +
+        prompt +
+        "\n\nDon't just survive this shock  design so this shock makes you STRONGER.\n\nHow does $shock become a signal you can exploit?\n\nWhat would need to be true for $shock to be the BEST thing that could happen?";;
     },
 
     // 18
     (prompt) {
       final prompt = _oblique[_rand.nextInt(_oblique.length)];
-      return "**OBLIQUE_STRATEGIES**  Random prompt: " + prompt + "\n\nProblem: " + prompt + "\n\nApply this oblique constraint. Don't force logic  let the contradiction spark something new.\n\nThe best ideas come from unexpected collisions. Find yours.";
+      return 
+        "**OBLIQUE_STRATEGIES**  Random prompt: " +
+        prompt +
+        "\n\nProblem: " +
+        prompt +
+        "\n\nApply this oblique constraint. Don't force logic  let the contradiction spark something new.\n\nThe best ideas come from unexpected collisions. Find yours.";;
     },
 
     // 19  MASHUP: force-merge with a physical object
     (prompt) {
       final obj = _mashupNouns[_rand.nextInt(_mashupNouns.length)];
-      return "**MASHUP**  Problem + $obj\n\nProblem: " + prompt + "\n\nForce-merge with a $obj.\n\nHow does a $obj work? What are its physical principles  tension, leverage, rotation, pressure, oscillation?\n\nTranslate those PHYSICAL principles into your abstract domain. What mechanism do you discover?";
+      return 
+        "**MASHUP**  Problem +
+        $obj\n\nProblem: " +
+        prompt +
+        "\n\nForce-merge with a $obj.\n\nHow does a $obj work? What are its physical principles  tension, leverage, rotation, pressure, oscillation?\n\nTranslate those PHYSICAL principles into your abstract domain. What mechanism do you discover?";;
     },
 
     // 20  EMOTIONAL_ANCHOR: attach to a specific emotion
     (prompt) {
       final emotion = _emotions[_rand.nextInt(_emotions.length)];
-      return "**EMOTIONAL_ANCHOR**  Design for $emotion\n\nProblem: " + prompt + "\n\nForget features. Forget users. Forget technology.\n\nThe ONLY goal is to make someone feel $emotion.\n\nWhat single interaction would evoke $emotion?\n\nNow build the smallest possible thing that delivers that feeling.";
+      return 
+        "**EMOTIONAL_ANCHOR**  Design for $emotion\n\nProblem: " +
+        prompt +
+        "\n\nForget features. Forget users. Forget technology.\n\nThe ONLY goal is to make someone feel $emotion.\n\nWhat single interaction would evoke $emotion?\n\nNow build the smallest possible thing that delivers that feeling.";;
     },
 
     // 21  CROSS_POLLINATION: replace a key term with domain jargon
@@ -384,17 +442,26 @@ class BrainstormEngine {
       };
       final entries = jargonMap.entries.toList();
       final entry = entries[_rand.nextInt(entries.length)];
-      return "**CROSS_POLLINATION**  $entry.key jargon\n\nProblem: " + prompt + "\n\nReframe using $entry.key concepts: ${entry.value}.\n\nReplace one key term in the problem with each concept. How does the problem change?\n\nWhat solution becomes visible only through this lens?";
+      return 
+        "**CROSS_POLLINATION**  $entry.key jargon\n\nProblem: " +
+        prompt +
+        "\n\nReframe using $entry.key concepts: ${entry.value}.\n\nReplace one key term in the problem with each concept. How does the problem change?\n\nWhat solution becomes visible only through this lens?";;
     },
 
     // 22  USER_JOURNEY_INVERT: design the worst journey, then flip
     (prompt) {
-      return "**USER_JOURNEY_INVERT**  Worst possible user flow\n\nProblem: " + prompt + "\n\nMap the most frustrating, inefficient, rage-inducing user journey possible.\n  Step 1: ___ (make them wait)\n  Step 2: ___ (lose their data)\n  Step 3: ___ (ask them to repeat themselves)\n  Step 4: ___ (charge them for the privilege)\n\nNow run the SAME journey backwards. Each pain point becomes a delight.\n\nWhat's the resulting flow?";
+      return 
+        "**USER_JOURNEY_INVERT**  Worst possible user flow\n\nProblem: " +
+        prompt +
+        "\n\nMap the most frustrating, inefficient, rage-inducing user journey possible.\n  Step 1: ___ (make them wait)\n  Step 2: ___ (lose their data)\n  Step 3: ___ (ask them to repeat themselves)\n  Step 4: ___ (charge them for the privilege)\n\nNow run the SAME journey backwards. Each pain point becomes a delight.\n\nWhat's the resulting flow?";;
     },
 
     // 23  MINIMAL_VIABLE: what's the smallest test?
     (prompt) {
-      return "**MINIMAL_VIABLE**  The FAKEST possible test\n\nProblem: " + prompt + "\n\nWhat's the cheapest, ugliest, most hacky way to test if this idea has merit?\n\nNot an MVP  a PRETOTYPE. A fake button. A manual process that looks automated. A concierge service that feels like software.\n\nDesign the test that fits on a napkin. Run it this week.\n\nIf it works: build. If it fails: learn and pivot. Either way: you win.";
+      return 
+        "**MINIMAL_VIABLE**  The FAKEST possible test\n\nProblem: " +
+        prompt +
+        "\n\nWhat's the cheapest, ugliest, most hacky way to test if this idea has merit?\n\nNot an MVP  a PRETOTYPE. A fake button. A manual process that looks automated. A concierge service that feels like software.\n\nDesign the test that fits on a napkin. Run it this week.\n\nIf it works: build. If it fails: learn and pivot. Either way: you win.";;
     },
 
     // 24  GAMIFICATION: design as a game
@@ -402,52 +469,89 @@ class BrainstormEngine {
       final gameMechanics = ["points", "levels", "leaderboards", "achievements", "streaks", "unlocks", "trading", "combos", "power-ups", "boss battles"];
       final mech1 = gameMechanics[_rand.nextInt(gameMechanics.length)];
       final mech2 = gameMechanics[_rand.nextInt(gameMechanics.length)];
-      return "**GAMIFICATION**  Game mechanics: $mech1 + $mech2\n\nProblem: " + prompt + "\n\nRedesign as a game using $mech1 and $mech2.\n\nWhat's the core loop? What's the 'fun' part?\n\nWhat happens when someone masters it?\n\nNow: remove the game layer but KEEP the engagement mechanics as the real product.";
+      return 
+        "**GAMIFICATION**  Game mechanics: $mech1 +
+        $mech2\n\nProblem: " +
+        prompt +
+        "\n\nRedesign as a game using $mech1 and $mech2.\n\nWhat's the core loop? What's the 'fun' part?\n\nWhat happens when someone masters it?\n\nNow: remove the game layer but KEEP the engagement mechanics as the real product.";;
     },
 
     // 25  RITUAL_DESIGN: frame as a daily ritual
     (prompt) {
-      return "**RITUAL_DESIGN**  Ceremony, not feature\n\nProblem: " + prompt + "\n\nA feature is used. A ritual is ANTICIPATED.\n\nDesign a daily ritual around this solution:\n  - When does it happen? (fixed time / trigger)\n  - What's the preparation? (lighting, posture, breathing)\n  - What's the core moment? (the 'sacred' action)\n  - What's the closing? (a sign of completion)\n  - What's the reward? (dopamine, not data)\n\nThe solution IS the ritual. The technology is just props.";
+      return 
+        "**RITUAL_DESIGN**  Ceremony, not feature\n\nProblem: " +
+        prompt +
+        "\n\nA feature is used. A ritual is ANTICIPATED.\n\nDesign a daily ritual around this solution:\n  - When does it happen? (fixed time / trigger)\n  - What's the preparation? (lighting, posture, breathing)\n  - What's the core moment? (the 'sacred' action)\n  - What's the closing? (a sign of completion)\n  - What's the reward? (dopamine, not data)\n\nThe solution IS the ritual. The technology is just props.";;
     },
 
     // 26  JCVD (JOBS TO BE DONE): what job is the user hiring for?
     (prompt) {
-      return "**JOBS_TO_BE_DONE**  Hire the solution to do a JOB\n\nProblem: " + prompt + "\n\nA user doesn't 'buy' a product. They HIRE it to do a job.\n\n1. What's the EXACT moment they realize they need this? (the struggle)\n2. What's the 'job' they're trying to get done? (functional + emotional + social)\n3. What are they CURRENTLY hiring? (the workaround)\n4. How do they FIRE the current solution?\n\nDesign FOR the job, not the feature set. What changes?";
+      return 
+        "**JOBS_TO_BE_DONE**  Hire the solution to do a JOB\n\nProblem: " +
+        prompt +
+        "\n\nA user doesn't 'buy' a product. They HIRE it to do a job.\n\n1. What's the EXACT moment they realize they need this? (the struggle)\n2. What's the 'job' they're trying to get done? (functional +
+        emotional +
+        social)\n3. What are they CURRENTLY hiring? (the workaround)\n4. How do they FIRE the current solution?\n\nDesign FOR the job, not the feature set. What changes?";;
     },
 
     // 27  BLUE_OCEAN: eliminate-reduce-raise-create grid
     (prompt) {
-      return "**BLUE_OCEAN**  Value innovation canvas\n\nProblem: " + prompt + "\n\nDraw a 2+2 grid:\n\n| ELIMINATE (what does the industry compete on that's useless?) | REDUCE (what's over-engineered? below standard?) |\n| RAISE (what's under-delivered? above industry standard?) | CREATE (what's never been offered?) |\n\nFill each cell for " + prompt + ".\n\nThe intersection of RAISE + CREATE is your blue ocean.";
+      return 
+        "**BLUE_OCEAN**  Value innovation canvas\n\nProblem: " +
+        prompt +
+        "\n\nDraw a 2 +
+        2 grid:\n\n| ELIMINATE (what does the industry compete on that's useless?) | REDUCE (what's over-engineered? below standard?) |\n| RAISE (what's under-delivered? above industry standard?) | CREATE (what's never been offered?) |\n\nFill each cell for " +
+        prompt +
+        ".\n\nThe intersection of RAISE +
+        CREATE is your blue ocean.";;
     },
 
     // 28  REVERSE_OUTCOME: start from desired end, prove it's inevitable
     (prompt) {
-      return "**REVERSE_OUTCOME**  Pre-living the success\n\nProblem: " + prompt + "\n\nFast-forward 3 years. Your solution is THE standard. Everyone uses it. It's obvious in hindsight.\n\nWrite the Wikipedia article for your solution as it exists 3 years from now:\n  - What does it do?\n  - Who uses it?\n  - How did it win?\n\nNow work backwards: what's the FIRST thing that had to be true for this future to exist?\n\nDo that first.";
+      return 
+        "**REVERSE_OUTCOME**  Pre-living the success\n\nProblem: " +
+        prompt +
+        "\n\nFast-forward 3 years. Your solution is THE standard. Everyone uses it. It's obvious in hindsight.\n\nWrite the Wikipedia article for your solution as it exists 3 years from now:\n  - What does it do?\n  - Who uses it?\n  - How did it win?\n\nNow work backwards: what's the FIRST thing that had to be true for this future to exist?\n\nDo that first.";;
     },
 
     // 29  FAILURE_PRE_MORTEM: it failed, why?
     (prompt) {
-      return "**FAILURE_PRE_MORTEM**  Autopsy before birth\n\nProblem: " + prompt + "\n\nIt's one year later. The project failed completely. No one uses it.\n\nList 5 specific reasons it died:\n  1. ___\n  2. ___\n  3. ___\n  4. ___\n  5. ___\n\nNow: for each reason, design a PREVENTATIVE that makes that failure IMPOSSIBLE.\n\nYour solution survives by design, not luck.";
+      return 
+        "**FAILURE_PRE_MORTEM**  Autopsy before birth\n\nProblem: " +
+        prompt +
+        "\n\nIt's one year later. The project failed completely. No one uses it.\n\nList 5 specific reasons it died:\n  1. ___\n  2. ___\n  3. ___\n  4. ___\n  5. ___\n\nNow: for each reason, design a PREVENTATIVE that makes that failure IMPOSSIBLE.\n\nYour solution survives by design, not luck.";;
     },
 
     // 30  PLATFORM_SHIFT: product  platform
     (prompt) {
-      return "**PLATFORM_SHIFT**  Don't solve it. Enable others to solve it.\n\nProblem: " + prompt + "\n\nInstead of building a solution, build a platform where OTHER people build solutions.\n\n- What's the atomic unit they create?\n- What's the constraint that makes their creativity flourish?\n- What's the marketplace / discovery mechanism?\n- How does each creation make the platform more valuable?\n\nStop building products. Start building ecosystems.";
+      return 
+        "**PLATFORM_SHIFT**  Don't solve it. Enable others to solve it.\n\nProblem: " +
+        prompt +
+        "\n\nInstead of building a solution, build a platform where OTHER people build solutions.\n\n- What's the atomic unit they create?\n- What's the constraint that makes their creativity flourish?\n- What's the marketplace / discovery mechanism?\n- How does each creation make the platform more valuable?\n\nStop building products. Start building ecosystems.";;
     },
 
     // 31  NETWORK_EFFECT_ENGINEERING: make it better with every user
     (prompt) {
-      return "**NETWORK_EFFECT_ENGINEERING**  The 10th user makes it better for the 1st\n\nProblem: " + prompt + "\n\nDesign so every new user increases value for ALL existing users.\n\nTypes of network effects:\n  - Direct: more users = more utility (telephone)\n  - Data: more usage = smarter system (maps)\n  - Platform: more users = more creators (app store)\n  - Social: more users = more identity value (instagram)\n\nWhich type fits? How do you ENGINEER the first 100 users to create value for each other?";
+      return 
+        "**NETWORK_EFFECT_ENGINEERING**  The 10th user makes it better for the 1st\n\nProblem: " +
+        prompt +
+        "\n\nDesign so every new user increases value for ALL existing users.\n\nTypes of network effects:\n  - Direct: more users = more utility (telephone)\n  - Data: more usage = smarter system (maps)\n  - Platform: more users = more creators (app store)\n  - Social: more users = more identity value (instagram)\n\nWhich type fits? How do you ENGINEER the first 100 users to create value for each other?";;
     },
 
     // 32  CALM_TECH: zero attention design
     (prompt) {
-      return "**CALM_TECHNOLOGY**  Invisible when working, visible only when needed\n\nProblem: " + prompt + "\n\nDesign so the user's attention is NEVER required unless something is wrong.\n\nPrinciples:\n  - No notifications by default\n  - The periphery handles everything\n  - A glance communicates the state\n  - Trust, don't verify\n\nWhat does the solution look like when it demands ZERO cognitive load?\n\nHow does it earn trust through reliability, not engagement?";
+      return 
+        "**CALM_TECHNOLOGY**  Invisible when working, visible only when needed\n\nProblem: " +
+        prompt +
+        "\n\nDesign so the user's attention is NEVER required unless something is wrong.\n\nPrinciples:\n  - No notifications by default\n  - The periphery handles everything\n  - A glance communicates the state\n  - Trust, don't verify\n\nWhat does the solution look like when it demands ZERO cognitive load?\n\nHow does it earn trust through reliability, not engagement?";;
     },
 
     // 33  DISINTERMEDIATION: cut every middleman
     (prompt) {
-      return "**DISINTERMEDIATION**  Remove every layer between creator and consumer\n\nProblem: " + prompt + "\n\nMap EVERY entity between the source and the end user:\n  Creator  Platform A  Aggregator B  Distributor C  Retailer D  User\n\nRemove each layer one by one. What breaks? What survives?\n\nWhat happens when the creator and user are DIRECTLY connected?\n\nHow does eliminating the middleman change the value proposition?";
+      return 
+        "**DISINTERMEDIATION**  Remove every layer between creator and consumer\n\nProblem: " +
+        prompt +
+        "\n\nMap EVERY entity between the source and the end user:\n  Creator  Platform A  Aggregator B  Distributor C  Retailer D  User\n\nRemove each layer one by one. What breaks? What survives?\n\nWhat happens when the creator and user are DIRECTLY connected?\n\nHow does eliminating the middleman change the value proposition?";;
     },
 
     // 34  SUBSCRIPTION_INVERT: flip the payment model
@@ -460,7 +564,10 @@ class BrainstormEngine {
         "reverse subscription: platform pays YOU for using it",
       ];
       final model = models[_rand.nextInt(models.length)];
-      return "**SUBSCRIPTION_INVERT**  Switch to $model\n\nProblem: " + prompt + "\n\nForce the business model to $model.\n\nHow does this change what you build? Who becomes the customer?\n\nWhat features become irrelevant? What becomes CRITICAL?\n\nThe business model IS the product. Redesign from money backwards.";
+      return 
+        "**SUBSCRIPTION_INVERT**  Switch to $model\n\nProblem: " +
+        prompt +
+        "\n\nForce the business model to $model.\n\nHow does this change what you build? Who becomes the customer?\n\nWhat features become irrelevant? What becomes CRITICAL?\n\nThe business model IS the product. Redesign from money backwards.";;
     },
 
     // 35  PROVOCATION: make a deliberately absurd statement
@@ -476,17 +583,26 @@ class BrainstormEngine {
         "It costs \$0.01 per use. You have to pay to use it.",
       ];
       final provocation = provocations[_rand.nextInt(provocations.length)];
-      return "**PROVOCATION**  Absurd statement: $provocation\n\nProblem: " + prompt + "\n\nAssume this is true. Find the useful kernel.\n\nDon't argue with it. EXPLOIT it.\n\nWhat's the VERSION of the solution that makes this statement wise, not absurd?";
+      return 
+        "**PROVOCATION**  Absurd statement: $provocation\n\nProblem: " +
+        prompt +
+        "\n\nAssume this is true. Find the useful kernel.\n\nDon't argue with it. EXPLOIT it.\n\nWhat's the VERSION of the solution that makes this statement wise, not absurd?";;
     },
 
     // 36  CHILD_VIEW: radical simplicity
     (prompt) {
-      return "**CHILD_VIEW**  Explain it to a 5-year-old\n\nProblem: " + prompt + "\n\nA 5-year-old asks:\n  - Why? (keep asking until you hit bedrock)\n  - How? (only the simplest mechanism)\n  - What if? (no concept of 'impossible')\n\nYour answers must use: toys, animals, food, and games as analogies.\n\nNow: design the solution using ONLY the concepts you just explained.\n\nIf a 5-year-old can understand it, ANYONE can use it.";
+      return 
+        "**CHILD_VIEW**  Explain it to a 5-year-old\n\nProblem: " +
+        prompt +
+        "\n\nA 5-year-old asks:\n  - Why? (keep asking until you hit bedrock)\n  - How? (only the simplest mechanism)\n  - What if? (no concept of 'impossible')\n\nYour answers must use: toys, animals, food, and games as analogies.\n\nNow: design the solution using ONLY the concepts you just explained.\n\nIf a 5-year-old can understand it, ANYONE can use it.";;
     },
 
     // 37  ALIEN_VIEW: fresh eyes, zero context
     (prompt) {
-      return "**ALIEN_VIEW**  An alien just landed. They see this for the first time.\n\nProblem: " + prompt + "\n\nThe alien has no context. No assumptions. No industry knowledge.\n\nThey look at the problem and notice:\n  - What's WEIRD about it?\n  - What's ASSUMED that they would never assume?\n  - What's COMPLICATED that could be simple?\n  - What's MISSING that seems obvious?\n\nThe alien doesn't know what's 'impossible'. Design from their naivety.";
+      return 
+        "**ALIEN_VIEW**  An alien just landed. They see this for the first time.\n\nProblem: " +
+        prompt +
+        "\n\nThe alien has no context. No assumptions. No industry knowledge.\n\nThey look at the problem and notice:\n  - What's WEIRD about it?\n  - What's ASSUMED that they would never assume?\n  - What's COMPLICATED that could be simple?\n  - What's MISSING that seems obvious?\n\nThe alien doesn't know what's 'impossible'. Design from their naivety.";;
     },
 
     // 38  HISTORICAL: solve it centuries ago
@@ -502,7 +618,10 @@ class BrainstormEngine {
         "Inca Empire (quipu, road network, terraced agriculture)",
       ];
       final civ = historical[_rand.nextInt(historical.length)];
-      return "**HISTORICAL**  Solved by $civ\n\nProblem: " + prompt + "\n\nThis civilization had NO technology as we know it.\n\nBut they had: social structures, rituals, workarounds, and deep wisdom.\n\nHow would $civ approach this problem?\n\nWhat solution would they build that's elegant, resourceful, and enduring?";
+      return 
+        "**HISTORICAL**  Solved by $civ\n\nProblem: " +
+        prompt +
+        "\n\nThis civilization had NO technology as we know it.\n\nBut they had: social structures, rituals, workarounds, and deep wisdom.\n\nHow would $civ approach this problem?\n\nWhat solution would they build that's elegant, resourceful, and enduring?";;
     },
 
     // 39  ROLE_PLAY: extreme stakeholder perspective
@@ -518,7 +637,10 @@ class BrainstormEngine {
         "the SUPPORT AGENT (hear complaints all day, know what breaks)",
       ];
       final role = roles[_rand.nextInt(roles.length)];
-      return "**ROLE_PLAY**  You are $role\n\nProblem: " + prompt + "\n\nAdopt this perspective completely.\n\nWhat do you SEE that others miss? What do you PRIORITIZE?\n\nWhat's the ONE thing you would change or demand?\n\nThe best solutions serve ALL stakeholders. Find the intersection.";
+      return 
+        "**ROLE_PLAY**  You are $role\n\nProblem: " +
+        prompt +
+        "\n\nAdopt this perspective completely.\n\nWhat do you SEE that others miss? What do you PRIORITIZE?\n\nWhat's the ONE thing you would change or demand?\n\nThe best solutions serve ALL stakeholders. Find the intersection.";;
     },
 
     // 40  TREND_EXTREME: amplify a trend to its logical extreme
@@ -534,32 +656,52 @@ class BrainstormEngine {
         "Subscription  everything is a subscription, even light switches",
       ];
       final trend = trends[_rand.nextInt(trends.length)];
-      return "**TREND_EXTREME**  Push '$trend' to its logical extreme\n\nProblem: " + prompt + "\n\nTake this trend not to 10% adoption or 50%  push it to 100%.\n\nThe world has fully transformed. There's no going back.\n\nHow does " + prompt + " work in this world?\n\nWhat becomes possible that's impossible today?\n\nNow: what's the V1 that starts moving in this direction?";
+      return 
+        "**TREND_EXTREME**  Push '$trend' to its logical extreme\n\nProblem: " +
+        prompt +
+        "\n\nTake this trend not to 10% adoption or 50%  push it to 100%.\n\nThe world has fully transformed. There's no going back.\n\nHow does " +
+        prompt +
+        " work in this world?\n\nWhat becomes possible that's impossible today?\n\nNow: what's the V1 that starts moving in this direction?";;
     },
 
     // 41  SELF_HEALING: resilience by design
     (prompt) {
-      return "**SELF_HEALING**  The solution diagnoses and fixes itself\n\nProblem: " + prompt + "\n\nDesign so the system can:\n  - Detect when something is wrong (without being told)\n  - Diagnose the root cause (not just symptom)\n  - Repair itself (or escalate gracefully)\n  - Learn from the incident (never repeat)\n\nWhat sensors, feedback loops, and recovery mechanisms exist?\n\nA self-healing system is trusted. A manual system is tolerated.";
+      return 
+        "**SELF_HEALING**  The solution diagnoses and fixes itself\n\nProblem: " +
+        prompt +
+        "\n\nDesign so the system can:\n  - Detect when something is wrong (without being told)\n  - Diagnose the root cause (not just symptom)\n  - Repair itself (or escalate gracefully)\n  - Learn from the incident (never repeat)\n\nWhat sensors, feedback loops, and recovery mechanisms exist?\n\nA self-healing system is trusted. A manual system is tolerated.";;
     },
 
     // 42  QUANTITY_FIRST: 50 ideas, no filter
     (prompt) {
-      return "**QUANTITY_FIRST**  50 ideas in 5 minutes\n\nProblem: " + prompt + "\n\nSet a timer for 5 minutes.\n\nGenerate as MANY ideas as possible:\n  - No judging. No filtering. No 'that won't work'.\n  - Bad ideas welcome. Terrible ideas ENCOURAGED.\n  - Quantity > quality at this stage.\n  - Steal, twist, mutate, combine.\n\nAfter 5 minutes: pick the top 3 most surprising ideas.\n\nIterate each one. The best idea is HIDING among the bad ones. Find it.";
+      return 
+        "**QUANTITY_FIRST**  50 ideas in 5 minutes\n\nProblem: " +
+        prompt +
+        "\n\nSet a timer for 5 minutes.\n\nGenerate as MANY ideas as possible:\n  - No judging. No filtering. No 'that won't work'.\n  - Bad ideas welcome. Terrible ideas ENCOURAGED.\n  - Quantity > quality at this stage.\n  - Steal, twist, mutate, combine.\n\nAfter 5 minutes: pick the top 3 most surprising ideas.\n\nIterate each one. The best idea is HIDING among the bad ones. Find it.";;
     },
 
     // 43  ECOSYSTEM: design for the whole system, not just the user
     (prompt) {
-      return "**ECOSYSTEM**  Every solution creates ripple effects\n\nProblem: " + prompt + "\n\nWho else is affected beyond the direct user?\n  - Suppliers (get squeezed? empowered?)\n  - Competitors (race to bottom? forced to innovate?)\n  - Regulators (new laws needed? banned?)\n  - Society (positive externality? negative externality?)\n  - Environment (resource consumption? waste?)\n  - Future generations (debt? gift?)\n\nDesign a solution that makes the ENTIRE ecosystem healthier, not just one part.";
+      return 
+        "**ECOSYSTEM**  Every solution creates ripple effects\n\nProblem: " +
+        prompt +
+        "\n\nWho else is affected beyond the direct user?\n  - Suppliers (get squeezed? empowered?)\n  - Competitors (race to bottom? forced to innovate?)\n  - Regulators (new laws needed? banned?)\n  - Society (positive externality? negative externality?)\n  - Environment (resource consumption? waste?)\n  - Future generations (debt? gift?)\n\nDesign a solution that makes the ENTIRE ecosystem healthier, not just one part.";;
     },
 
     // 44  PARETO: find the 20% that delivers 80%
     (prompt) {
-      return "**PARETO_PRINCIPLE**  20% of effort, 80% of value\n\nProblem: " + prompt + "\n\nList every feature, every component, every step.\n\nFor each: estimate the VALUE it delivers and the EFFORT to build it.\n\nIdentify the SMALL set (20%) that delivers MOST of the value (80%).\n\nNow: build ONLY that. Ship it in 1 week.\n\nThe rest might not even be needed. Find out.";
+      return 
+        "**PARETO_PRINCIPLE**  20% of effort, 80% of value\n\nProblem: " +
+        prompt +
+        "\n\nList every feature, every component, every step.\n\nFor each: estimate the VALUE it delivers and the EFFORT to build it.\n\nIdentify the SMALL set (20%) that delivers MOST of the value (80%).\n\nNow: build ONLY that. Ship it in 1 week.\n\nThe rest might not even be needed. Find out.";;
     },
 
     // 45  GENERATIONAL: design for grandchildren
     (prompt) {
-      return "**GENERATIONAL**  Your grandchildren inherit this\n\nProblem: " + prompt + "\n\nImagine you're designing this for people born 50 years from now.\n\nThey will look back at your decisions and either THANK you or CURSE you.\n\nWhat decisions would they thank you for?\n  - Is it sustainable?\n  - Is it learnable?\n  - Is it adaptable?\n  - Does it create more problems than it solves?\n\nDesign with generational gratitude. Not quarterly profits.";
+      return 
+        "**GENERATIONAL**  Your grandchildren inherit this\n\nProblem: " +
+        prompt +
+        "\n\nImagine you're designing this for people born 50 years from now.\n\nThey will look back at your decisions and either THANK you or CURSE you.\n\nWhat decisions would they thank you for?\n  - Is it sustainable?\n  - Is it learnable?\n  - Is it adaptable?\n  - Does it create more problems than it solves?\n\nDesign with generational gratitude. Not quarterly profits.";;
     },
 
     // 46  CONTRAST: make one dimension huge, another tiny
@@ -574,7 +716,10 @@ class BrainstormEngine {
         "Reliability (99.99999%) vs Budget (\$100)",
       ];
       final contrast = dimensions[_rand.nextInt(dimensions.length)];
-      return "**CONTRAST**  Extreme asymmetry: $contrast\n\nProblem: " + prompt + "\n\nDesign under this absurd asymmetry.\n\nThe constraint is so extreme it breaks conventional thinking.\n\nWhat architecture, model, or paradigm makes this possible?\n\nFind the idea that THRIVES on this imbalance.";
+      return 
+        "**CONTRAST**  Extreme asymmetry: $contrast\n\nProblem: " +
+        prompt +
+        "\n\nDesign under this absurd asymmetry.\n\nThe constraint is so extreme it breaks conventional thinking.\n\nWhat architecture, model, or paradigm makes this possible?\n\nFind the idea that THRIVES on this imbalance.";;
     },
 
     // 47  METAPHOR_FORCE: force a metaphor
@@ -590,12 +735,18 @@ class BrainstormEngine {
         "This problem is a TRADE ROUTE. Goods, tariffs, bandits, marketplaces.",
       ];
       final meta = metaphors[_rand.nextInt(metaphors.length)];
-      return "**METAPHOR_FORCE**  $meta\n\nProblem: " + prompt + "\n\nEXTEND the metaphor. Every element of the problem maps to the metaphor.\n\nWhat does the metaphor SHOW you about the problem?\n\nWhat solution emerges from the logic of the metaphor?\n\nMetaphors are models. Good models reveal hidden structure.";
+      return 
+        "**METAPHOR_FORCE**  $meta\n\nProblem: " +
+        prompt +
+        "\n\nEXTEND the metaphor. Every element of the problem maps to the metaphor.\n\nWhat does the metaphor SHOW you about the problem?\n\nWhat solution emerges from the logic of the metaphor?\n\nMetaphors are models. Good models reveal hidden structure.";;
     },
 
     // 48  DARK_SIDE: what's the evil twin?
     (prompt) {
-      return "**DARK_SIDE**  The malicious version\n\nProblem: " + prompt + "\n\nDesign the version that's used for EVIL:\n  - Manipulates users\n  - Extracts maximum data\n  - Creates addiction\n  - Locks users in\n  - Discriminates by design\n  - Maximizes short-term profit at any cost\n\nNow: list everything the dark side does.\n\nNow: do the OPPOSITE for EACH item.\n\nYour ethical design is a mirror of the dark side. Study the darkness to perfect the light.";
+      return 
+        "**DARK_SIDE**  The malicious version\n\nProblem: " +
+        prompt +
+        "\n\nDesign the version that's used for EVIL:\n  - Manipulates users\n  - Extracts maximum data\n  - Creates addiction\n  - Locks users in\n  - Discriminates by design\n  - Maximizes short-term profit at any cost\n\nNow: list everything the dark side does.\n\nNow: do the OPPOSITE for EACH item.\n\nYour ethical design is a mirror of the dark side. Study the darkness to perfect the light.";;
     },
 
     // 49  SOUND_DESIGN: design by auditory metaphor
@@ -611,12 +762,18 @@ class BrainstormEngine {
         "static on a radio  noise full of potential",
       ];
       final sound = sounds[_rand.nextInt(sounds.length)];
-      return "**SOUND_DESIGN**  Sound as solution: $sound\n\nProblem: " + prompt + "\n\nIf this problem had a SOUND, it would be $sound.\n\nDescribe the sound in detail. What's the rhythm? Timbre? Dynamics?\n\nNow: map acoustic properties to solution properties:\n  - Harmony  integration of parts\n  - Resonance  amplification of effect\n  - Silence  what's not there\n  - Rhythm  timing and cadence\n\nThe right solution has the right 'sound'. Engineer the resonance.";
+      return 
+        "**SOUND_DESIGN**  Sound as solution: $sound\n\nProblem: " +
+        prompt +
+        "\n\nIf this problem had a SOUND, it would be $sound.\n\nDescribe the sound in detail. What's the rhythm? Timbre? Dynamics?\n\nNow: map acoustic properties to solution properties:\n  - Harmony  integration of parts\n  - Resonance  amplification of effect\n  - Silence  what's not there\n  - Rhythm  timing and cadence\n\nThe right solution has the right 'sound'. Engineer the resonance.";;
     },
 
     // 50  ONE_BUTTON: absolute minimal interface
     (prompt) {
-      return "**ONE_BUTTON**  The entire interface is a single button\n\nProblem: " + prompt + "\n\nThe solution has exactly ONE interactive element.\n\nWhat does the button DO?\n  - When pressed once?\n  - When held?\n  - When double-pressed?\n  - When not pressed for a long time?\n\nEverything else is automatic, implicit, or inferred.\n\nIf ONE button solves this, you've found the CORE action.\n\nEverything else is noise. Remove it.";
+      return 
+        "**ONE_BUTTON**  The entire interface is a single button\n\nProblem: " +
+        prompt +
+        "\n\nThe solution has exactly ONE interactive element.\n\nWhat does the button DO?\n  - When pressed once?\n  - When held?\n  - When double-pressed?\n  - When not pressed for a long time?\n\nEverything else is automatic, implicit, or inferred.\n\nIf ONE button solves this, you've found the CORE action.\n\nEverything else is noise. Remove it.";;
     },
 
     // 51  OPPOSITE_MEDIUM: what if it's not software?
@@ -628,12 +785,20 @@ class BrainstormEngine {
         "a public bench", "a locked diary", "a clock face",
       ];
       final medium = mediums[_rand.nextInt(mediums.length)];
-      return "**OPPOSITE_MEDIUM**  Not an app. It's $medium.\n\nProblem: " + prompt + "\n\nForget software entirely. The solution is PHYSICAL.\n\nHow does $medium solve the problem?\n\nWhat constraints does physicality impose? (no updates, no analytics, no screens)\n\nWhat SUPERPOWERS does physicality give? (always there, tactile, shareable, hackable)\n\nNow: what's the DIGITAL version of that physical solution?";
+      return 
+        "**OPPOSITE_MEDIUM**  Not an app. It's $medium.\n\nProblem: " +
+        prompt +
+        "\n\nForget software entirely. The solution is PHYSICAL.\n\nHow does $medium solve the problem?\n\nWhat constraints does physicality impose? (no updates, no analytics, no screens)\n\nWhat SUPERPOWERS does physicality give? (always there, tactile, shareable, hackable)\n\nNow: what's the DIGITAL version of that physical solution?";;
     },
 
     // 52  ZERO_TO_ONE: what's the thing that doesn't exist but should?
     (prompt) {
-      return "**ZERO_TO_ONE**  Peter Thiel's question\n\nProblem: " + prompt + "\n\nAsk: What IMPORTANT truth do very few people agree with you on?\n\nIf the problem is " + prompt + ", what's the one thing that:\n  - Doesn't exist yet\n  - SHOULD exist\n  - Everyone would benefit from\n  - But NO ONE is building\n\nWhy isn't it built yet? (technical? regulatory? cultural? nobody thought of it?)\n\nIf you can name the thing that's missing, you've found the opportunity.";
+      return 
+        "**ZERO_TO_ONE**  Peter Thiel's question\n\nProblem: " +
+        prompt +
+        "\n\nAsk: What IMPORTANT truth do very few people agree with you on?\n\nIf the problem is " +
+        prompt +
+        ", what's the one thing that:\n  - Doesn't exist yet\n  - SHOULD exist\n  - Everyone would benefit from\n  - But NO ONE is building\n\nWhy isn't it built yet? (technical? regulatory? cultural? nobody thought of it?)\n\nIf you can name the thing that's missing, you've found the opportunity.";;
     },
 
     // 53  SIX_HATS: parallel thinking framework
@@ -647,7 +812,10 @@ class BrainstormEngine {
         "BLUE: process. How are we thinking about this? What's the meta-view?",
       ];
       final hat = hats[_rand.nextInt(hats.length)];
-      return "**SIX_HATS**  De Bono's $hat\n\nProblem: " + prompt + "\n\nWear this hat COMPLETELY. No other perspective allowed.\n\nUsing ONLY this mode, what insights emerge?\n\nNow: switch to a different hat. What conflicts? What complement?\n\nThe best solutions survive ALL six perspectives.";
+      return 
+        "**SIX_HATS**  De Bono's $hat\n\nProblem: " +
+        prompt +
+        "\n\nWear this hat COMPLETELY. No other perspective allowed.\n\nUsing ONLY this mode, what insights emerge?\n\nNow: switch to a different hat. What conflicts? What complement?\n\nThe best solutions survive ALL six perspectives.";;
     },
 
     // 54  SCAMPER: checklist for innovation
@@ -662,12 +830,22 @@ class BrainstormEngine {
         "REVERSE: do the opposite. Swap cause and effect. Flip inside out.",
       ];
       final prompt = scamper[_rand.nextInt(scamper.length)];
-      return "**SCAMPER**  " + prompt + "\n\nProblem: " + prompt + "\n\nSystematically apply this prompt. Force specific answers.\n\nDon't describe the concept  PRODUCE the modified version.\n\nWhat concrete change emerges?";
+      return 
+        "**SCAMPER**  " +
+        prompt +
+        "\n\nProblem: " +
+        prompt +
+        "\n\nSystematically apply this prompt. Force specific answers.\n\nDon't describe the concept  PRODUCE the modified version.\n\nWhat concrete change emerges?";;
     },
 
     // 55  IKIGAI: four-circle intersection
     (prompt) {
-      return "**IKIGAI**  Reason for being\n\nProblem: " + prompt + "\n\nMap to four circles:\n  1. What you LOVE (passion)\n  2. What the WORLD NEEDS (mission)\n  3. What you can be PAID FOR (profession)\n  4. What you're GOOD AT (vocation)\n\nFor each circle, list 3-5 things related to " + prompt + ".\n\nThe solution lives at the CENTER of all four.\n\nIf even one circle is empty, it's incomplete. Find the intersection.";
+      return 
+        "**IKIGAI**  Reason for being\n\nProblem: " +
+        prompt +
+        "\n\nMap to four circles:\n  1. What you LOVE (passion)\n  2. What the WORLD NEEDS (mission)\n  3. What you can be PAID FOR (profession)\n  4. What you're GOOD AT (vocation)\n\nFor each circle, list 3-5 things related to " +
+        prompt +
+        ".\n\nThe solution lives at the CENTER of all four.\n\nIf even one circle is empty, it's incomplete. Find the intersection.";;
     },
 
     // 56  NUDGE: behavioral economics
@@ -683,22 +861,37 @@ class BrainstormEngine {
         "Salience: make the desired option VISUALLY dominant.",
       ];
       final nudge = nudges[_rand.nextInt(nudges.length)];
-      return "**NUDGE**  $nudge\n\nProblem: " + prompt + "\n\nApply this behavioral economics principle to the problem.\n\nHow can a small change in presentation dramatically change behavior?\n\nDesign the choice architecture, not the features.";
+      return 
+        "**NUDGE**  $nudge\n\nProblem: " +
+        prompt +
+        "\n\nApply this behavioral economics principle to the problem.\n\nHow can a small change in presentation dramatically change behavior?\n\nDesign the choice architecture, not the features.";;
     },
 
     // 57  FEYNMAN_TECHNIQUE: explain in simple terms, find gaps
     (prompt) {
-      return "**FEYNMAN_TECHNIQUE**  If you can't explain it simply, you don't understand it\n\nProblem: " + prompt + "\n\nWrite a one-paragraph explanation of " + prompt + " using ONLY:\n  - Words a 12-year-old knows\n  - No jargon, no acronyms, no technical terms\n  - One analogy that carries the whole explanation\n\nNow: where did you struggle to simplify?\n\nTHAT's where the assumptions hide.\n\nTHAT's where the innovation opportunity is.";
+      return 
+        "**FEYNMAN_TECHNIQUE**  If you can't explain it simply, you don't understand it\n\nProblem: " +
+        prompt +
+        "\n\nWrite a one-paragraph explanation of " +
+        prompt +
+        " using ONLY:\n  - Words a 12-year-old knows\n  - No jargon, no acronyms, no technical terms\n  - One analogy that carries the whole explanation\n\nNow: where did you struggle to simplify?\n\nTHAT's where the assumptions hide.\n\nTHAT's where the innovation opportunity is.";;
     },
 
     // 58  KEPNER_TREGOE: decision analysis
     (prompt) {
-      return "**KEPNER_TREGOE**  Rational decision framework\n\nProblem: " + prompt + "\n\n1. Situation Appraisal: What EXACTLY needs to change? (not symptoms  root)\n2. Problem Analysis: What IS vs what SHOULD BE? (gap analysis)\n3. Decision Analysis: List 3 options. For each:\n   - MUST criteria (non-negotiable)\n   - WANT criteria (weighted 1-10)\n   - Risks (probability + impact)\n4. Potential Problem Analysis: What could go WRONG with the best option?\n\nScore each option. The highest score ISN'T always right  check your gut.";
+      return 
+        "**KEPNER_TREGOE**  Rational decision framework\n\nProblem: " +
+        prompt +
+        "\n\n1. Situation Appraisal: What EXACTLY needs to change? (not symptoms  root)\n2. Problem Analysis: What IS vs what SHOULD BE? (gap analysis)\n3. Decision Analysis: List 3 options. For each:\n   - MUST criteria (non-negotiable)\n   - WANT criteria (weighted 1-10)\n   - Risks (probability +
+        impact)\n4. Potential Problem Analysis: What could go WRONG with the best option?\n\nScore each option. The highest score ISN'T always right  check your gut.";;
     },
 
     // 59  FORCE_FIELD: driving vs restraining forces
     (prompt) {
-      return "**FORCE_FIELD**  Lewin's change model\n\nProblem: " + prompt + "\n\nList DRIVING forces that push toward the solution:\n  - (e.g., user demand, technology maturity, regulation tailwind)\n\nList RESTRAINING forces that hold back:\n  - (e.g., cost, risk, inertia, existing habits)\n\nStrategies:\n  - Strengthen driving forces (but can create resistance)\n  - WEAKEN restraining forces (more effective, less backlash)\n\nIdentify the ONE restraining force that, if removed, releases the most energy.\n\nRemove it. Everything else follows.";
+      return 
+        "**FORCE_FIELD**  Lewin's change model\n\nProblem: " +
+        prompt +
+        "\n\nList DRIVING forces that push toward the solution:\n  - (e.g., user demand, technology maturity, regulation tailwind)\n\nList RESTRAINING forces that hold back:\n  - (e.g., cost, risk, inertia, existing habits)\n\nStrategies:\n  - Strengthen driving forces (but can create resistance)\n  - WEAKEN restraining forces (more effective, less backlash)\n\nIdentify the ONE restraining force that, if removed, releases the most energy.\n\nRemove it. Everything else follows.";;
     },
 
     // 60  CYNE_FRAME: classify problem type, choose approach
@@ -711,19 +904,28 @@ class BrainstormEngine {
         "DISORDER: don't know which frame. BREAK IT DOWN.",
       ];
       final frame = frames[_rand.nextInt(frames.length)];
-      return "**CYNE_FRAME**  This problem is $frame\n\nProblem: " + prompt + "\n\nClassify according to Cynefin:\n\nIf $frame, then the RIGHT approach is:\n  Simple  sense, categorize, respond\n  Complicated  sense, analyze, respond\n  Complex  probe, sense, respond\n  Chaotic  act, sense, respond\n\nWhat's the CORRECT method for this frame?\n\nMost failures come from applying the WRONG method to the frame.";
+      return 
+        "**CYNE_FRAME**  This problem is $frame\n\nProblem: " +
+        prompt +
+        "\n\nClassify according to Cynefin:\n\nIf $frame, then the RIGHT approach is:\n  Simple  sense, categorize, respond\n  Complicated  sense, analyze, respond\n  Complex  probe, sense, respond\n  Chaotic  act, sense, respond\n\nWhat's the CORRECT method for this frame?\n\nMost failures come from applying the WRONG method to the frame.";;
     },
 
     // 61  SECOND_ORDER_CONSEQUENCES
     (prompt) {
-      return "**SECOND_ORDER_CONSEQUENCES**  Unintended effects\n\nProblem: " + prompt + "\n\nFor the obvious solution, list:\n  First-order: the DIRECT effect (what everyone expects)\n  Second-order: what happens AFTER the first order (ignored by most)\n  Third-order: long-term systemic change (ignored by almost everyone)\n\nExample:\n  Order 1: Build a road (faster travel)\n  Order 2: Suburbs expand, car dependency grows (traffic increases)\n  Order 3: Public transit decays, urban sprawl (more roads needed)\n\nFind the solution whose 3rd-order effects are POSITIVE.";
+      return 
+        "**SECOND_ORDER_CONSEQUENCES**  Unintended effects\n\nProblem: " +
+        prompt +
+        "\n\nFor the obvious solution, list:\n  First-order: the DIRECT effect (what everyone expects)\n  Second-order: what happens AFTER the first order (ignored by most)\n  Third-order: long-term systemic change (ignored by almost everyone)\n\nExample:\n  Order 1: Build a road (faster travel)\n  Order 2: Suburbs expand, car dependency grows (traffic increases)\n  Order 3: Public transit decays, urban sprawl (more roads needed)\n\nFind the solution whose 3rd-order effects are POSITIVE.";;
     },
 
     // 62  IDEOGRAM: solve with one symbol
     (prompt) {
       final symbols = ["", "", "", "", "", "-", "", "", "", "", "", "", "", "", ""];
       final symbol = symbols[_rand.nextInt(symbols.length)];
-      return "**IDEOGRAM**  The solution is a $symbol\n\nProblem: " + prompt + "\n\nIf the ENTIRE solution were represented by a single symbol ($symbol), what would that symbol mean?\n\n- What's the shape of the solution?\n- What's the motion or transformation?\n- What's the relationship between parts?\n\nDescribe the solution in terms of the symbol's geometry and meaning.\n\nThe symbol is the ABSTRACTION. The implementation follows.";
+      return 
+        "**IDEOGRAM**  The solution is a $symbol\n\nProblem: " +
+        prompt +
+        "\n\nIf the ENTIRE solution were represented by a single symbol ($symbol), what would that symbol mean?\n\n- What's the shape of the solution?\n- What's the motion or transformation?\n- What's the relationship between parts?\n\nDescribe the solution in terms of the symbol's geometry and meaning.\n\nThe symbol is the ABSTRACTION. The implementation follows.";;
     },
 
     // 63  TEN_TYPES: innovation beyond product
@@ -741,47 +943,78 @@ class BrainstormEngine {
         "CUSTOMER ENGAGEMENT: how they interact (not just UI)",
       ];
       final type = types[_rand.nextInt(types.length)];
-      return "**TEN_TYPES**  Innovate on $type\n\nProblem: " + prompt + "\n\nEvery startup competes on PRODUCT. But innovation can happen in 10 dimensions.\n\nFocus EXCLUSIVELY on $type.\n\nWhat's the most innovative version of $type for " + prompt + "?\n\nMost breakthroughs come from non-product innovation. Product is just the delivery mechanism.";
+      return 
+        "**TEN_TYPES**  Innovate on $type\n\nProblem: " +
+        prompt +
+        "\n\nEvery startup competes on PRODUCT. But innovation can happen in 10 dimensions.\n\nFocus EXCLUSIVELY on $type.\n\nWhat's the most innovative version of $type for " +
+        prompt +
+        "?\n\nMost breakthroughs come from non-product innovation. Product is just the delivery mechanism.";;
     },
 
     // 64  SUNK_COST: ignore everything already invested
     (prompt) {
-      return "**SUNK_COST**  Forget everything you've already done\n\nProblem: " + prompt + "\n\nImagine you have:\n  - Zero code written\n  - Zero users acquired\n  - Zero investors convinced\n  - Zero reputation on the line\n  - Zero commitments made\n\nYou have a fresh notebook and this problem.\n\nWhat would you build RIGHT NOW?\n\nIf the answer is different from what you're CURRENTLY building, you're a victim of sunk cost.\n\nStop. Build the right thing.";
+      return 
+        "**SUNK_COST**  Forget everything you've already done\n\nProblem: " +
+        prompt +
+        "\n\nImagine you have:\n  - Zero code written\n  - Zero users acquired\n  - Zero investors convinced\n  - Zero reputation on the line\n  - Zero commitments made\n\nYou have a fresh notebook and this problem.\n\nWhat would you build RIGHT NOW?\n\nIf the answer is different from what you're CURRENTLY building, you're a victim of sunk cost.\n\nStop. Build the right thing.";;
     },
 
     // 65  CHARETTE: 48-hour design sprint
     (prompt) {
-      return "**CHARETTE**  48-hour design sprint\n\nProblem: " + prompt + "\n\nYou have 48 hours. No extensions. Ship or scrap.\n\nHour 0-6: Research & Frame\n  - Understand the problem, talk to 3 users, define success\n\nHour 6-24: Ideate & Prototype\n  - Generate solutions, pick one, build the FAKEST prototype\n\nHour 24-44: Build & Iterate\n  - Make it work (barely), test with 5 users, fix the critical bugs\n\nHour 44-48: Polish & Ship\n  - Make it presentable, write the docs, SHIP\n\nWhat emerges from extreme time pressure? What's CORE vs NICE-TO-HAVE?";
+      return 
+        "**CHARETTE**  48-hour design sprint\n\nProblem: " +
+        prompt +
+        "\n\nYou have 48 hours. No extensions. Ship or scrap.\n\nHour 0-6: Research & Frame\n  - Understand the problem, talk to 3 users, define success\n\nHour 6-24: Ideate & Prototype\n  - Generate solutions, pick one, build the FAKEST prototype\n\nHour 24-44: Build & Iterate\n  - Make it work (barely), test with 5 users, fix the critical bugs\n\nHour 44-48: Polish & Ship\n  - Make it presentable, write the docs, SHIP\n\nWhat emerges from extreme time pressure? What's CORE vs NICE-TO-HAVE?";;
     },
 
     // 66  FISHBONE: root cause analysis
     (prompt) {
-      return "**FISHBONE**  Ishikawa root cause analysis\n\nProblem: " + prompt + "\n\nCategories of potential causes:\n  - PEOPLE: skills, motivation, communication\n  - PROCESS: steps, handoffs, bottlenecks\n  - TECHNOLOGY: tools, infrastructure, dependencies\n  - DATA: quality, availability, format\n  - ENVIRONMENT: regulations, culture, market conditions\n  - MEASUREMENT: what's tracked, what's invisible\n\nFor each category, list 3 potential root causes.\n\nThe REAL cause is a combination  not one thing.\n\nFix the SYSTEM, not the symptom.";
+      return 
+        "**FISHBONE**  Ishikawa root cause analysis\n\nProblem: " +
+        prompt +
+        "\n\nCategories of potential causes:\n  - PEOPLE: skills, motivation, communication\n  - PROCESS: steps, handoffs, bottlenecks\n  - TECHNOLOGY: tools, infrastructure, dependencies\n  - DATA: quality, availability, format\n  - ENVIRONMENT: regulations, culture, market conditions\n  - MEASUREMENT: what's tracked, what's invisible\n\nFor each category, list 3 potential root causes.\n\nThe REAL cause is a combination  not one thing.\n\nFix the SYSTEM, not the symptom.";;
     },
 
     // 67  DESIGN_THINKING: human-centered process
     (prompt) {
-      return "**DESIGN_THINKING**  Empathize  Define  Ideate  Prototype  Test\n\nProblem: " + prompt + "\n\nEMPATHIZE: what's the USER feeling? (not thinking  feeling)\n  - Frustration? Anxiety? Excitement? Boredom?\n\nDEFINE: reframe the problem from their perspective:\n  'How might we ___ so that the user feels ___?'\n\nIDEATE: 3 radically different approaches (don't pick yet  diverge)\n\nPROTOTYPE: the CHEAPEST way to test each approach\n\nTEST: with ONE user. What surprised you?\n\nDesign thinking is a CIRCLE. After TEST, go back to EMPATHIZE with new knowledge.";
+      return 
+        "**DESIGN_THINKING**  Empathize  Define  Ideate  Prototype  Test\n\nProblem: " +
+        prompt +
+        "\n\nEMPATHIZE: what's the USER feeling? (not thinking  feeling)\n  - Frustration? Anxiety? Excitement? Boredom?\n\nDEFINE: reframe the problem from their perspective:\n  'How might we ___ so that the user feels ___?'\n\nIDEATE: 3 radically different approaches (don't pick yet  diverge)\n\nPROTOTYPE: the CHEAPEST way to test each approach\n\nTEST: with ONE user. What surprised you?\n\nDesign thinking is a CIRCLE. After TEST, go back to EMPATHIZE with new knowledge.";;
     },
 
     // 68  SYSTEMS_THINKING: leverage points
     (prompt) {
-      return "**SYSTEMS_THINKING**  Meadows' leverage points\n\nProblem: " + prompt + "\n\nLeverage points (least to most effective):\n  1. Numbers (parameters, subsidies, taxes)  WEAKEST\n  2. Buffers (inventories, reserves)\n  3. Stock-and-flow structures (physical layout)\n  4. Delays (response times)\n  5. Feedback loops (balancing vs reinforcing)\n  6. Information flows (who knows what when)\n  7. Rules (incentives, constraints, permissions)\n  8. Self-organization (ability to evolve)\n  9. Goals (the PURPOSE of the system)\n  10. Paradigm (the MINDSET from which the system arises)  STRONGEST\n\nFind the HIGHEST leverage point you can shift. Change THAT. Everything else follows.";
+      return 
+        "**SYSTEMS_THINKING**  Meadows' leverage points\n\nProblem: " +
+        prompt +
+        "\n\nLeverage points (least to most effective):\n  1. Numbers (parameters, subsidies, taxes)  WEAKEST\n  2. Buffers (inventories, reserves)\n  3. Stock-and-flow structures (physical layout)\n  4. Delays (response times)\n  5. Feedback loops (balancing vs reinforcing)\n  6. Information flows (who knows what when)\n  7. Rules (incentives, constraints, permissions)\n  8. Self-organization (ability to evolve)\n  9. Goals (the PURPOSE of the system)\n  10. Paradigm (the MINDSET from which the system arises)  STRONGEST\n\nFind the HIGHEST leverage point you can shift. Change THAT. Everything else follows.";;
     },
 
     // 69  OCCAM_RAZOR: simplest explanation that fits all facts
     (prompt) {
-      return "**OCCAM_RAZOR**  The simplest solution is usually correct\n\nProblem: " + prompt + "\n\nDescribe the simplest possible solution. NO unnecessary complexity:\n  - Can it be one file? One function? One rule?\n  - Can it work without configuration?\n  - Can it be explained in one sentence?\n  - Can it be built in one day?\n\nComplexity is ADDED, not inherent. Every feature beyond the CORE is a bet.\n\nWhat's the solution so simple it feels WRONG?\n\nTry it. It might be right.";
+      return 
+        "**OCCAM_RAZOR**  The simplest solution is usually correct\n\nProblem: " +
+        prompt +
+        "\n\nDescribe the simplest possible solution. NO unnecessary complexity:\n  - Can it be one file? One function? One rule?\n  - Can it work without configuration?\n  - Can it be explained in one sentence?\n  - Can it be built in one day?\n\nComplexity is ADDED, not inherent. Every feature beyond the CORE is a bet.\n\nWhat's the solution so simple it feels WRONG?\n\nTry it. It might be right.";;
     },
 
     // 70  CIRCLES: comprehensive problem framing
     (prompt) {
-      return "**CIRCLES**  Complete problem framing\n\nC  Comprehend the situation:\n  What's the CONTEXT? Who cares? Why now?\n\nI  Identify the user:\n  WHO specifically? Not 'everyone'  ONE archetype.\n\nR  Report the user's needs:\n  What do they NEED? (not want  need)\n\nC  Cut through and list priorities:\n  What's the ONE thing that matters most?\n\nL  List solutions:\n  3 different approaches. Don't optimize yet.\n\nE  Evaluate trade-offs:\n  What does each solution cost? (time, money, complexity, risk)\n\nS  Summarize your recommendation:\n  Pick one. Defend it. Execute.\n\nApply CIRCLES to " + prompt + ".";
+      return 
+        "**CIRCLES**  Complete problem framing\n\nC  Comprehend the situation:\n  What's the CONTEXT? Who cares? Why now?\n\nI  Identify the user:\n  WHO specifically? Not 'everyone'  ONE archetype.\n\nR  Report the user's needs:\n  What do they NEED? (not want  need)\n\nC  Cut through and list priorities:\n  What's the ONE thing that matters most?\n\nL  List solutions:\n  3 different approaches. Don't optimize yet.\n\nE  Evaluate trade-offs:\n  What does each solution cost? (time, money, complexity, risk)\n\nS  Summarize your recommendation:\n  Pick one. Defend it. Execute.\n\nApply CIRCLES to " +
+        prompt +
+        ".";;
     },
 
     // 71  DIXIT: narrative framing
     (prompt) {
-      return "**DIXIT**  The story IS the solution\n\nProblem: " + prompt + "\n\nEvery solution comes with a STORY. The best solution has the BEST story.\n\nWhat's the story of " + prompt + "?\n  - Who's the hero? (the user, not you)\n  - What's the villain? (the old way, the frustration)\n  - What's the mentor? (your solution)\n  - What's the transformation? (before/after)\n  - What's the moral? (why this matters)\n\nDesign the story FIRST. Let the features serve the narrative.\n\nPeople don't buy products. They buy better versions of themselves.";
+      return 
+        "**DIXIT**  The story IS the solution\n\nProblem: " +
+        prompt +
+        "\n\nEvery solution comes with a STORY. The best solution has the BEST story.\n\nWhat's the story of " +
+        prompt +
+        "?\n  - Who's the hero? (the user, not you)\n  - What's the villain? (the old way, the frustration)\n  - What's the mentor? (your solution)\n  - What's the transformation? (before/after)\n  - What's the moral? (why this matters)\n\nDesign the story FIRST. Let the features serve the narrative.\n\nPeople don't buy products. They buy better versions of themselves.";;
     },
 
     // 72  PRICE_SIGNALING: price as a feature
@@ -793,7 +1026,10 @@ class BrainstormEngine {
         "Outcome-based (pay per result)", "Lifetime access \$199",
       ];
       final price = prices[_rand.nextInt(prices.length)];
-      return "**PRICE_SIGNALING**  Priced at $price\n\nProblem: " + prompt + "\n\nPrice is NOT just revenue. It's a SIGNAL.\n\nWhat does $price signal about your product?\n  - Free = mass adoption, low barrier, ads or donations\n  - \$999 = premium, exclusive, high quality\n  - Pay what you want = trust, community, accessible\n\nDesign the product to MATCH the price signal.\n\nWhat features does $price demand? What's included? What's excluded?";
+      return 
+        "**PRICE_SIGNALING**  Priced at $price\n\nProblem: " +
+        prompt +
+        "\n\nPrice is NOT just revenue. It's a SIGNAL.\n\nWhat does $price signal about your product?\n  - Free = mass adoption, low barrier, ads or donations\n  - \$999 = premium, exclusive, high quality\n  - Pay what you want = trust, community, accessible\n\nDesign the product to MATCH the price signal.\n\nWhat features does $price demand? What's included? What's excluded?";;
     },
 
     // 73  DISTRIBUTION_FIRST: how it spreads > what it does
@@ -806,22 +1042,38 @@ class BrainstormEngine {
         "enterprise sales (top-down)", "community-led (Slack, Discord, GitHub)",
       ];
       final channel = channels[_rand.nextInt(channels.length)];
-      return "**DISTRIBUTION_FIRST**  Distribution via $channel\n\nProblem: " + prompt + "\n\nGreat product + bad distribution = failure.\nOK product + great distribution = success.\n\nDesign the product so $channel is its NATURAL distribution mechanism.\n\nThe product IS the distribution channel. How does every usage spread it?";
+      return 
+        "**DISTRIBUTION_FIRST**  Distribution via $channel\n\nProblem: " +
+        prompt +
+        "\n\nGreat product +
+        bad distribution = failure.\nOK product +
+        great distribution = success.\n\nDesign the product so $channel is its NATURAL distribution mechanism.\n\nThe product IS the distribution channel. How does every usage spread it?";;
     },
 
     // 74  ONBOARDING_AS_PRODUCT: first 10 seconds
     (prompt) {
-      return "**ONBOARDING_AS_PRODUCT**  The first 10 seconds ARE the product\n\nProblem: " + prompt + "\n\nMost users never get past onboarding. The onboarding IS the product for most users.\n\nDesign a 10-second experience that delivers 80% of the value.\n  Second 1-2: show the core insight (a single visual)\n  Second 3-5: let them do THE thing (no signup)\n  Second 6-8: show the result (immediate feedback)\n  Second 9-10: ask ONE question\n\nIf they get value in 10 seconds, they'll invest 10 minutes.\n\nIf they don't, nothing else matters.";
+      return 
+        "**ONBOARDING_AS_PRODUCT**  The first 10 seconds ARE the product\n\nProblem: " +
+        prompt +
+        "\n\nMost users never get past onboarding. The onboarding IS the product for most users.\n\nDesign a 10-second experience that delivers 80% of the value.\n  Second 1-2: show the core insight (a single visual)\n  Second 3-5: let them do THE thing (no signup)\n  Second 6-8: show the result (immediate feedback)\n  Second 9-10: ask ONE question\n\nIf they get value in 10 seconds, they'll invest 10 minutes.\n\nIf they don't, nothing else matters.";;
     },
 
     // 75  INVERSE_CONWAY: design org structure, not product
     (prompt) {
-      return "**INVERSE_CONWAY**  Conway's Law: org structure produces product structure\n\nProblem: " + prompt + "\n\nConway's Law: organizations design systems that mirror their communication structure.\n\nInverse Conway: design the DESIRED system architecture first. Then restructure the team to MATCH.\n\nFor " + prompt + ":\n  - What's the ideal system architecture? (microservices? monolith? peer-to-peer?)\n  - What team structure NATURALLY produces this architecture?\n  - How do you reorganize to make the architecture inevitable?\n\nChange the org. The product follows.";
+      return 
+        "**INVERSE_CONWAY**  Conway's Law: org structure produces product structure\n\nProblem: " +
+        prompt +
+        "\n\nConway's Law: organizations design systems that mirror their communication structure.\n\nInverse Conway: design the DESIRED system architecture first. Then restructure the team to MATCH.\n\nFor " +
+        prompt +
+        ":\n  - What's the ideal system architecture? (microservices? monolith? peer-to-peer?)\n  - What team structure NATURALLY produces this architecture?\n  - How do you reorganize to make the architecture inevitable?\n\nChange the org. The product follows.";;
     },
 
     // 76  AMBIGUITY_SANDBOX: embrace ambiguity
     (prompt) {
-      return "**AMBIGUITY_SANDBOX**  Define, then violate the definition\n\nProblem: " + prompt + "\n\nSTEP 1: Define the problem in EXACT terms. No ambiguity.\n  \"The problem is EXACTLY: ___.\"\n\nSTEP 2: Now, deliberately MISINTERPRET the problem in 3 different ways.\n  \"Actually, the problem is: ___\" (wrong on purpose)\n\nSTEP 3: Solve each MISINTERPRETATION.\n\nSTEP 4: What's COMMON across all solutions?\n\nAmbiguity is a resource, not a bug. The best solutions work for the WRONG interpretations too.";
+      return 
+        "**AMBIGUITY_SANDBOX**  Define, then violate the definition\n\nProblem: " +
+        prompt +
+        "\n\nSTEP 1: Define the problem in EXACT terms. No ambiguity.\n  \"The problem is EXACTLY: ___.\"\n\nSTEP 2: Now, deliberately MISINTERPRET the problem in 3 different ways.\n  \"Actually, the problem is: ___\" (wrong on purpose)\n\nSTEP 3: Solve each MISINTERPRETATION.\n\nSTEP 4: What's COMMON across all solutions?\n\nAmbiguity is a resource, not a bug. The best solutions work for the WRONG interpretations too.";;
     },
 
     // 77  DEADLINE_ACCELERATOR: time machine
@@ -829,7 +1081,10 @@ class BrainstormEngine {
       final deadlines = ["1 hour", "24 hours", "1 week", "1 month", "1 quarter", "1 year", "10 years"];
       final d1 = deadlines[_rand.nextInt(deadlines.length)];
       final d2 = deadlines.where((d) => d != d1).toList()..shuffle();
-      return "**DEADLINE_ACCELERATOR**  Ship in $d1 vs $d2\n\nProblem: " + prompt + "\n\nTwo versions:\n\nVERSION A: Must ship in $d1. What do you build? What do you CUT?\n  - No time for perfection. What's the hacky prototype that proves the concept?\n\nVERSION B: You have $d2. What do you build with PATIENCE?\n  - Time for elegance, scale, and quality.\n\nThe differences between A and B reveal what's ESSENTIAL vs what's LUXURY.\n\nShip A today. Ship B next year.";
+      return 
+        "**DEADLINE_ACCELERATOR**  Ship in $d1 vs $d2\n\nProblem: " +
+        prompt +
+        "\n\nTwo versions:\n\nVERSION A: Must ship in $d1. What do you build? What do you CUT?\n  - No time for perfection. What's the hacky prototype that proves the concept?\n\nVERSION B: You have $d2. What do you build with PATIENCE?\n  - Time for elegance, scale, and quality.\n\nThe differences between A and B reveal what's ESSENTIAL vs what's LUXURY.\n\nShip A today. Ship B next year.";;
     },
 
     // 78  LIQUID_INTERFACE: no fixed UI
@@ -870,12 +1125,20 @@ class BrainstormEngine {
 
     // 80  MEME_DESIGN: ideas that spread
     (prompt) {
-      return "**MEME_DESIGN**  Design for replication, not consumption\n\nProblem: " + prompt + "\n\nThe best solutions spread like memes. They are:\n  - SIMPLE: one sentence, no jargon\n  - SURPRISING: violates an expectation\n  - CONCRETE: specific, not abstract\n  - CREDIBLE: self-evident truth\n  - EMOTIONAL: makes you feel something\n  - STORY: nested in a narrative\n\nDesign the MEME of your solution. If it is not memeable, it is not spreadable.\n\nWhat is the one-liner that makes someone say [Wait, say that again]?"
+      return 
+        "**MEME_DESIGN**  Design for replication, not consumption\n\nProblem: " +
+        prompt +
+        "\n\nThe best solutions spread like memes. They are:\n  - SIMPLE: one sentence, no jargon\n  - SURPRISING: violates an expectation\n  - CONCRETE: specific, not abstract\n  - CREDIBLE: self-evident truth\n  - EMOTIONAL: makes you feel something\n  - STORY: nested in a narrative\n\nDesign the MEME of your solution. If it is not memeable, it is not spreadable.\n\nWhat is the one-liner that makes someone say [Wait, say that again]?";
     },
 
     // 81  CUSTOMER_JOB_MAP: the 8-step job
     (prompt) {
-      return "**CUSTOMER_JOB_MAP**  The universal job map\n\nProblem: " + prompt + "\n\nEvery job has 8 universal steps:\n  1. DEFINE: what needs to happen?\n  2. LOCATE: where are the inputs?\n  3. PREPARE: set up the environment\n  4. CONFIRM: verify readiness\n  5. EXECUTE: do the core work\n  6. MONITOR: track progress\n  7. MODIFY: adjust as needed\n  8. CONCLUDE: finish and clean up\n\nMap " + prompt + " to these 8 steps. Which steps are PAINFUL?\n\nThe innovation is in the PAINFUL steps, not the easy ones."
+      return 
+        "**CUSTOMER_JOB_MAP**  The universal job map\n\nProblem: " +
+        prompt +
+        "\n\nEvery job has 8 universal steps:\n  1. DEFINE: what needs to happen?\n  2. LOCATE: where are the inputs?\n  3. PREPARE: set up the environment\n  4. CONFIRM: verify readiness\n  5. EXECUTE: do the core work\n  6. MONITOR: track progress\n  7. MODIFY: adjust as needed\n  8. CONCLUDE: finish and clean up\n\nMap " +
+        prompt +
+        " to these 8 steps. Which steps are PAINFUL?\n\nThe innovation is in the PAINFUL steps, not the easy ones.";
     },
 
     // 82  CAPABILITIES_MATRIX: what can it DO?
@@ -889,7 +1152,14 @@ class BrainstormEngine {
         "EXPLAIN (justify a result)", "ALERT (notify when necessary)",
       ];
       final cap = capabilities[_rand.nextInt(capabilities.length)];
-      return "**CAPABILITIES_MATRIX**  Core capability: " + cap + "\n\nProblem: " + prompt + "\n\nIF the solution could ONLY do ONE thing  " + cap + "  and do it PERFECTLY, what would it be?\n\nDesign the solution around this single capability.\n\nEverything else is a wrapper around the core capability.\n\nMaster ONE thing. The rest is plumbing."
+      return 
+        "**CAPABILITIES_MATRIX**  Core capability: " +
+        cap +
+        "\n\nProblem: " +
+        prompt +
+        "\n\nIF the solution could ONLY do ONE thing  " +
+        cap +
+        "  and do it PERFECTLY, what would it be?\n\nDesign the solution around this single capability.\n\nEverything else is a wrapper around the core capability.\n\nMaster ONE thing. The rest is plumbing.";
     },
 
     // 83  CULTURAL_FIT: design for a specific culture
@@ -905,12 +1175,20 @@ class BrainstormEngine {
         "Kenyan (harambee-pulling together, community resilience)",
       ];
       final culture = cultures[_rand.nextInt(cultures.length)];
-      return "**CULTURAL_FIT**  Designed for " + culture + "\n\nProblem: " + prompt + "\n\nDesign EXCLUSIVELY for this culture's values and constraints.\n\nWhat is acceptable? What is taboo?\n\nWhat features are ESSENTIAL? What is irrelevant?\n\nDesign for THIS culture. Make it perfect for them.\n\nIf it is perfect for THEM, it might have insights for everyone."
+      return 
+        "**CULTURAL_FIT**  Designed for " +
+        culture +
+        "\n\nProblem: " +
+        prompt +
+        "\n\nDesign EXCLUSIVELY for this culture's values and constraints.\n\nWhat is acceptable? What is taboo?\n\nWhat features are ESSENTIAL? What is irrelevant?\n\nDesign for THIS culture. Make it perfect for them.\n\nIf it is perfect for THEM, it might have insights for everyone.";
     },
 
     // 84  ERROR_DRIVEN: make mistakes the feature
     (prompt) {
-      return "**ERROR_DRIVEN**  Every error is a feature request\n\nProblem: " + prompt + "\n\nDesign where errors are NOT bugs, they are the CORE feedback mechanism.\n\nPrinciples:\n  - Errors are informative, not punishable\n  - Every error reveals a missing affordance\n  - The system learns MORE from errors than successes\n  - The error IS the error message\n\nWhat if the user cannot make a MISTAKE?\n\nWhat if every [wrong] action produces a VALUABLE output?\n\nDesign the system that only works when you fail."
+      return 
+        "**ERROR_DRIVEN**  Every error is a feature request\n\nProblem: " +
+        prompt +
+        "\n\nDesign where errors are NOT bugs, they are the CORE feedback mechanism.\n\nPrinciples:\n  - Errors are informative, not punishable\n  - Every error reveals a missing affordance\n  - The system learns MORE from errors than successes\n  - The error IS the error message\n\nWhat if the user cannot make a MISTAKE?\n\nWhat if every [wrong] action produces a VALUABLE output?\n\nDesign the system that only works when you fail.";
     },
 
     // 85  SENSORY_DEPRIVATION: remove one sense
@@ -925,22 +1203,38 @@ class BrainstormEngine {
         "no context (no idea where you are, what happened before)",
       ];
       final sense = senses[_rand.nextInt(senses.length)];
-      return "**SENSORY_DEPRIVATION**  Interface with " + sense + "\n\nProblem: " + prompt + "\n\nDesign the ENTIRE experience for someone with " + sense + ".\n\nEvery assumption about the interface is WRONG.\n\nHow do you communicate? How do they act? How do they know it is working?\n\nForcing this constraint reveals the TRUE essence of the interaction."
+      return 
+        "**SENSORY_DEPRIVATION**  Interface with " +
+        sense +
+        "\n\nProblem: " +
+        prompt +
+        "\n\nDesign the ENTIRE experience for someone with " +
+        sense +
+        ".\n\nEvery assumption about the interface is WRONG.\n\nHow do you communicate? How do they act? How do they know it is working?\n\nForcing this constraint reveals the TRUE essence of the interaction.";
     },
 
     // 86  RECIPROCITY_LOOP: give to get
     (prompt) {
-      return "**RECIPROCITY_LOOP**  Give first, ask later\n\nProblem: " + prompt + "\n\nHuman psychology: when someone gives us something, we feel OBLIGATED to give back.\n\nDesign a reciprocity loop:\n  1. Give IMMEDIATE value (no signup, no commitment)\n  2. Deliver SURPRISING value (more than expected)\n  3. Ask for something SMALL (feedback, share, email)\n  4. Give MORE value (reinforce the loop)\n  5. Ask for the ASK (purchase, upgrade, referral)\n\nThe best sales do not feel like sales. They feel like gratitude."
+      return 
+        "**RECIPROCITY_LOOP**  Give first, ask later\n\nProblem: " +
+        prompt +
+        "\n\nHuman psychology: when someone gives us something, we feel OBLIGATED to give back.\n\nDesign a reciprocity loop:\n  1. Give IMMEDIATE value (no signup, no commitment)\n  2. Deliver SURPRISING value (more than expected)\n  3. Ask for something SMALL (feedback, share, email)\n  4. Give MORE value (reinforce the loop)\n  5. Ask for the ASK (purchase, upgrade, referral)\n\nThe best sales do not feel like sales. They feel like gratitude.";
     },
 
     // 87  FEEDBACK_FIRST: measure what matters
     (prompt) {
-      return "**FEEDBACK_FIRST**  What gets measured gets improved\n\nProblem: " + prompt + "\n\nDesign the feedback system BEFORE the product:\n\n1. What is the SINGLE metric that defines success?\n   (Not vanity metrics, the ONE number that matters)\n\n2. How do you measure it in REAL TIME?\n   (If you cannot measure it quickly, you cannot steer)\n\n3. What is the CLOSED LOOP?\n   (Action -> Measurement -> Learning -> New Action)\n\n4. How does the system communicate its state?\n   (A glance, not a dashboard)\n\nThe product IS a feedback system. Features are just actuators."
+      return 
+        "**FEEDBACK_FIRST**  What gets measured gets improved\n\nProblem: " +
+        prompt +
+        "\n\nDesign the feedback system BEFORE the product:\n\n1. What is the SINGLE metric that defines success?\n   (Not vanity metrics, the ONE number that matters)\n\n2. How do you measure it in REAL TIME?\n   (If you cannot measure it quickly, you cannot steer)\n\n3. What is the CLOSED LOOP?\n   (Action -> Measurement -> Learning -> New Action)\n\n4. How does the system communicate its state?\n   (A glance, not a dashboard)\n\nThe product IS a feedback system. Features are just actuators.";
     },
 
     // 88  EMERGENCE: local rules, global behavior
     (prompt) {
-      return "**EMERGENCE**  Simple rules, complex outcomes\n\nProblem: " + prompt + "\n\nComplex systems emerge from SIMPLE local rules.\n\nDesign 3 simple rules that produce the DESIRED global behavior:\n  Rule 1: ___\n  Rule 2: ___\n  Rule 3: ___\n\nNo central control. No global plan. Just local interactions.\n\nExamples:\n  - Birds flock with 3 rules (alignment, separation, cohesion)\n  - Markets with 1 rule (buy low, sell high)\n  - Ants with 2 rules (follow pheromone, leave pheromone)\n\nWhat complex behavior emerges from YOUR 3 rules?"
+      return 
+        "**EMERGENCE**  Simple rules, complex outcomes\n\nProblem: " +
+        prompt +
+        "\n\nComplex systems emerge from SIMPLE local rules.\n\nDesign 3 simple rules that produce the DESIRED global behavior:\n  Rule 1: ___\n  Rule 2: ___\n  Rule 3: ___\n\nNo central control. No global plan. Just local interactions.\n\nExamples:\n  - Birds flock with 3 rules (alignment, separation, cohesion)\n  - Markets with 1 rule (buy low, sell high)\n  - Ants with 2 rules (follow pheromone, leave pheromone)\n\nWhat complex behavior emerges from YOUR 3 rules?";
     },
   ];
 }
