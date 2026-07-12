@@ -5436,6 +5436,7 @@ MISC (6):
     messages.add(Message(role: "user", content: userMessage));
     maybeCompress();
 
+    final apiKey = await SettingsService.deepseekApiKey;
     int loopCount = 0;
     const maxLoops = 20;
 
@@ -5462,7 +5463,7 @@ MISC (6):
           headers: {
             "Content-Type": "application/json",
             "Authorization":
-                "Bearer ${SettingsService.deepseekApiKey}",
+                "Bearer $apiKey",
           },
           body: body,
         ).timeout(const Duration(seconds: 90));
