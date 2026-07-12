@@ -1,0 +1,67 @@
+name: Build APK
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "packages/mobile/**"
+      - ".github/workflows/build-apk.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/mobile
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: 17
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.29.x"
+          channel: "stable"
+          cache: true
+          architecture: x64
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libsqlite3-dev cmake ninja-build clang
+
+      - name: Verify Flutter setup
+        run: flutter doctor -v
+
+      - name: Accept Android licenses
+        run: yes | flutter doctor --android-licenses
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build APK
+        run: |
+          flutter build apk --release --split-per-abi --verbose 2>&1 | tee build.log
+
+      - name: Upload build logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-logs
+          path: packages/mobile/build.log
+          retention-days: 5
+
+      - name: Upload APKs
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: opencode-apk
+          path: packages/mobile/build/app/outputs/flutter-apk/*.apk
+          retention-days: 90
