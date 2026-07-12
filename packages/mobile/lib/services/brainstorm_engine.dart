@@ -834,7 +834,25 @@ class BrainstormEngine {
 
     // 78 ��� LIQUID_INTERFACE: no fixed UI
     (prompt) {
-      return "**LIQUID_INTERFACE** ��� The interface adapts to the context, not the device\n\nProblem: $prompt\n\nThe interface is NOT fixed. It morphs based on:\n  - Who is using it (beginner vs expert)\n  - Where they are (desk vs walking vs driving)\n  - What they are doing (focused vs multitasking)\n  - What device they have (watch vs phone vs wall)\n  - Their state (calm vs stressed vs tired)\n\nThe SAME core functionality, radically different interfaces.\n\nDesign the CORE first. The interface is just a skin."
+    // 78 LIQUID_INTERFACE: no fixed UI
+    (prompt) {
+      final buf = StringBuffer();
+      buf.writeln("**LIQUID_INTERFACE** The interface adapts to the context, not the device");
+      buf.writeln("");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("");
+      buf.writeln("The interface is NOT fixed. It morphs based on:");
+      buf.writeln("  - Who is using it (beginner vs expert)");
+      buf.writeln("  - Where they are (desk vs walking vs driving)");
+      buf.writeln("  - What they are doing (focused vs multitasking)");
+      buf.writeln("  - What device they have (watch vs phone vs wall)");
+      buf.writeln("  - Their state (calm vs stressed vs tired)");
+      buf.writeln("");
+      buf.writeln("The SAME core functionality, radically different interfaces.");
+      buf.writeln("");
+      buf.write("Design the CORE first. The interface is just a skin.");
+      return buf.toString();
+    },
     },
 
     // 79 ��� OPEN_CORE: commoditize the complement
