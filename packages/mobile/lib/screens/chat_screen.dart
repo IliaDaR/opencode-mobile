@@ -8,7 +8,6 @@ import "../services/agent_service.dart";
 import "../services/storage_service.dart";
 import "../services/session_memory.dart";
 import "../services/settings_service.dart";
-import "../services/localization.dart";
 import "../services/snapshot_service.dart";
 import "../services/session_sharing_service.dart";
 import "../services/bg_service.dart";
@@ -118,16 +117,19 @@ class _ChatScreenState extends State<ChatScreen> {
   // ── Message management ──────────────────────────────────────────
 
   void _addUser(String text) {
+    if (!mounted) return;
     setState(() => _messages.add(ChatMessage(id: ++_msgId, type: ChatMsgType.user, content: text)));
     _scrollDown();
   }
 
   void _addAssistant(String text) {
+    if (!mounted) return;
     setState(() => _messages.add(ChatMessage(id: ++_msgId, type: ChatMsgType.assistant, content: text)));
     _scrollDown();
   }
 
   void _addSystem(String text) {
+    if (!mounted) return;
     setState(() => _messages.add(ChatMessage(id: ++_msgId, type: ChatMsgType.system, content: text)));
     _scrollDown();
   }
@@ -150,6 +152,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
     if (text.startsWith("/")) { await _handleCommand(text); return; }
 
+    _agent.messages.add(Message(role: "user", content: text));
     _addUser(text);
     await _callAgent();
   }
@@ -191,13 +194,13 @@ class _ChatScreenState extends State<ChatScreen> {
           }
         }
       case "/save":
-        _agent.saveSession();
+        await _agent.saveSession();
         _addSystem("Session saved.");
       case "/share":
         if (_agent.messages.isNotEmpty) {
           _addSystem("Exporting...");
-          SessionSharingService.exportSession(_project, _agent.messages.map((m) => m.toJson()).toList())
-              .then((r) => _addSystem(r));
+          final r = await SessionSharingService.exportSession(_project, _agent.messages.map((m) => m.toJson()).toList());
+          if (mounted) _addSystem(r);
         }
       case "/clear":
         setState(() => _messages.clear());
@@ -217,6 +220,7 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   Future<void> _callAgent() async {
+    if (!mounted) return;
     setState(() => _loading = true);
     try {
       final userMsg = _agent.messages.where((m) => m.role == "user").lastOrNull;
@@ -233,6 +237,7 @@ class _ChatScreenState extends State<ChatScreen> {
           _scrollDown();
         });
       }
+      if (!mounted) return;
       await _agent.saveSession();
     } catch (e) {
       if (mounted) _addSystem("Error: $e");
@@ -248,12 +253,18 @@ class _ChatScreenState extends State<ChatScreen> {
   void _toggleSpeech() async {
     if (_isListening) {
       await _speech.stop();
-      setState(() => _isListening = false);
+      if (mounted) setState(() => _isListening = false);
       return;
     }
-    final available = await _speech.initialize();
-    if (!available) { _addSystem("Speech not available."); return; }
+    if (_isListening) return;
     setState(() => _isListening = true);
+    final available = await _speech.initialize();
+    if (!mounted) { _isListening = false; return; }
+    if (!available) {
+      if (mounted) setState(() => _isListening = false);
+      if (mounted) _addSystem("Speech not available.");
+      return;
+    }
     _speech.listen(
       onResult: (r) => _inputCtrl.text = r.recognizedWords,
       localeId: "en_US", listenFor: const Duration(seconds: 15), pauseFor: const Duration(seconds: 5),

@@ -1,6 +1,4 @@
 import "dart:math" as math;
-import "package:http/http.dart" as http;
-import "dart:convert";
 
 /// 88 generative manipulation engines for creative ideation.
 /// Each applies a real algorithmic transformation to the problem text.

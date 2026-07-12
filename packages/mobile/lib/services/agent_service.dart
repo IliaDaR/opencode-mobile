@@ -2108,11 +2108,12 @@ MISC (6):
               args["project"], args["file_path"]);
         // Multi-agent
         case "delegate_task":
-          final result = await SubAgentService.delegate(
-              args["agent_type"], args["task"]);
+          final taskStr = args["task"]?.toString() ?? "";
+          final typeStr = args["agent_type"]?.toString() ?? "unknown";
+          final result = await SubAgentService.delegate(typeStr, taskStr);
           unawaited(BgService.show(
               "Sub-agent complete",
-              "[${args["agent_type"]}] ${args["task"]?.toString().substring(0, 80)}"));
+              "[$typeStr] ${taskStr.substring(0, taskStr.length > 80 ? 80 : taskStr.length)}"));
           return result;
         case "run_background":
           // Non-blocking background task with notification

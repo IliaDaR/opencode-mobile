@@ -2,7 +2,6 @@ import "package:flutter/material.dart";
 import "../services/settings_service.dart";
 import "../services/localization.dart";
 import "chat_screen.dart";
-import "settings_screen.dart";
 
 class SimpleConfigScreen extends StatefulWidget {
   const SimpleConfigScreen({super.key});
