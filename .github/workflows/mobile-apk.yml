@@ -40,6 +40,11 @@ jobs:
       - name: Accept Android licenses
         run: yes | flutter doctor --android-licenses
 
+      - name: Generate Gradle wrapper
+        run: |
+          cd android
+          gradle wrapper --gradle-version 8.12
+
       - name: Get dependencies
         run: flutter pub get
 
