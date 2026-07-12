@@ -879,7 +879,7 @@ class BrainstormEngine {
         "Kenyan (harambee-pulling together, community resilience)",
       ];
       final culture = cultures[_rand.nextInt(cultures.length)];
-      return "**CULTURAL_FIT** — Designed for $culture\n\nProblem: $prompt\n\nDesign EXCLUSIVELY for this culture\"s values and constraints.\n\nWhat is acceptable? What is taboo?\n\nWhat features are ESSENTIAL? What is irrelevant?\n\nDesign for THIS culture. Make it perfect for them.\n\nIf it is perfect for THEM, it might have insights for everyone.'
+      return "**CULTURAL_FIT** — Designed for $culture\n\nProblem: $prompt\n\nDesign EXCLUSIVELY for this culture's values and constraints.\n\nWhat is acceptable? What is taboo?\n\nWhat features are ESSENTIAL? What is irrelevant?\n\nDesign for THIS culture. Make it perfect for them.\n\nIf it is perfect for THEM, it might have insights for everyone."
     },
 
     // 84 — ERROR_DRIVEN: make mistakes the feature
