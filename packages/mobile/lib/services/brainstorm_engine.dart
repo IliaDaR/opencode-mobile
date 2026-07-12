@@ -853,7 +853,6 @@ class BrainstormEngine {
       buf.write("Design the CORE first. The interface is just a skin.");
       return buf.toString();
     },
-    },
 
     // 79  OPEN_CORE: commoditize the complement
     (prompt) {
