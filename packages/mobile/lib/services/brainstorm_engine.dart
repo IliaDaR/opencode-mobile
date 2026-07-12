@@ -270,7 +270,7 @@ class BrainstormEngine {
     // 3
     (prompt) {
       final pair = _scales[_rand.nextInt(_scales.length)];
-      return "**EXTREME_SCALING** — $promptair\n\nProblem: $prompt\n\nDesign two versions: one for the minimum extreme, one for the maximum extreme. What convergences appear at both poles?";
+      return "**EXTREME_SCALING** — $pair\n\nProblem: $prompt\n\nDesign two versions: one for the minimum extreme, one for the maximum extreme. What convergences appear at both poles?";
     },
 
     // 4
@@ -335,13 +335,13 @@ class BrainstormEngine {
     // 14
     (prompt) {
       final paradox = _paradoxes[_rand.nextInt(_paradoxes.length)];
-      return "**PARADOX_RESOLUTION** — Achieve: $promptaradox\n\nProblem: $prompt\n\nConvention says you can't have both. Break the trade-off.\n\nWhat technology, model, or perspective makes this contradiction IRRELEVANT?\n\nNot compromise — transcend.";
+      return "**PARADOX_RESOLUTION** — Achieve: $paradox\n\nProblem: $prompt\n\nConvention says you can't have both. Break the trade-off.\n\nWhat technology, model, or perspective makes this contradiction IRRELEVANT?\n\nNot compromise — transcend.";
     },
 
     // 15
     (prompt) {
       final pattern = _biomimicry[_rand.nextInt(_biomimicry.length)];
-      return "**BIOMIMICRY** — $promptattern\n\nProblem: $prompt\n\nNature has been R&D-ing for 3.8 billion years. This pattern works.\n\nMap the biological principle to your problem domain.\n\nWhat does nature's version look like?";
+      return "**BIOMIMICRY** — $pattern\n\nProblem: $prompt\n\nNature has been R&D-ing for 3.8 billion years. This pattern works.\n\nMap the biological principle to your problem domain.\n\nWhat does nature's version look like?";
     },
 
     // 16
@@ -358,7 +358,7 @@ class BrainstormEngine {
     // 18
     (prompt) {
       final prompt = _oblique[_rand.nextInt(_oblique.length)];
-      return "**OBLIQUE_STRATEGIES** — Random prompt: $promptrompt\n\nProblem: $prompt\n\nApply this oblique constraint. Don't force logic — let the contradiction spark something new.\n\nThe best ideas come from unexpected collisions. Find yours.";
+      return "**OBLIQUE_STRATEGIES** — Random prompt: $prompt\n\nProblem: $prompt\n\nApply this oblique constraint. Don't force logic — let the contradiction spark something new.\n\nThe best ideas come from unexpected collisions. Find yours.";
     },
 
     // 19 — MASHUP: force-merge with a physical object
@@ -476,7 +476,7 @@ class BrainstormEngine {
         "It costs \$0.01 per use. You have to pay to use it.",
       ];
       final provocation = provocations[_rand.nextInt(provocations.length)];
-      return "**PROVOCATION** — Absurd statement: $promptrovocation\n\nProblem: $prompt\n\nAssume this is true. Find the useful kernel.\n\nDon't argue with it. EXPLOIT it.\n\nWhat's the VERSION of the solution that makes this statement wise, not absurd?";
+      return "**PROVOCATION** — Absurd statement: $provocation\n\nProblem: $prompt\n\nAssume this is true. Find the useful kernel.\n\nDon't argue with it. EXPLOIT it.\n\nWhat's the VERSION of the solution that makes this statement wise, not absurd?";
     },
 
     // 36 — CHILD_VIEW: radical simplicity
@@ -662,7 +662,7 @@ class BrainstormEngine {
         "REVERSE: do the opposite. Swap cause and effect. Flip inside out.",
       ];
       final prompt = scamper[_rand.nextInt(scamper.length)];
-      return "**SCAMPER** — $promptrompt\n\nProblem: $prompt\n\nSystematically apply this prompt. Force specific answers.\n\nDon't describe the concept — PRODUCE the modified version.\n\nWhat concrete change emerges?";
+      return "**SCAMPER** — $prompt\n\nProblem: $prompt\n\nSystematically apply this prompt. Force specific answers.\n\nDon't describe the concept — PRODUCE the modified version.\n\nWhat concrete change emerges?";
     },
 
     // 55 — IKIGAI: four-circle intersection
@@ -793,7 +793,7 @@ class BrainstormEngine {
         "Outcome-based (pay per result)", "Lifetime access \$199",
       ];
       final price = prices[_rand.nextInt(prices.length)];
-      return "**PRICE_SIGNALING** — Priced at $promptrice\n\nProblem: $prompt\n\nPrice is NOT just revenue. It's a SIGNAL.\n\nWhat does $promptrice signal about your product?\n  - Free = mass adoption, low barrier, ads or donations\n  - \$999 = premium, exclusive, high quality\n  - Pay what you want = trust, community, accessible\n\nDesign the product to MATCH the price signal.\n\nWhat features does $promptrice demand? What's included? What's excluded?";
+      return "**PRICE_SIGNALING** — Priced at $price\n\nProblem: $prompt\n\nPrice is NOT just revenue. It's a SIGNAL.\n\nWhat does $price signal about your product?\n  - Free = mass adoption, low barrier, ads or donations\n  - \$999 = premium, exclusive, high quality\n  - Pay what you want = trust, community, accessible\n\nDesign the product to MATCH the price signal.\n\nWhat features does $price demand? What's included? What's excluded?";
     },
 
     // 73 — DISTRIBUTION_FIRST: how it spreads > what it does
