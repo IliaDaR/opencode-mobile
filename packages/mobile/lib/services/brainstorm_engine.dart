@@ -879,7 +879,7 @@ class BrainstormEngine {
           "  - EMOTIONAL: makes you feel something\n" +
           "  - STORY: nested in a narrative\n\n" +
           "Design the MEME of your solution. If it is not memeable, it is not spreadable.\n\n" +
-          "What is the one-liner that makes someone say [Wait, say that again]?"
+          "What is the one-liner that makes someone say [Wait, say that again]?";
     },
 
     // 81  CUSTOMER_JOB_MAP: the 8-step job
@@ -895,7 +895,7 @@ class BrainstormEngine {
           "  7. MODIFY: adjust as needed\n" +
           "  8. CONCLUDE: finish and clean up\n\n" +
           "Map " + prompt + " to these 8 steps. Which steps are PAINFUL?\n\n" +
-          "The innovation is in the PAINFUL steps, not the easy ones."
+          "The innovation is in the PAINFUL steps, not the easy ones.";
     },
 
     // 82  CAPABILITIES_MATRIX: what can it DO?
@@ -913,7 +913,7 @@ class BrainstormEngine {
           "IF the solution could ONLY do ONE thing  " + cap + "  and do it PERFECTLY, what would it be?\n\n" +
           "Design the solution around this single capability.\n\n" +
           "Everything else is a wrapper around the core capability.\n\n" +
-          "Master ONE thing. The rest is plumbing."
+          "Master ONE thing. The rest is plumbing.";
     },
 
     // 83  CULTURAL_FIT: design for a specific culture
@@ -934,7 +934,7 @@ class BrainstormEngine {
           "What is acceptable? What is taboo?\n\n" +
           "What features are ESSENTIAL? What is irrelevant?\n\n" +
           "Design for THIS culture. Make it perfect for them.\n\n" +
-          "If it is perfect for THEM, it might have insights for everyone."
+          "If it is perfect for THEM, it might have insights for everyone.";
     },
 
     // 84  ERROR_DRIVEN: make mistakes the feature
@@ -948,7 +948,7 @@ class BrainstormEngine {
           "  - The error IS the error message\n\n" +
           "What if the user cannot make a MISTAKE?\n\n" +
           "What if every [wrong] action produces a VALUABLE output?\n\n" +
-          "Design the system that only works when you fail."
+          "Design the system that only works when you fail.";
     },
 
     // 85  SENSORY_DEPRIVATION: remove one sense
@@ -967,7 +967,7 @@ class BrainstormEngine {
           "Design the ENTIRE experience for someone with " + sense + ".\n\n" +
           "Every assumption about the interface is WRONG.\n\n" +
           "How do you communicate? How do they act? How do they know it is working?\n\n" +
-          "Forcing this constraint reveals the TRUE essence of the interaction."
+          "Forcing this constraint reveals the TRUE essence of the interaction.";
     },
 
     // 86  RECIPROCITY_LOOP: give to get
@@ -980,7 +980,7 @@ class BrainstormEngine {
           "  3. Ask for something SMALL (feedback, share, email)\n" +
           "  4. Give MORE value (reinforce the loop)\n" +
           "  5. Ask for the ASK (purchase, upgrade, referral)\n\n" +
-          "The best sales do not feel like sales. They feel like gratitude."
+          "The best sales do not feel like sales. They feel like gratitude.";
     },
 
     // 87  FEEDBACK_FIRST: measure what matters
@@ -995,7 +995,7 @@ class BrainstormEngine {
           "   (Action -> Measurement -> Learning -> New Action)\n\n" +
           "4. How does the system communicate its state?\n" +
           "   (A glance, not a dashboard)\n\n" +
-          "The product IS a feedback system. Features are just actuators."
+          "The product IS a feedback system. Features are just actuators.";
     },
 
     // 88  EMERGENCE: local rules, global behavior
@@ -1009,7 +1009,7 @@ class BrainstormEngine {
           "  - Birds flock with 3 rules (alignment, separation, cohesion)\n" +
           "  - Markets with 1 rule (buy low, sell high)\n" +
           "  - Ants with 2 rules (follow pheromone, leave pheromone)\n\n" +
-          "What complex behavior emerges from YOUR 3 rules?"
+          "What complex behavior emerges from YOUR 3 rules?";
     },
   ];
 }
