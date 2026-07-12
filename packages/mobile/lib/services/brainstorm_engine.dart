@@ -834,8 +834,6 @@ class BrainstormEngine {
 
     // 78  LIQUID_INTERFACE: no fixed UI
     (prompt) {
-    // 78 LIQUID_INTERFACE: no fixed UI
-    (prompt) {
       final buf = StringBuffer();
       buf.writeln("**LIQUID_INTERFACE** The interface adapts to the context, not the device");
       buf.writeln("");
