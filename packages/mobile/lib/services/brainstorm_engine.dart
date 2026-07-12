@@ -389,12 +389,34 @@ class BrainstormEngine {
 
     // 22 ��� USER_JOURNEY_INVERT: design the worst journey, then flip
     (prompt) {
-      return "**USER_JOURNEY_INVERT** ��� Worst possible user flow\n\nProblem: $prompt\n\nMap the most frustrating, inefficient, rage-inducing user journey possible.\n  Step 1: ___ (make them wait)\n  Step 2: ___ (lose their data)\n  Step 3: ___ (ask them to repeat themselves)\n  Step 4: ___ (charge them for the privilege)\n\nNow run the SAME journey backwards. Each pain point becomes a delight.\n\nWhat's the resulting flow?";
+      final buf = StringBuffer();
+      buf.writeln("**USER_JOURNEY_INVERT** ��� Worst possible user flow");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Map the most frustrating, inefficient, rage-inducing user journey possible.\n  Step 1: ___ (make them wait)\n  Step 2: ___ (lose their data)\n  Step 3: ___ (ask them to repeat themselves)\n  Step 4: ___ (charge them for the privilege)");
+      buf.writeln("Now run the SAME journey backwards. Each pain point becomes a delight.");
+      buf.write("What's the resulting flow?");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 23 ��� MINIMAL_VIABLE: what's the smallest test?
     (prompt) {
-      return "**MINIMAL_VIABLE** ��� The FAKEST possible test\n\nProblem: $prompt\n\nWhat's the cheapest, ugliest, most hacky way to test if this idea has merit?\n\nNot an MVP ��� a PRETOTYPE. A fake button. A manual process that looks automated. A concierge service that feels like software.\n\nDesign the test that fits on a napkin. Run it this week.\n\nIf it works: build. If it fails: learn and pivot. Either way: you win.";
+      final buf = StringBuffer();
+      buf.writeln("**MINIMAL_VIABLE** ��� The FAKEST possible test");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("What's the cheapest, ugliest, most hacky way to test if this idea has merit?");
+      buf.writeln("Not an MVP ��� a PRETOTYPE. A fake button. A manual process that looks automated. A concierge service that feels like software.");
+      buf.writeln("Design the test that fits on a napkin. Run it this week.");
+      buf.write("If it works: build. If it fails: learn and pivot. Either way: you win.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 24 ��� GAMIFICATION: design as a game
@@ -407,47 +429,147 @@ class BrainstormEngine {
 
     // 25 ��� RITUAL_DESIGN: frame as a daily ritual
     (prompt) {
-      return "**RITUAL_DESIGN** ��� Ceremony, not feature\n\nProblem: $prompt\n\nA feature is used. A ritual is ANTICIPATED.\n\nDesign a daily ritual around this solution:\n  - When does it happen? (fixed time / trigger)\n  - What's the preparation? (lighting, posture, breathing)\n  - What's the core moment? (the 'sacred' action)\n  - What's the closing? (a sign of completion)\n  - What's the reward? (dopamine, not data)\n\nThe solution IS the ritual. The technology is just props.";
+      final buf = StringBuffer();
+      buf.writeln("**RITUAL_DESIGN** ��� Ceremony, not feature");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("A feature is used. A ritual is ANTICIPATED.");
+      buf.writeln("Design a daily ritual around this solution:\n  - When does it happen? (fixed time / trigger)\n  - What's the preparation? (lighting, posture, breathing)\n  - What's the core moment? (the 'sacred' action)\n  - What's the closing? (a sign of completion)\n  - What's the reward? (dopamine, not data)");
+      buf.write("The solution IS the ritual. The technology is just props.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 26 ��� JCVD (JOBS TO BE DONE): what job is the user hiring for?
     (prompt) {
-      return "**JOBS_TO_BE_DONE** ��� Hire the solution to do a JOB\n\nProblem: $prompt\n\nA user doesn't 'buy' a product. They HIRE it to do a job.\n\n1. What's the EXACT moment they realize they need this? (the struggle)\n2. What's the 'job' they're trying to get done? (functional + emotional + social)\n3. What are they CURRENTLY hiring? (the workaround)\n4. How do they FIRE the current solution?\n\nDesign FOR the job, not the feature set. What changes?";
+      final buf = StringBuffer();
+      buf.writeln("**JOBS_TO_BE_DONE** ��� Hire the solution to do a JOB");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("A user doesn't 'buy' a product. They HIRE it to do a job.");
+      buf.writeln("1. What's the EXACT moment they realize they need this? (the struggle)\n2. What's the 'job' they're trying to get done? (functional + emotional + social)\n3. What are they CURRENTLY hiring? (the workaround)\n4. How do they FIRE the current solution?");
+      buf.write("Design FOR the job, not the feature set. What changes?");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 27 ��� BLUE_OCEAN: eliminate-reduce-raise-create grid
     (prompt) {
-      return "**BLUE_OCEAN** ��� Value innovation canvas\n\nProblem: $prompt\n\nDraw a 2+�2 grid:\n\n| ELIMINATE (what does the industry compete on that's useless?) | REDUCE (what's over-engineered? below standard?) |\n| RAISE (what's under-delivered? above industry standard?) | CREATE (what's never been offered?) |\n\nFill each cell for $prompt.\n\nThe intersection of RAISE + CREATE is your blue ocean.";
+      final buf = StringBuffer();
+      buf.writeln("**BLUE_OCEAN** ��� Value innovation canvas");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Draw a 2+�2 grid:");
+      buf.writeln("| ELIMINATE (what does the industry compete on that's useless?) | REDUCE (what's over-engineered? below standard?) |\n| RAISE (what's under-delivered? above industry standard?) | CREATE (what's never been offered?) |");
+      buf.writeln("Fill each cell for $prompt.");
+      buf.write("The intersection of RAISE + CREATE is your blue ocean.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 28 ��� REVERSE_OUTCOME: start from desired end, prove it's inevitable
     (prompt) {
-      return "**REVERSE_OUTCOME** ��� Pre-living the success\n\nProblem: $prompt\n\nFast-forward 3 years. Your solution is THE standard. Everyone uses it. It's obvious in hindsight.\n\nWrite the Wikipedia article for your solution as it exists 3 years from now:\n  - What does it do?\n  - Who uses it?\n  - How did it win?\n\nNow work backwards: what's the FIRST thing that had to be true for this future to exist?\n\nDo that first.";
+      final buf = StringBuffer();
+      buf.writeln("**REVERSE_OUTCOME** ��� Pre-living the success");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Fast-forward 3 years. Your solution is THE standard. Everyone uses it. It's obvious in hindsight.");
+      buf.writeln("Write the Wikipedia article for your solution as it exists 3 years from now:\n  - What does it do?\n  - Who uses it?\n  - How did it win?");
+      buf.writeln("Now work backwards: what's the FIRST thing that had to be true for this future to exist?");
+      buf.write("Do that first.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 29 ��� FAILURE_PRE_MORTEM: it failed, why?
     (prompt) {
-      return "**FAILURE_PRE_MORTEM** ��� Autopsy before birth\n\nProblem: $prompt\n\nIt's one year later. The project failed completely. No one uses it.\n\nList 5 specific reasons it died:\n  1. ___\n  2. ___\n  3. ___\n  4. ___\n  5. ___\n\nNow: for each reason, design a PREVENTATIVE that makes that failure IMPOSSIBLE.\n\nYour solution survives by design, not luck.";
+      final buf = StringBuffer();
+      buf.writeln("**FAILURE_PRE_MORTEM** ��� Autopsy before birth");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("It's one year later. The project failed completely. No one uses it.");
+      buf.writeln("List 5 specific reasons it died:\n  1. ___\n  2. ___\n  3. ___\n  4. ___\n  5. ___");
+      buf.writeln("Now: for each reason, design a PREVENTATIVE that makes that failure IMPOSSIBLE.");
+      buf.write("Your solution survives by design, not luck.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 30 ��� PLATFORM_SHIFT: product ��� platform
     (prompt) {
-      return "**PLATFORM_SHIFT** ��� Don't solve it. Enable others to solve it.\n\nProblem: $prompt\n\nInstead of building a solution, build a platform where OTHER people build solutions.\n\n- What's the atomic unit they create?\n- What's the constraint that makes their creativity flourish?\n- What's the marketplace / discovery mechanism?\n- How does each creation make the platform more valuable?\n\nStop building products. Start building ecosystems.";
+      final buf = StringBuffer();
+      buf.writeln("**PLATFORM_SHIFT** ��� Don't solve it. Enable others to solve it.");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Instead of building a solution, build a platform where OTHER people build solutions.");
+      buf.writeln("- What's the atomic unit they create?\n- What's the constraint that makes their creativity flourish?\n- What's the marketplace / discovery mechanism?\n- How does each creation make the platform more valuable?");
+      buf.write("Stop building products. Start building ecosystems.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 31 ��� NETWORK_EFFECT_ENGINEERING: make it better with every user
     (prompt) {
-      return "**NETWORK_EFFECT_ENGINEERING** ��� The 10th user makes it better for the 1st\n\nProblem: $prompt\n\nDesign so every new user increases value for ALL existing users.\n\nTypes of network effects:\n  - Direct: more users = more utility (telephone)\n  - Data: more usage = smarter system (maps)\n  - Platform: more users = more creators (app store)\n  - Social: more users = more identity value (instagram)\n\nWhich type fits? How do you ENGINEER the first 100 users to create value for each other?";
+      final buf = StringBuffer();
+      buf.writeln("**NETWORK_EFFECT_ENGINEERING** ��� The 10th user makes it better for the 1st");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Design so every new user increases value for ALL existing users.");
+      buf.writeln("Types of network effects:\n  - Direct: more users = more utility (telephone)\n  - Data: more usage = smarter system (maps)\n  - Platform: more users = more creators (app store)\n  - Social: more users = more identity value (instagram)");
+      buf.write("Which type fits? How do you ENGINEER the first 100 users to create value for each other?");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 32 ��� CALM_TECH: zero attention design
     (prompt) {
-      return "**CALM_TECHNOLOGY** ��� Invisible when working, visible only when needed\n\nProblem: $prompt\n\nDesign so the user's attention is NEVER required unless something is wrong.\n\nPrinciples:\n  - No notifications by default\n  - The periphery handles everything\n  - A glance communicates the state\n  - Trust, don't verify\n\nWhat does the solution look like when it demands ZERO cognitive load?\n\nHow does it earn trust through reliability, not engagement?";
+      final buf = StringBuffer();
+      buf.writeln("**CALM_TECHNOLOGY** ��� Invisible when working, visible only when needed");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Design so the user's attention is NEVER required unless something is wrong.");
+      buf.writeln("Principles:\n  - No notifications by default\n  - The periphery handles everything\n  - A glance communicates the state\n  - Trust, don't verify");
+      buf.writeln("What does the solution look like when it demands ZERO cognitive load?");
+      buf.write("How does it earn trust through reliability, not engagement?");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 33 ��� DISINTERMEDIATION: cut every middleman
     (prompt) {
-      return "**DISINTERMEDIATION** ��� Remove every layer between creator and consumer\n\nProblem: $prompt\n\nMap EVERY entity between the source and the end user:\n  Creator ��� Platform A ��� Aggregator B ��� Distributor C ��� Retailer D ��� User\n\nRemove each layer one by one. What breaks? What survives?\n\nWhat happens when the creator and user are DIRECTLY connected?\n\nHow does eliminating the middleman change the value proposition?";
+      final buf = StringBuffer();
+      buf.writeln("**DISINTERMEDIATION** ��� Remove every layer between creator and consumer");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Map EVERY entity between the source and the end user:\n  Creator ��� Platform A ��� Aggregator B ��� Distributor C ��� Retailer D ��� User");
+      buf.writeln("Remove each layer one by one. What breaks? What survives?");
+      buf.writeln("What happens when the creator and user are DIRECTLY connected?");
+      buf.write("How does eliminating the middleman change the value proposition?");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 34 ��� SUBSCRIPTION_INVERT: flip the payment model
@@ -481,12 +603,34 @@ class BrainstormEngine {
 
     // 36 ��� CHILD_VIEW: radical simplicity
     (prompt) {
-      return "**CHILD_VIEW** ��� Explain it to a 5-year-old\n\nProblem: $prompt\n\nA 5-year-old asks:\n  - Why? (keep asking until you hit bedrock)\n  - How? (only the simplest mechanism)\n  - What if? (no concept of 'impossible')\n\nYour answers must use: toys, animals, food, and games as analogies.\n\nNow: design the solution using ONLY the concepts you just explained.\n\nIf a 5-year-old can understand it, ANYONE can use it.";
+      final buf = StringBuffer();
+      buf.writeln("**CHILD_VIEW** ��� Explain it to a 5-year-old");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("A 5-year-old asks:\n  - Why? (keep asking until you hit bedrock)\n  - How? (only the simplest mechanism)\n  - What if? (no concept of 'impossible')");
+      buf.writeln("Your answers must use: toys, animals, food, and games as analogies.");
+      buf.writeln("Now: design the solution using ONLY the concepts you just explained.");
+      buf.write("If a 5-year-old can understand it, ANYONE can use it.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 37 ��� ALIEN_VIEW: fresh eyes, zero context
     (prompt) {
-      return "**ALIEN_VIEW** ��� An alien just landed. They see this for the first time.\n\nProblem: $prompt\n\nThe alien has no context. No assumptions. No industry knowledge.\n\nThey look at the problem and notice:\n  - What's WEIRD about it?\n  - What's ASSUMED that they would never assume?\n  - What's COMPLICATED that could be simple?\n  - What's MISSING that seems obvious?\n\nThe alien doesn't know what's 'impossible'. Design from their naivety.";
+      final buf = StringBuffer();
+      buf.writeln("**ALIEN_VIEW** ��� An alien just landed. They see this for the first time.");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("The alien has no context. No assumptions. No industry knowledge.");
+      buf.writeln("They look at the problem and notice:\n  - What's WEIRD about it?\n  - What's ASSUMED that they would never assume?\n  - What's COMPLICATED that could be simple?\n  - What's MISSING that seems obvious?");
+      buf.write("The alien doesn't know what's 'impossible'. Design from their naivety.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 38 ��� HISTORICAL: solve it centuries ago
@@ -539,27 +683,83 @@ class BrainstormEngine {
 
     // 41 ��� SELF_HEALING: resilience by design
     (prompt) {
-      return "**SELF_HEALING** ��� The solution diagnoses and fixes itself\n\nProblem: $prompt\n\nDesign so the system can:\n  - Detect when something is wrong (without being told)\n  - Diagnose the root cause (not just symptom)\n  - Repair itself (or escalate gracefully)\n  - Learn from the incident (never repeat)\n\nWhat sensors, feedback loops, and recovery mechanisms exist?\n\nA self-healing system is trusted. A manual system is tolerated.";
+      final buf = StringBuffer();
+      buf.writeln("**SELF_HEALING** ��� The solution diagnoses and fixes itself");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Design so the system can:\n  - Detect when something is wrong (without being told)\n  - Diagnose the root cause (not just symptom)\n  - Repair itself (or escalate gracefully)\n  - Learn from the incident (never repeat)");
+      buf.writeln("What sensors, feedback loops, and recovery mechanisms exist?");
+      buf.write("A self-healing system is trusted. A manual system is tolerated.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 42 ��� QUANTITY_FIRST: 50 ideas, no filter
     (prompt) {
-      return "**QUANTITY_FIRST** ��� 50 ideas in 5 minutes\n\nProblem: $prompt\n\nSet a timer for 5 minutes.\n\nGenerate as MANY ideas as possible:\n  - No judging. No filtering. No 'that won't work'.\n  - Bad ideas welcome. Terrible ideas ENCOURAGED.\n  - Quantity > quality at this stage.\n  - Steal, twist, mutate, combine.\n\nAfter 5 minutes: pick the top 3 most surprising ideas.\n\nIterate each one. The best idea is HIDING among the bad ones. Find it.";
+      final buf = StringBuffer();
+      buf.writeln("**QUANTITY_FIRST** ��� 50 ideas in 5 minutes");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Set a timer for 5 minutes.");
+      buf.writeln("Generate as MANY ideas as possible:\n  - No judging. No filtering. No 'that won't work'.\n  - Bad ideas welcome. Terrible ideas ENCOURAGED.\n  - Quantity > quality at this stage.\n  - Steal, twist, mutate, combine.");
+      buf.writeln("After 5 minutes: pick the top 3 most surprising ideas.");
+      buf.write("Iterate each one. The best idea is HIDING among the bad ones. Find it.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 43 ��� ECOSYSTEM: design for the whole system, not just the user
     (prompt) {
-      return "**ECOSYSTEM** ��� Every solution creates ripple effects\n\nProblem: $prompt\n\nWho else is affected beyond the direct user?\n  - Suppliers (get squeezed? empowered?)\n  - Competitors (race to bottom? forced to innovate?)\n  - Regulators (new laws needed? banned?)\n  - Society (positive externality? negative externality?)\n  - Environment (resource consumption? waste?)\n  - Future generations (debt? gift?)\n\nDesign a solution that makes the ENTIRE ecosystem healthier, not just one part.";
+      final buf = StringBuffer();
+      buf.writeln("**ECOSYSTEM** ��� Every solution creates ripple effects");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Who else is affected beyond the direct user?\n  - Suppliers (get squeezed? empowered?)\n  - Competitors (race to bottom? forced to innovate?)\n  - Regulators (new laws needed? banned?)\n  - Society (positive externality? negative externality?)\n  - Environment (resource consumption? waste?)\n  - Future generations (debt? gift?)");
+      buf.write("Design a solution that makes the ENTIRE ecosystem healthier, not just one part.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 44 ��� PARETO: find the 20% that delivers 80%
     (prompt) {
-      return "**PARETO_PRINCIPLE** ��� 20% of effort, 80% of value\n\nProblem: $prompt\n\nList every feature, every component, every step.\n\nFor each: estimate the VALUE it delivers and the EFFORT to build it.\n\nIdentify the SMALL set (���20%) that delivers MOST of the value (���80%).\n\nNow: build ONLY that. Ship it in 1 week.\n\nThe rest might not even be needed. Find out.";
+      final buf = StringBuffer();
+      buf.writeln("**PARETO_PRINCIPLE** ��� 20% of effort, 80% of value");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("List every feature, every component, every step.");
+      buf.writeln("For each: estimate the VALUE it delivers and the EFFORT to build it.");
+      buf.writeln("Identify the SMALL set (���20%) that delivers MOST of the value (���80%).");
+      buf.writeln("Now: build ONLY that. Ship it in 1 week.");
+      buf.write("The rest might not even be needed. Find out.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 45 ��� GENERATIONAL: design for grandchildren
     (prompt) {
-      return "**GENERATIONAL** ��� Your grandchildren inherit this\n\nProblem: $prompt\n\nImagine you're designing this for people born 50 years from now.\n\nThey will look back at your decisions and either THANK you or CURSE you.\n\nWhat decisions would they thank you for?\n  - Is it sustainable?\n  - Is it learnable?\n  - Is it adaptable?\n  - Does it create more problems than it solves?\n\nDesign with generational gratitude. Not quarterly profits.";
+      final buf = StringBuffer();
+      buf.writeln("**GENERATIONAL** ��� Your grandchildren inherit this");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Imagine you're designing this for people born 50 years from now.");
+      buf.writeln("They will look back at your decisions and either THANK you or CURSE you.");
+      buf.writeln("What decisions would they thank you for?\n  - Is it sustainable?\n  - Is it learnable?\n  - Is it adaptable?\n  - Does it create more problems than it solves?");
+      buf.write("Design with generational gratitude. Not quarterly profits.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 46 ��� CONTRAST: make one dimension huge, another tiny
@@ -595,7 +795,19 @@ class BrainstormEngine {
 
     // 48 ��� DARK_SIDE: what's the evil twin?
     (prompt) {
-      return "**DARK_SIDE** ��� The malicious version\n\nProblem: $prompt\n\nDesign the version that's used for EVIL:\n  - Manipulates users\n  - Extracts maximum data\n  - Creates addiction\n  - Locks users in\n  - Discriminates by design\n  - Maximizes short-term profit at any cost\n\nNow: list everything the dark side does.\n\nNow: do the OPPOSITE for EACH item.\n\nYour ethical design is a mirror of the dark side. Study the darkness to perfect the light.";
+      final buf = StringBuffer();
+      buf.writeln("**DARK_SIDE** ��� The malicious version");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Design the version that's used for EVIL:\n  - Manipulates users\n  - Extracts maximum data\n  - Creates addiction\n  - Locks users in\n  - Discriminates by design\n  - Maximizes short-term profit at any cost");
+      buf.writeln("Now: list everything the dark side does.");
+      buf.writeln("Now: do the OPPOSITE for EACH item.");
+      buf.write("Your ethical design is a mirror of the dark side. Study the darkness to perfect the light.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 49 ��� SOUND_DESIGN: design by auditory metaphor
@@ -616,7 +828,21 @@ class BrainstormEngine {
 
     // 50 ��� ONE_BUTTON: absolute minimal interface
     (prompt) {
-      return "**ONE_BUTTON** ��� The entire interface is a single button\n\nProblem: $prompt\n\nThe solution has exactly ONE interactive element.\n\nWhat does the button DO?\n  - When pressed once?\n  - When held?\n  - When double-pressed?\n  - When not pressed for a long time?\n\nEverything else is automatic, implicit, or inferred.\n\nIf ONE button solves this, you've found the CORE action.\n\nEverything else is noise. Remove it.";
+      final buf = StringBuffer();
+      buf.writeln("**ONE_BUTTON** ��� The entire interface is a single button");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("The solution has exactly ONE interactive element.");
+      buf.writeln("What does the button DO?\n  - When pressed once?\n  - When held?\n  - When double-pressed?\n  - When not pressed for a long time?");
+      buf.writeln("Everything else is automatic, implicit, or inferred.");
+      buf.writeln("If ONE button solves this, you've found the CORE action.");
+      buf.write("Everything else is noise. Remove it.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 51 ��� OPPOSITE_MEDIUM: what if it's not software?
@@ -633,7 +859,19 @@ class BrainstormEngine {
 
     // 52 ��� ZERO_TO_ONE: what's the thing that doesn't exist but should?
     (prompt) {
-      return "**ZERO_TO_ONE** ��� Peter Thiel's question\n\nProblem: $prompt\n\nAsk: What IMPORTANT truth do very few people agree with you on?\n\nIf the problem is $prompt, what's the one thing that:\n  - Doesn't exist yet\n  - SHOULD exist\n  - Everyone would benefit from\n  - But NO ONE is building\n\nWhy isn't it built yet? (technical? regulatory? cultural? nobody thought of it?)\n\nIf you can name the thing that's missing, you've found the opportunity.";
+      final buf = StringBuffer();
+      buf.writeln("**ZERO_TO_ONE** ��� Peter Thiel's question");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Ask: What IMPORTANT truth do very few people agree with you on?");
+      buf.writeln("If the problem is $prompt, what's the one thing that:\n  - Doesn't exist yet\n  - SHOULD exist\n  - Everyone would benefit from\n  - But NO ONE is building");
+      buf.writeln("Why isn't it built yet? (technical? regulatory? cultural? nobody thought of it?)");
+      buf.write("If you can name the thing that's missing, you've found the opportunity.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 53 ��� SIX_HATS: parallel thinking framework
@@ -667,7 +905,19 @@ class BrainstormEngine {
 
     // 55 ��� IKIGAI: four-circle intersection
     (prompt) {
-      return "**IKIGAI** ��� Reason for being\n\nProblem: $prompt\n\nMap to four circles:\n  1. What you LOVE (passion)\n  2. What the WORLD NEEDS (mission)\n  3. What you can be PAID FOR (profession)\n  4. What you're GOOD AT (vocation)\n\nFor each circle, list 3-5 things related to $prompt.\n\nThe solution lives at the CENTER of all four.\n\nIf even one circle is empty, it's incomplete. Find the intersection.";
+      final buf = StringBuffer();
+      buf.writeln("**IKIGAI** ��� Reason for being");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Map to four circles:\n  1. What you LOVE (passion)\n  2. What the WORLD NEEDS (mission)\n  3. What you can be PAID FOR (profession)\n  4. What you're GOOD AT (vocation)");
+      buf.writeln("For each circle, list 3-5 things related to $prompt.");
+      buf.writeln("The solution lives at the CENTER of all four.");
+      buf.write("If even one circle is empty, it's incomplete. Find the intersection.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 56 ��� NUDGE: behavioral economics
@@ -688,17 +938,51 @@ class BrainstormEngine {
 
     // 57 ��� FEYNMAN_TECHNIQUE: explain in simple terms, find gaps
     (prompt) {
-      return "**FEYNMAN_TECHNIQUE** ��� If you can't explain it simply, you don't understand it\n\nProblem: $prompt\n\nWrite a one-paragraph explanation of $prompt using ONLY:\n  - Words a 12-year-old knows\n  - No jargon, no acronyms, no technical terms\n  - One analogy that carries the whole explanation\n\nNow: where did you struggle to simplify?\n\nTHAT's where the assumptions hide.\n\nTHAT's where the innovation opportunity is.";
+      final buf = StringBuffer();
+      buf.writeln("**FEYNMAN_TECHNIQUE** ��� If you can't explain it simply, you don't understand it");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Write a one-paragraph explanation of $prompt using ONLY:\n  - Words a 12-year-old knows\n  - No jargon, no acronyms, no technical terms\n  - One analogy that carries the whole explanation");
+      buf.writeln("Now: where did you struggle to simplify?");
+      buf.writeln("THAT's where the assumptions hide.");
+      buf.write("THAT's where the innovation opportunity is.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 58 ��� KEPNER_TREGOE: decision analysis
     (prompt) {
-      return "**KEPNER_TREGOE** ��� Rational decision framework\n\nProblem: $prompt\n\n1. Situation Appraisal: What EXACTLY needs to change? (not symptoms ��� root)\n2. Problem Analysis: What IS vs what SHOULD BE? (gap analysis)\n3. Decision Analysis: List 3 options. For each:\n   - MUST criteria (non-negotiable)\n   - WANT criteria (weighted 1-10)\n   - Risks (probability +� impact)\n4. Potential Problem Analysis: What could go WRONG with the best option?\n\nScore each option. The highest score ISN'T always right ��� check your gut.";
+      final buf = StringBuffer();
+      buf.writeln("**KEPNER_TREGOE** ��� Rational decision framework");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("1. Situation Appraisal: What EXACTLY needs to change? (not symptoms ��� root)\n2. Problem Analysis: What IS vs what SHOULD BE? (gap analysis)\n3. Decision Analysis: List 3 options. For each:\n   - MUST criteria (non-negotiable)\n   - WANT criteria (weighted 1-10)\n   - Risks (probability +� impact)\n4. Potential Problem Analysis: What could go WRONG with the best option?");
+      buf.write("Score each option. The highest score ISN'T always right ��� check your gut.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 59 ��� FORCE_FIELD: driving vs restraining forces
     (prompt) {
-      return "**FORCE_FIELD** ��� Lewin's change model\n\nProblem: $prompt\n\nList DRIVING forces that push toward the solution:\n  - (e.g., user demand, technology maturity, regulation tailwind)\n\nList RESTRAINING forces that hold back:\n  - (e.g., cost, risk, inertia, existing habits)\n\nStrategies:\n  - Strengthen driving forces (but can create resistance)\n  - WEAKEN restraining forces (more effective, less backlash)\n\nIdentify the ONE restraining force that, if removed, releases the most energy.\n\nRemove it. Everything else follows.";
+      final buf = StringBuffer();
+      buf.writeln("**FORCE_FIELD** ��� Lewin's change model");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("List DRIVING forces that push toward the solution:\n  - (e.g., user demand, technology maturity, regulation tailwind)");
+      buf.writeln("List RESTRAINING forces that hold back:\n  - (e.g., cost, risk, inertia, existing habits)");
+      buf.writeln("Strategies:\n  - Strengthen driving forces (but can create resistance)\n  - WEAKEN restraining forces (more effective, less backlash)");
+      buf.writeln("Identify the ONE restraining force that, if removed, releases the most energy.");
+      buf.write("Remove it. Everything else follows.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 60 ��� CYNE_FRAME: classify problem type, choose approach
@@ -746,42 +1030,150 @@ class BrainstormEngine {
 
     // 64 ��� SUNK_COST: ignore everything already invested
     (prompt) {
-      return "**SUNK_COST** ��� Forget everything you've already done\n\nProblem: $prompt\n\nImagine you have:\n  - Zero code written\n  - Zero users acquired\n  - Zero investors convinced\n  - Zero reputation on the line\n  - Zero commitments made\n\nYou have a fresh notebook and this problem.\n\nWhat would you build RIGHT NOW?\n\nIf the answer is different from what you're CURRENTLY building, you're a victim of sunk cost.\n\nStop. Build the right thing.";
+      final buf = StringBuffer();
+      buf.writeln("**SUNK_COST** ��� Forget everything you've already done");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Imagine you have:\n  - Zero code written\n  - Zero users acquired\n  - Zero investors convinced\n  - Zero reputation on the line\n  - Zero commitments made");
+      buf.writeln("You have a fresh notebook and this problem.");
+      buf.writeln("What would you build RIGHT NOW?");
+      buf.writeln("If the answer is different from what you're CURRENTLY building, you're a victim of sunk cost.");
+      buf.write("Stop. Build the right thing.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 65 ��� CHARETTE: 48-hour design sprint
     (prompt) {
-      return "**CHARETTE** ��� 48-hour design sprint\n\nProblem: $prompt\n\nYou have 48 hours. No extensions. Ship or scrap.\n\nHour 0-6: Research & Frame\n  - Understand the problem, talk to 3 users, define success\n\nHour 6-24: Ideate & Prototype\n  - Generate solutions, pick one, build the FAKEST prototype\n\nHour 24-44: Build & Iterate\n  - Make it work (barely), test with 5 users, fix the critical bugs\n\nHour 44-48: Polish & Ship\n  - Make it presentable, write the docs, SHIP\n\nWhat emerges from extreme time pressure? What's CORE vs NICE-TO-HAVE?";
+      final buf = StringBuffer();
+      buf.writeln("**CHARETTE** ��� 48-hour design sprint");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("You have 48 hours. No extensions. Ship or scrap.");
+      buf.writeln("Hour 0-6: Research & Frame\n  - Understand the problem, talk to 3 users, define success");
+      buf.writeln("Hour 6-24: Ideate & Prototype\n  - Generate solutions, pick one, build the FAKEST prototype");
+      buf.writeln("Hour 24-44: Build & Iterate\n  - Make it work (barely), test with 5 users, fix the critical bugs");
+      buf.writeln("Hour 44-48: Polish & Ship\n  - Make it presentable, write the docs, SHIP");
+      buf.write("What emerges from extreme time pressure? What's CORE vs NICE-TO-HAVE?");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 66 ��� FISHBONE: root cause analysis
     (prompt) {
-      return "**FISHBONE** ��� Ishikawa root cause analysis\n\nProblem: $prompt\n\nCategories of potential causes:\n  - PEOPLE: skills, motivation, communication\n  - PROCESS: steps, handoffs, bottlenecks\n  - TECHNOLOGY: tools, infrastructure, dependencies\n  - DATA: quality, availability, format\n  - ENVIRONMENT: regulations, culture, market conditions\n  - MEASUREMENT: what's tracked, what's invisible\n\nFor each category, list 3 potential root causes.\n\nThe REAL cause is a combination ��� not one thing.\n\nFix the SYSTEM, not the symptom.";
+      final buf = StringBuffer();
+      buf.writeln("**FISHBONE** ��� Ishikawa root cause analysis");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Categories of potential causes:\n  - PEOPLE: skills, motivation, communication\n  - PROCESS: steps, handoffs, bottlenecks\n  - TECHNOLOGY: tools, infrastructure, dependencies\n  - DATA: quality, availability, format\n  - ENVIRONMENT: regulations, culture, market conditions\n  - MEASUREMENT: what's tracked, what's invisible");
+      buf.writeln("For each category, list 3 potential root causes.");
+      buf.writeln("The REAL cause is a combination ��� not one thing.");
+      buf.write("Fix the SYSTEM, not the symptom.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 67 ��� DESIGN_THINKING: human-centered process
     (prompt) {
-      return "**DESIGN_THINKING** ��� Empathize ��� Define ��� Ideate ��� Prototype ��� Test\n\nProblem: $prompt\n\nEMPATHIZE: what's the USER feeling? (not thinking ��� feeling)\n  - Frustration? Anxiety? Excitement? Boredom?\n\nDEFINE: reframe the problem from their perspective:\n  'How might we ___ so that the user feels ___?'\n\nIDEATE: 3 radically different approaches (don't pick yet ��� diverge)\n\nPROTOTYPE: the CHEAPEST way to test each approach\n\nTEST: with ONE user. What surprised you?\n\nDesign thinking is a CIRCLE. After TEST, go back to EMPATHIZE with new knowledge.";
+      final buf = StringBuffer();
+      buf.writeln("**DESIGN_THINKING** ��� Empathize ��� Define ��� Ideate ��� Prototype ��� Test");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("EMPATHIZE: what's the USER feeling? (not thinking ��� feeling)\n  - Frustration? Anxiety? Excitement? Boredom?");
+      buf.writeln("DEFINE: reframe the problem from their perspective:\n  'How might we ___ so that the user feels ___?'");
+      buf.writeln("IDEATE: 3 radically different approaches (don't pick yet ��� diverge)");
+      buf.writeln("PROTOTYPE: the CHEAPEST way to test each approach");
+      buf.writeln("TEST: with ONE user. What surprised you?");
+      buf.write("Design thinking is a CIRCLE. After TEST, go back to EMPATHIZE with new knowledge.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 68 ��� SYSTEMS_THINKING: leverage points
     (prompt) {
-      return "**SYSTEMS_THINKING** ��� Meadows' leverage points\n\nProblem: $prompt\n\nLeverage points (least to most effective):\n  1. Numbers (parameters, subsidies, taxes) ��� WEAKEST\n  2. Buffers (inventories, reserves)\n  3. Stock-and-flow structures (physical layout)\n  4. Delays (response times)\n  5. Feedback loops (balancing vs reinforcing)\n  6. Information flows (who knows what when)\n  7. Rules (incentives, constraints, permissions)\n  8. Self-organization (ability to evolve)\n  9. Goals (the PURPOSE of the system)\n  10. Paradigm (the MINDSET from which the system arises) ��� STRONGEST\n\nFind the HIGHEST leverage point you can shift. Change THAT. Everything else follows.";
+      final buf = StringBuffer();
+      buf.writeln("**SYSTEMS_THINKING** ��� Meadows' leverage points");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Leverage points (least to most effective):\n  1. Numbers (parameters, subsidies, taxes) ��� WEAKEST\n  2. Buffers (inventories, reserves)\n  3. Stock-and-flow structures (physical layout)\n  4. Delays (response times)\n  5. Feedback loops (balancing vs reinforcing)\n  6. Information flows (who knows what when)\n  7. Rules (incentives, constraints, permissions)\n  8. Self-organization (ability to evolve)\n  9. Goals (the PURPOSE of the system)\n  10. Paradigm (the MINDSET from which the system arises) ��� STRONGEST");
+      buf.write("Find the HIGHEST leverage point you can shift. Change THAT. Everything else follows.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 69 ��� OCCAM_RAZOR: simplest explanation that fits all facts
     (prompt) {
-      return "**OCCAM_RAZOR** ��� The simplest solution is usually correct\n\nProblem: $prompt\n\nDescribe the simplest possible solution. NO unnecessary complexity:\n  - Can it be one file? One function? One rule?\n  - Can it work without configuration?\n  - Can it be explained in one sentence?\n  - Can it be built in one day?\n\nComplexity is ADDED, not inherent. Every feature beyond the CORE is a bet.\n\nWhat's the solution so simple it feels WRONG?\n\nTry it. It might be right.";
+      final buf = StringBuffer();
+      buf.writeln("**OCCAM_RAZOR** ��� The simplest solution is usually correct");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Describe the simplest possible solution. NO unnecessary complexity:\n  - Can it be one file? One function? One rule?\n  - Can it work without configuration?\n  - Can it be explained in one sentence?\n  - Can it be built in one day?");
+      buf.writeln("Complexity is ADDED, not inherent. Every feature beyond the CORE is a bet.");
+      buf.writeln("What's the solution so simple it feels WRONG?");
+      buf.write("Try it. It might be right.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 70 ��� CIRCLES: comprehensive problem framing
     (prompt) {
-      return "**CIRCLES** ��� Complete problem framing\n\nC ��� Comprehend the situation:\n  What's the CONTEXT? Who cares? Why now?\n\nI ��� Identify the user:\n  WHO specifically? Not 'everyone' ��� ONE archetype.\n\nR ��� Report the user's needs:\n  What do they NEED? (not want ��� need)\n\nC ��� Cut through and list priorities:\n  What's the ONE thing that matters most?\n\nL ��� List solutions:\n  3 different approaches. Don't optimize yet.\n\nE ��� Evaluate trade-offs:\n  What does each solution cost? (time, money, complexity, risk)\n\nS ��� Summarize your recommendation:\n  Pick one. Defend it. Execute.\n\nApply CIRCLES to $prompt.";
+      final buf = StringBuffer();
+      buf.writeln("**CIRCLES** ��� Complete problem framing");
+      buf.writeln("C ��� Comprehend the situation:\n  What's the CONTEXT? Who cares? Why now?");
+      buf.writeln("I ��� Identify the user:\n  WHO specifically? Not 'everyone' ��� ONE archetype.");
+      buf.writeln("R ��� Report the user's needs:\n  What do they NEED? (not want ��� need)");
+      buf.writeln("C ��� Cut through and list priorities:\n  What's the ONE thing that matters most?");
+      buf.writeln("L ��� List solutions:\n  3 different approaches. Don't optimize yet.");
+      buf.writeln("E ��� Evaluate trade-offs:\n  What does each solution cost? (time, money, complexity, risk)");
+      buf.writeln("S ��� Summarize your recommendation:\n  Pick one. Defend it. Execute.");
+      buf.write("Apply CIRCLES to $prompt.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 71 ��� DIXIT: narrative framing
     (prompt) {
-      return "**DIXIT** ��� The story IS the solution\n\nProblem: $prompt\n\nEvery solution comes with a STORY. The best solution has the BEST story.\n\nWhat's the story of $prompt?\n  - Who's the hero? (the user, not you)\n  - What's the villain? (the old way, the frustration)\n  - What's the mentor? (your solution)\n  - What's the transformation? (before/after)\n  - What's the moral? (why this matters)\n\nDesign the story FIRST. Let the features serve the narrative.\n\nPeople don't buy products. They buy better versions of themselves.";
+      final buf = StringBuffer();
+      buf.writeln("**DIXIT** ��� The story IS the solution");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Every solution comes with a STORY. The best solution has the BEST story.");
+      buf.writeln("What's the story of $prompt?\n  - Who's the hero? (the user, not you)\n  - What's the villain? (the old way, the frustration)\n  - What's the mentor? (your solution)\n  - What's the transformation? (before/after)\n  - What's the moral? (why this matters)");
+      buf.writeln("Design the story FIRST. Let the features serve the narrative.");
+      buf.write("People don't buy products. They buy better versions of themselves.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 72 ��� PRICE_SIGNALING: price as a feature
@@ -811,17 +1203,55 @@ class BrainstormEngine {
 
     // 74 ��� ONBOARDING_AS_PRODUCT: first 10 seconds
     (prompt) {
-      return "**ONBOARDING_AS_PRODUCT** ��� The first 10 seconds ARE the product\n\nProblem: $prompt\n\nMost users never get past onboarding. The onboarding IS the product for most users.\n\nDesign a 10-second experience that delivers 80% of the value.\n  Second 1-2: show the core insight (a single visual)\n  Second 3-5: let them do THE thing (no signup)\n  Second 6-8: show the result (immediate feedback)\n  Second 9-10: ask ONE question\n\nIf they get value in 10 seconds, they'll invest 10 minutes.\n\nIf they don't, nothing else matters.";
+      final buf = StringBuffer();
+      buf.writeln("**ONBOARDING_AS_PRODUCT** ��� The first 10 seconds ARE the product");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Most users never get past onboarding. The onboarding IS the product for most users.");
+      buf.writeln("Design a 10-second experience that delivers 80% of the value.\n  Second 1-2: show the core insight (a single visual)\n  Second 3-5: let them do THE thing (no signup)\n  Second 6-8: show the result (immediate feedback)\n  Second 9-10: ask ONE question");
+      buf.writeln("If they get value in 10 seconds, they'll invest 10 minutes.");
+      buf.write("If they don't, nothing else matters.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 75 ��� INVERSE_CONWAY: design org structure, not product
     (prompt) {
-      return "**INVERSE_CONWAY** ��� Conway's Law: org structure produces product structure\n\nProblem: $prompt\n\nConway's Law: organizations design systems that mirror their communication structure.\n\nInverse Conway: design the DESIRED system architecture first. Then restructure the team to MATCH.\n\nFor $prompt:\n  - What's the ideal system architecture? (microservices? monolith? peer-to-peer?)\n  - What team structure NATURALLY produces this architecture?\n  - How do you reorganize to make the architecture inevitable?\n\nChange the org. The product follows.";
+      final buf = StringBuffer();
+      buf.writeln("**INVERSE_CONWAY** ��� Conway's Law: org structure produces product structure");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Conway's Law: organizations design systems that mirror their communication structure.");
+      buf.writeln("Inverse Conway: design the DESIRED system architecture first. Then restructure the team to MATCH.");
+      buf.writeln("For $prompt:\n  - What's the ideal system architecture? (microservices? monolith? peer-to-peer?)\n  - What team structure NATURALLY produces this architecture?\n  - How do you reorganize to make the architecture inevitable?");
+      buf.write("Change the org. The product follows.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 76 ��� AMBIGUITY_SANDBOX: embrace ambiguity
     (prompt) {
-      return "**AMBIGUITY_SANDBOX** ��� Define, then violate the definition\n\nProblem: $prompt\n\nSTEP 1: Define the problem in EXACT terms. No ambiguity.\n  \"The problem is EXACTLY: ___.\"\n\nSTEP 2: Now, deliberately MISINTERPRET the problem in 3 different ways.\n  \"Actually, the problem is: ___\" (wrong on purpose)\n\nSTEP 3: Solve each MISINTERPRETATION.\n\nSTEP 4: What's COMMON across all solutions?\n\nAmbiguity is a resource, not a bug. The best solutions work for the WRONG interpretations too.";
+      final buf = StringBuffer();
+      buf.writeln("**AMBIGUITY_SANDBOX** ��� Define, then violate the definition");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("STEP 1: Define the problem in EXACT terms. No ambiguity.\n  \""The problem is EXACTLY: ___.\""");
+      buf.writeln("STEP 2: Now, deliberately MISINTERPRET the problem in 3 different ways.\n  \""Actually, the problem is: ___\"" (wrong on purpose)");
+      buf.writeln("STEP 3: Solve each MISINTERPRETATION.");
+      buf.writeln("STEP 4: What's COMMON across all solutions?");
+      buf.write("Ambiguity is a resource, not a bug. The best solutions work for the WRONG interpretations too.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 77 ��� DEADLINE_ACCELERATOR: time machine
@@ -853,21 +1283,52 @@ class BrainstormEngine {
       buf.write("Design the CORE first. The interface is just a skin.");
       return buf.toString();
     },
-    },
 
     // 79 ��� OPEN_CORE: commoditize the complement
     (prompt) {
-      return "**OPEN_CORE** ��� Give away what is complementary, sell what is scarce\n\nProblem: $prompt\n\nStrategy: open-source the part that ENABLES your business model.\n\n- What is the complement? (the thing people need to USE your product)\n   -> Make it open/free/commodity\n- What is the core? (the thing that makes you unique)\n   -> Sell it\n\nExamples:\n  - Red Hat: free Linux, paid support\n  - GitHub: free public repos, paid private + enterprise\n  - Docker: free engine, paid orchestration\n\nWhat can you commoditize to make your core indispensable?"
+      final buf = StringBuffer();
+      buf.writeln("**OPEN_CORE** ��� Give away what is complementary, sell what is scarce");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Strategy: open-source the part that ENABLES your business model.");
+      buf.writeln("- What is the complement? (the thing people need to USE your product)\n   -> Make it open/free/commodity\n- What is the core? (the thing that makes you unique)\n   -> Sell it");
+      buf.writeln("Examples:\n  - Red Hat: free Linux, paid support\n  - GitHub: free public repos, paid private + enterprise\n  - Docker: free engine, paid orchestration");
+      buf.write("What can you commoditize to make your core indispensable?");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 80 ��� MEME_DESIGN: ideas that spread
     (prompt) {
-      return "**MEME_DESIGN** ��� Design for replication, not consumption\n\nProblem: $prompt\n\nThe best solutions spread like memes. They are:\n  - SIMPLE: one sentence, no jargon\n  - SURPRISING: violates an expectation\n  - CONCRETE: specific, not abstract\n  - CREDIBLE: self-evident truth\n  - EMOTIONAL: makes you feel something\n  - STORY: nested in a narrative\n\nDesign the MEME of your solution. If it is not memeable, it is not spreadable.\n\nWhat is the one-liner that makes someone say [Wait, say that again]?"
+      final buf = StringBuffer();
+      buf.writeln("**MEME_DESIGN** ��� Design for replication, not consumption");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("The best solutions spread like memes. They are:\n  - SIMPLE: one sentence, no jargon\n  - SURPRISING: violates an expectation\n  - CONCRETE: specific, not abstract\n  - CREDIBLE: self-evident truth\n  - EMOTIONAL: makes you feel something\n  - STORY: nested in a narrative");
+      buf.writeln("Design the MEME of your solution. If it is not memeable, it is not spreadable.");
+      buf.write("What is the one-liner that makes someone say [Wait, say that again]?");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 81 ��� CUSTOMER_JOB_MAP: the 8-step job
     (prompt) {
-      return "**CUSTOMER_JOB_MAP** ��� The universal job map\n\nProblem: $prompt\n\nEvery job has 8 universal steps:\n  1. DEFINE: what needs to happen?\n  2. LOCATE: where are the inputs?\n  3. PREPARE: set up the environment\n  4. CONFIRM: verify readiness\n  5. EXECUTE: do the core work\n  6. MONITOR: track progress\n  7. MODIFY: adjust as needed\n  8. CONCLUDE: finish and clean up\n\nMap $prompt to these 8 steps. Which steps are PAINFUL?\n\nThe innovation is in the PAINFUL steps, not the easy ones."
+      final buf = StringBuffer();
+      buf.writeln("**CUSTOMER_JOB_MAP** ��� The universal job map");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Every job has 8 universal steps:\n  1. DEFINE: what needs to happen?\n  2. LOCATE: where are the inputs?\n  3. PREPARE: set up the environment\n  4. CONFIRM: verify readiness\n  5. EXECUTE: do the core work\n  6. MONITOR: track progress\n  7. MODIFY: adjust as needed\n  8. CONCLUDE: finish and clean up");
+      buf.writeln("Map $prompt to these 8 steps. Which steps are PAINFUL?");
+      buf.write("The innovation is in the PAINFUL steps, not the easy ones.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 82 ��� CAPABILITIES_MATRIX: what can it DO?
@@ -902,7 +1363,21 @@ class BrainstormEngine {
 
     // 84 ��� ERROR_DRIVEN: make mistakes the feature
     (prompt) {
-      return "**ERROR_DRIVEN** ��� Every error is a feature request\n\nProblem: $prompt\n\nDesign where errors are NOT bugs, they are the CORE feedback mechanism.\n\nPrinciples:\n  - Errors are informative, not punishable\n  - Every error reveals a missing affordance\n  - The system learns MORE from errors than successes\n  - The error IS the error message\n\nWhat if the user cannot make a MISTAKE?\n\nWhat if every [wrong] action produces a VALUABLE output?\n\nDesign the system that only works when you fail."
+      final buf = StringBuffer();
+      buf.writeln("**ERROR_DRIVEN** ��� Every error is a feature request");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Design where errors are NOT bugs, they are the CORE feedback mechanism.");
+      buf.writeln("Principles:\n  - Errors are informative, not punishable\n  - Every error reveals a missing affordance\n  - The system learns MORE from errors than successes\n  - The error IS the error message");
+      buf.writeln("What if the user cannot make a MISTAKE?");
+      buf.writeln("What if every [wrong] action produces a VALUABLE output?");
+      buf.write("Design the system that only works when you fail.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 85 ��� SENSORY_DEPRIVATION: remove one sense
@@ -922,17 +1397,57 @@ class BrainstormEngine {
 
     // 86 ��� RECIPROCITY_LOOP: give to get
     (prompt) {
-      return "**RECIPROCITY_LOOP** ��� Give first, ask later\n\nProblem: $prompt\n\nHuman psychology: when someone gives us something, we feel OBLIGATED to give back.\n\nDesign a reciprocity loop:\n  1. Give IMMEDIATE value (no signup, no commitment)\n  2. Deliver SURPRISING value (more than expected)\n  3. Ask for something SMALL (feedback, share, email)\n  4. Give MORE value (reinforce the loop)\n  5. Ask for the ASK (purchase, upgrade, referral)\n\nThe best sales do not feel like sales. They feel like gratitude."
+      final buf = StringBuffer();
+      buf.writeln("**RECIPROCITY_LOOP** ��� Give first, ask later");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Human psychology: when someone gives us something, we feel OBLIGATED to give back.");
+      buf.writeln("Design a reciprocity loop:\n  1. Give IMMEDIATE value (no signup, no commitment)\n  2. Deliver SURPRISING value (more than expected)\n  3. Ask for something SMALL (feedback, share, email)\n  4. Give MORE value (reinforce the loop)\n  5. Ask for the ASK (purchase, upgrade, referral)");
+      buf.write("The best sales do not feel like sales. They feel like gratitude.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 87 ��� FEEDBACK_FIRST: measure what matters
     (prompt) {
-      return "**FEEDBACK_FIRST** ��� What gets measured gets improved\n\nProblem: $prompt\n\nDesign the feedback system BEFORE the product:\n\n1. What is the SINGLE metric that defines success?\n   (Not vanity metrics, the ONE number that matters)\n\n2. How do you measure it in REAL TIME?\n   (If you cannot measure it quickly, you cannot steer)\n\n3. What is the CLOSED LOOP?\n   (Action -> Measurement -> Learning -> New Action)\n\n4. How does the system communicate its state?\n   (A glance, not a dashboard)\n\nThe product IS a feedback system. Features are just actuators."
+      final buf = StringBuffer();
+      buf.writeln("**FEEDBACK_FIRST** ��� What gets measured gets improved");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Design the feedback system BEFORE the product:");
+      buf.writeln("1. What is the SINGLE metric that defines success?\n   (Not vanity metrics, the ONE number that matters)");
+      buf.writeln("2. How do you measure it in REAL TIME?\n   (If you cannot measure it quickly, you cannot steer)");
+      buf.writeln("3. What is the CLOSED LOOP?\n   (Action -> Measurement -> Learning -> New Action)");
+      buf.writeln("4. How does the system communicate its state?\n   (A glance, not a dashboard)");
+      buf.write("The product IS a feedback system. Features are just actuators.");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
 
     // 88 ��� EMERGENCE: local rules, global behavior
     (prompt) {
-      return "**EMERGENCE** ��� Simple rules, complex outcomes\n\nProblem: $prompt\n\nComplex systems emerge from SIMPLE local rules.\n\nDesign 3 simple rules that produce the DESIRED global behavior:\n  Rule 1: ___\n  Rule 2: ___\n  Rule 3: ___\n\nNo central control. No global plan. Just local interactions.\n\nExamples:\n  - Birds flock with 3 rules (alignment, separation, cohesion)\n  - Markets with 1 rule (buy low, sell high)\n  - Ants with 2 rules (follow pheromone, leave pheromone)\n\nWhat complex behavior emerges from YOUR 3 rules?"
+      final buf = StringBuffer();
+      buf.writeln("**EMERGENCE** ��� Simple rules, complex outcomes");
+      buf.writeln("Problem: $prompt");
+      buf.writeln("Complex systems emerge from SIMPLE local rules.");
+      buf.writeln("Design 3 simple rules that produce the DESIRED global behavior:\n  Rule 1: ___\n  Rule 2: ___\n  Rule 3: ___");
+      buf.writeln("No central control. No global plan. Just local interactions.");
+      buf.writeln("Examples:\n  - Birds flock with 3 rules (alignment, separation, cohesion)\n  - Markets with 1 rule (buy low, sell high)\n  - Ants with 2 rules (follow pheromone, leave pheromone)");
+      buf.write("What complex behavior emerges from YOUR 3 rules?");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      buf.writeln("");
+      return buf.toString();
     },
   ];
 }
