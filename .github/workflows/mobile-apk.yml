@@ -40,13 +40,21 @@ jobs:
       - name: Accept Android licenses
         run: yes | flutter doctor --android-licenses
 
-      - name: Generate Gradle wrapper
+      - name: Create local.properties
         run: |
-          cd android
-          gradle wrapper --gradle-version 8.12
+          echo "sdk.dir=$ANDROID_HOME" > android/local.properties
+          flutter config --android-sdk "$ANDROID_HOME"
 
       - name: Get dependencies
         run: flutter pub get
+
+      - name: Generate Gradle wrapper
+        run: |
+          cd android
+          flutter build apk --release --split-per-abi --dry-run 2>/dev/null || true
+          if [ ! -f gradlew ]; then
+            gradle wrapper --gradle-version 8.12
+          fi
 
       - name: Build APK
         run: flutter build apk --release --split-per-abi
