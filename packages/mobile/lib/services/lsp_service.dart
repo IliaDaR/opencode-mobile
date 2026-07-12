@@ -9,6 +9,7 @@ import "storage_service.dart";
 class LspService {
   static Process? _lspProcess;
   static StreamSubscription? _lspSubscription;
+  static StreamSubscription? _lspStderrSub;
   static int _requestId = 0;
   static final Map<int, Completer<Map<String, dynamic>>> _pendingRequests = {};
 
@@ -24,7 +25,7 @@ class LspService {
             .transform(utf8.decoder)
             .transform(const LineSplitter())
             .listen(_handleLspMessage);
-        _lspProcess!.stderr.transform(utf8.decoder).listen((_) {});
+        _lspStderrSub = _lspProcess!.stderr.transform(utf8.decoder).listen((_) {});
 
         // Send initialize request
         final result = await _sendLspRequest("initialize", {
@@ -47,6 +48,8 @@ class LspService {
   static Future<void> disconnect() async {
     await _lspSubscription?.cancel();
     _lspSubscription = null;
+    await _lspStderrSub?.cancel();
+    _lspStderrSub = null;
     if (_lspProcess != null) {
       try {
         _lspProcess!.kill();

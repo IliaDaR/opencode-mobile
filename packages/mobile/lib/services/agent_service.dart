@@ -287,18 +287,17 @@ class AgentService {
   }
 
   /// Compress context if conversation is too long
-  void maybeCompress() {
+  Future<void> maybeCompress() async {
     if (messages.length > 30) {
       try {
         final msgMaps = messages.map((m) => m.toJson()).toList();
-        CompactionService.compress(msgMaps).then((summary) {
-          if (summary.isNotEmpty) {
-            final systemMsgs = messages.where((m) => m.role == "system").toList();
-            final keep = messages.length > 6 ? messages.sublist(messages.length - 6) : messages;
-            messages.clear();
-            messages.addAll([...systemMsgs, Message(role: "system", content: summary), ...keep]);
-          }
-        });
+        final summary = await CompactionService.compress(msgMaps);
+        if (summary.isNotEmpty) {
+          final systemMsgs = messages.where((m) => m.role == "system").toList();
+          final keep = messages.length > 6 ? messages.sublist(messages.length - 6) : messages;
+          messages.clear();
+          messages.addAll([...systemMsgs, Message(role: "system", content: summary), ...keep]);
+        }
       } catch (e) {
         final compressed = ContextManager.compress(messages, keepLast: 6);
         messages.replaceRange(0, messages.length, compressed);
@@ -5435,7 +5434,7 @@ MISC (6):
     }
 
     messages.add(Message(role: "user", content: userMessage));
-    maybeCompress();
+    await maybeCompress();
 
     final apiKey = await SettingsService.deepseekApiKey;
     int loopCount = 0;

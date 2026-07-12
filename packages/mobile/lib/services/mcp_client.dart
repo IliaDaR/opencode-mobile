@@ -94,6 +94,8 @@ class StdioMcpClient {
   int _requestId = 0;
   final Map<int, Completer<Map<String, dynamic>>> _pending = {};
   String _buffer = "";
+  StreamSubscription? _stdoutSub;
+  StreamSubscription? _stderrSub;
 
   /// Start the MCP server process
   Future<bool> start(String command, {List<String>? args, Map<String, String>? env}) async {
@@ -103,8 +105,8 @@ class StdioMcpClient {
           environment: env,
           mode: ProcessStartMode.normal);
 
-      _process!.stdout.transform(utf8.decoder).listen(_onData);
-      _process!.stderr.transform(utf8.decoder).listen((data) {
+      _stdoutSub = _process!.stdout.transform(utf8.decoder).listen(_onData);
+      _stderrSub = _process!.stderr.transform(utf8.decoder).listen((data) {
         // stderr from MCP servers often contains debug logs — ignore for now
       });
 
@@ -188,6 +190,10 @@ class StdioMcpClient {
   Future<void> stop() async {
     _pending.clear();
     _buffer = "";
+    await _stdoutSub?.cancel();
+    await _stderrSub?.cancel();
+    _stdoutSub = null;
+    _stderrSub = null;
     if (_process != null) {
       try {
         _process!.kill();

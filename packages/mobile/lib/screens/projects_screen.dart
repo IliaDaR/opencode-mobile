@@ -17,6 +17,7 @@ class ProjectsScreen extends StatefulWidget {
 class _ProjectsScreenState extends State<ProjectsScreen> {
   List<String> _projects = [];
   bool _loading = true;
+  int _configAttempts = 0;
   final TextEditingController _newProjectCtrl = TextEditingController();
 
   @override
@@ -32,6 +33,11 @@ class _ProjectsScreenState extends State<ProjectsScreen> {
   }
 
   Future<void> _checkConfig() async {
+    if (_configAttempts > 3) {
+      if (mounted) Navigator.of(context).pop();
+      return;
+    }
+    _configAttempts++;
     final hasKey = await SettingsService.deepseekApiKey;
     if (hasKey.isEmpty) {
       if (mounted) {
@@ -40,7 +46,7 @@ class _ProjectsScreenState extends State<ProjectsScreen> {
               builder: (_) => const OnboardingScreen()),
         );
         final hasKeyAfter = await SettingsService.deepseekApiKey;
-        if (hasKeyAfter.isEmpty) {
+        if (hasKeyAfter.isEmpty && _configAttempts < 4) {
           _checkConfig();
           return;
         }
