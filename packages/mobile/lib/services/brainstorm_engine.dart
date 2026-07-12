@@ -857,7 +857,18 @@ class BrainstormEngine {
 
     // 79  OPEN_CORE: commoditize the complement
     (prompt) {
-      return "**OPEN_CORE**  Give away what is complementary, sell what is scarce\n\nProblem: $prompt\n\nStrategy: open-source the part that ENABLES your business model.\n\n- What is the complement? (the thing people need to USE your product)\n   -> Make it open/free/commodity\n- What is the core? (the thing that makes you unique)\n   -> Sell it\n\nExamples:\n  - Red Hat: free Linux, paid support\n  - GitHub: free public repos, paid private + enterprise\n  - Docker: free engine, paid orchestration\n\nWhat can you commoditize to make your core indispensable?"
+      return "**OPEN_CORE**  Give away what is complementary, sell what is scarce\n\n" +
+          "Problem: $prompt\n\n" +
+          "Strategy: open-source the part that ENABLES your business model.\n\n" +
+          "- What is the complement? (the thing people need to USE your product)\n" +
+          "   -> Make it open/free/commodity\n" +
+          "- What is the core? (the thing that makes you unique)\n" +
+          "   -> Sell it\n" +
+          "Examples:\n" +
+          "  - Red Hat: free Linux, paid support\n" +
+          "  - GitHub: free public repos, paid private + enterprise\n" +
+          "  - Docker: free engine, paid orchestration\n" +
+          "What can you commoditize to make your core indispensable?";
     },
 
     // 80  MEME_DESIGN: ideas that spread
